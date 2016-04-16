@@ -27,7 +27,7 @@ class TasksTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('sys_tasks');
+        $this->table('tasks');
         $this->displayField('name_en');
         $this->primaryKey('id');
 

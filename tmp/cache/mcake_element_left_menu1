@@ -1,11 +1,11 @@
-1460210945
-s:3684:"<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu1" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+1460815216
+s:2568:"<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu1" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
     <li class="heading">
         <h3>GENERAL</h3>
     </li>
     
-                                    <li class="active" >
-                        <a href="/mazbas_cake">
+                                    <li class="" >
+                        <a href="/ham">
                             <i class="fa fa-dashboard"></i> Dashboard                        </a>
                     </li>
                     
@@ -23,53 +23,29 @@ s:3684:"<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu1" data-keep
                         <ul class="sub-menu">
                             
                                     <li class="" >
-                        <a href="/mazbas_cake/users">
+                        <a href="/ham/users">
                             <i class="fa fa-user"></i> Create User                        </a>
                     </li>
                     
             
-                                    <li>
-                        <a href="javascript:;">
-                            <i class="fa fa-qrcode "></i> User Group Mangement <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            
                                     <li class="" >
-                        <a href="/mazbas_cake/user-groups">
+                        <a href="/ham/user-groups">
                             <i class="fa fa-users"></i> User Group List                        </a>
                     </li>
                     
             
                                     <li class="" >
-                        <a href="/mazbas_cake/user-group-permissions">
+                        <a href="/ham/user-group-permissions">
                             <i class="fa fa-sliders "></i> User Group Role Management                        </a>
                     </li>
                     
                                     </ul>
                     </li>
                     
-                                    </ul>
-                    </li>
-                    
             
-                                    <li>
-                        <a href="javascript:;">
-                            <i class="fa  fa-tags "></i> Menu Management <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            
-                                    <li class="" >
-                        <a href="/mazbas_cake/tasks">
-                            <i class="fa  fa-navicon"></i> List of Task(Menu)                        </a>
-                    </li>
-                    
-            
-                                    <li class="" >
-                        <a href="/mazbas_cake/tasks/add">
-                            <i class="fa fa-plus-square "></i> Add New Task (Menu)                        </a>
-                    </li>
-                    
-                                    </ul>
+                                    <li class="active" >
+                        <a href="/ham/tasks">
+                            <i class="Add Task"></i> Add Task                        </a>
                     </li>
                     
                                     </ul>
@@ -77,7 +53,7 @@ s:3684:"<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu1" data-keep
                     
             
                                     <li class="" >
-                        <a href="/mazbas_cake/logout">
+                        <a href="/ham/logout">
                             <i class="fa fa-power-off "></i> LOGOUT                        </a>
                     </li>
                     

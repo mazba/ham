@@ -25,7 +25,7 @@ class UserGroupPermissionsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('sys_user_group_permissions');
+        $this->table('user_group_permissions');
         $this->displayField('id');
         $this->primaryKey('id');
 

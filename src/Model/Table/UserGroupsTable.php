@@ -27,7 +27,7 @@ class UserGroupsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('sys_user_groups');
+        $this->table('user_groups');
         $this->displayField('title');
         $this->primaryKey('id');
 

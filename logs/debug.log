@@ -2607,3 +2607,342 @@ Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
 
 2016-04-09 13:06:44 Notice: #mazbas_cake# permission_error: actionUrl-tasks/delete time:1460207204
 2016-04-09 13:06:53 Notice: #mazbas_cake# permission_error: actionUrl-tasks/delete time:1460207213
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+
+2016-04-16 11:27:29 Notice: Notice (8): Undefined index: User in [E:\local\htdocs\ham\src\View\Helper\MyHelper.php, line 80]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 80
+App\View\Helper\MyHelper::buildTree() - APP/View\Helper\MyHelper.php, line 90
+App\View\Helper\MyHelper::get_tree_menu() - APP/View\Helper\MyHelper.php, line 27
+include - APP/Template\Element\left_menu.ctp, line 6
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::_renderElement() - CORE\src\View\View.php, line 1310
+Cake\View\View::Cake\View\{closure}() - CORE\src\View\View.php, line 480
+Cake\View\View::cache() - CORE\src\View\View.php, line 520
+Cake\View\View::element() - CORE\src\View\View.php, line 481
+include - APP/Template\Layout\default.ctp, line 288
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 970
+Cake\View\View::_render() - CORE\src\View\View.php, line 930
+Cake\View\View::renderLayout() - CORE\src\View\View.php, line 624
+Cake\View\View::render() - CORE\src\View\View.php, line 583
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 611
+Cake\Error\ExceptionRenderer::_outputMessage() - CORE\src\Error\ExceptionRenderer.php, line 304
+Cake\Error\ExceptionRenderer::render() - CORE\src\Error\ExceptionRenderer.php, line 180
+Cake\Error\ErrorHandler::_displayException() - CORE\src\Error\ErrorHandler.php, line 144
+Cake\Error\BaseErrorHandler::handleException() - CORE\src\Error\BaseErrorHandler.php, line 155
+[main] - [internal], line ??
+
+
+

@@ -6289,3 +6289,115 @@ Stack Trace:
 #1 {main}
 
 
+2016-04-16 11:27:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/font-awesome/css/font-awesome.min.css
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/uniform/css/uniform.default.css
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/scripts/metronic.js
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/simple-line-icons/simple-line-icons.min.css
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/jquery-validation/js/jquery.validate.min.js
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:30 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:30 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/plugins/jquery-validation/js/jquery.validate.min.js
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 11:27:30 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /ham/assets/global/scripts/metronic.js
+Stack Trace:
+#0 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-04-16 12:58:36 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ham.sys_users' doesn't exist
+Request URL: /ham/login
+Stack Trace:
+#0 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(96): Cake\Database\Schema\Collection->_reflect('Column', 'sys_users', Array, Object(Cake\Database\Schema\Table))
+#1 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(64): Cake\Database\Schema\Collection->describe('sys_users', Array)
+#2 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Table.php(423): Cake\Database\Schema\CachedCollection->describe('sys_users')
+#3 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Query.php(173): Cake\ORM\Table->schema()
+#4 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Query.php(131): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\UsersTable))
+#5 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Table.php(1228): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\UsersTable))
+#6 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Table.php(931): Cake\ORM\Table->query()
+#7 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Auth\BaseAuthenticate.php(147): Cake\ORM\Table->find('all', Array)
+#8 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Auth\BaseAuthenticate.php(105): Cake\Auth\BaseAuthenticate->_query('mazba')
+#9 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Auth\FormAuthenticate.php(77): Cake\Auth\BaseAuthenticate->_findUser('mazba', 'mazba')
+#10 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Controller\Component\AuthComponent.php(764): Cake\Auth\FormAuthenticate->authenticate(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#11 E:\local\htdocs\ham\src\Controller\DashboardController.php(25): Cake\Controller\Component\AuthComponent->identify()
+#12 [internal function]: App\Controller\DashboardController->login()
+#13 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#14 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#15 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\DashboardController))
+#16 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#17 {main}
+
+
+2016-04-16 12:59:45 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "tasks"
+Request URL: /ham/tasks/edit/favicon.ico
+Stack Trace:
+#0 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Table.php(1187): Cake\ORM\Query->firstOrFail()
+#1 E:\local\htdocs\ham\src\Controller\TasksController.php(85): Cake\ORM\Table->get('favicon.ico', Array)
+#2 [internal function]: App\Controller\TasksController->edit('favicon.ico')
+#3 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#4 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#5 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\TasksController))
+#6 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 {main}
+
+
+2016-04-16 12:59:46 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "tasks"
+Request URL: /ham/tasks/edit/favicon.ico
+Stack Trace:
+#0 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\ORM\Table.php(1187): Cake\ORM\Query->firstOrFail()
+#1 E:\local\htdocs\ham\src\Controller\TasksController.php(85): Cake\ORM\Table->get('favicon.ico', Array)
+#2 [internal function]: App\Controller\TasksController->edit('favicon.ico')
+#3 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#4 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#5 E:\local\htdocs\ham\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\TasksController))
+#6 E:\local\htdocs\ham\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 {main}
+
+

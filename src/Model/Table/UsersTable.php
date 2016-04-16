@@ -25,7 +25,7 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('sys_users');
+        $this->table('users');
         $this->displayField('title');
         $this->primaryKey('id');
 
