@@ -64,6 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="<?= $this->request->webroot; ?>assets/admin/layout/css/themes/default.css" rel="stylesheet"
           type="text/css" id="style_color"/>
     <link href="<?= $this->request->webroot; ?>assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= $this->request->webroot; ?>css/common.css" rel="stylesheet" type="text/css"/>
 
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
@@ -340,6 +341,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="<?= $this->request->webroot; ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/index3.js" type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+<script src="<?= $this->request->webroot; ?>js/sys_mcake.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function () {
