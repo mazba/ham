@@ -1,0 +1,2 @@
+1460210945
+a:6:{s:5:"tasks";a:6:{s:5:"index";i:1;s:4:"view";i:1;s:3:"add";i:1;s:4:"edit";i:1;s:4:"ajax";i:1;s:6:"delete";i:1;}s:20:"usergrouppermissions";a:2:{s:5:"index";i:1;s:4:"edit";i:1;}s:10:"usergroups";a:5:{s:4:"view";i:1;s:5:"index";i:1;s:3:"add";i:1;s:4:"edit";i:1;s:6:"delete";i:1;}s:9:"dashboard";a:3:{s:5:"index";i:1;s:5:"login";i:1;s:6:"logout";i:1;}s:5:"users";a:5:{s:5:"index";i:1;s:4:"view";i:1;s:3:"add";i:1;s:4:"edit";i:1;s:6:"delete";i:1;}s:4:"test";a:1:{s:10:"cacheclear";i:1;}}
