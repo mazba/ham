@@ -60,10 +60,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="<?= $this->request->webroot; ?>assets/global/css/components-rounded.css" id="style_components"
           rel="stylesheet" type="text/css"/>
     <link href="<?= $this->request->webroot; ?>assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-    <link href="<?= $this->request->webroot; ?>assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link href="<?= $this->request->webroot; ?>assets/admin/layout/css/themes/default.css" rel="stylesheet"
+    <link href="<?= $this->request->webroot; ?>assets/admin/layout4/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= $this->request->webroot; ?>assets/admin/layout4/css/themes/default.css" rel="stylesheet"
           type="text/css" id="style_color"/>
-    <link href="<?= $this->request->webroot; ?>assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= $this->request->webroot; ?>assets/admin/layout4/css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="<?= $this->request->webroot; ?>css/common.css" rel="stylesheet" type="text/css"/>
 
     <!-- END THEME STYLES -->
@@ -91,15 +91,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="page-header-inner">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
-<!--                <img src="" alt="logo"-->
-<!--                     class="logo-default"/>-->
-                <span class="label label-info">HAM</span>
+            <a href="#">
+                <img src="<?= $this->request->webroot; ?>img/logo-light.png" alt="logo" class="logo-default"/>
             </a>
-
-            <div class="menu-toggler sidebar-toggler">
-                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
-            </div>
+<!--            <div class="menu-toggler sidebar-toggler"></div>-->
         </div>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
