@@ -1,16 +1,16 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\OfficeRoom;
+use App\Model\Entity\OfficeGarage;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * OfficeRooms Model
+ * OfficeGarages Model
  */
-class OfficeRoomsTable extends Table
+class OfficeGaragesTable extends Table
 {
 
     /**
@@ -21,33 +21,16 @@ class OfficeRoomsTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('office_rooms');
-        $this->displayField('title_bn');
+        $this->table('office_garages');
+        $this->displayField('id');
         $this->primaryKey('id');
-        $this->belongsTo('ParentOfficeRooms', [
-            'className' => 'OfficeRooms',
-            'foreignKey' => 'parent_id'
-        ]);
         $this->belongsTo('Offices', [
             'foreignKey' => 'office_id'
         ]);
         $this->belongsTo('OfficeBuildings', [
             'foreignKey' => 'office_building_id'
         ]);
-        $this->belongsTo('OfficeUnits', [
-            'foreignKey' => 'office_unit_id'
-        ]);
-        $this->hasMany('ItemAssigns', [
-            'foreignKey' => 'office_room_id'
-        ]);
-        $this->hasMany('OfficeGarages', [
-            'foreignKey' => 'office_room_id'
-        ]);
-        $this->hasMany('ChildOfficeRooms', [
-            'className' => 'OfficeRooms',
-            'foreignKey' => 'parent_id'
-        ]);
-        $this->hasMany('OfficeWarehouses', [
+        $this->belongsTo('OfficeRooms', [
             'foreignKey' => 'office_room_id'
         ]);
     }
@@ -65,25 +48,13 @@ class OfficeRoomsTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->add('floor_number', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('floor_number');
-            
-        $validator
-            ->allowEmpty('title_bn');
-            
-        $validator
-            ->allowEmpty('title_en');
-            
-        $validator
-            ->add('number', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('number');
-            
-        $validator
             ->allowEmpty('size');
             
         $validator
-            ->add('common_use', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('common_use');
+            ->allowEmpty('capacity');
+            
+        $validator
+            ->allowEmpty('description');
             
         $validator
             ->add('status', 'valid', ['rule' => 'numeric'])
@@ -101,10 +72,9 @@ class OfficeRoomsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentOfficeRooms'));
         $rules->add($rules->existsIn(['office_id'], 'Offices'));
         $rules->add($rules->existsIn(['office_building_id'], 'OfficeBuildings'));
-        $rules->add($rules->existsIn(['office_unit_id'], 'OfficeUnits'));
+        $rules->add($rules->existsIn(['office_room_id'], 'OfficeRooms'));
         return $rules;
     }
 }

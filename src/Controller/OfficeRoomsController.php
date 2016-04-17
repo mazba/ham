@@ -73,10 +73,10 @@ class OfficeRoomsController extends AppController
                 $this->Flash->error('The office room could not be saved. Please, try again.');
             }
         }
-        $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list', ['limit' => 200]);
-        $offices = $this->OfficeRooms->Offices->find('list', ['limit' => 200]);
-        $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list', ['limit' => 200]);
-        $officeUnits = $this->OfficeRooms->OfficeUnits->find('list', ['limit' => 200]);
+        $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list');
+        $offices = $this->OfficeRooms->Offices->find('list');
+        $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list');
+        $officeUnits = $this->OfficeRooms->OfficeUnits->find('list');
         $this->set(compact('officeRoom', 'parentOfficeRooms', 'offices', 'officeBuildings', 'officeUnits'));
         $this->set('_serialize', ['officeRoom']);
     }
@@ -101,10 +101,10 @@ class OfficeRoomsController extends AppController
             $data['update_date'] = $time;
             $officeRoom = $this->OfficeRooms->patchEntity($officeRoom, $data);
             if ($this->OfficeRooms->save($officeRoom)) {
-                $this->Flash->success('The office room has been saved.');
+                $this->Flash->success('The office room has been updated.');
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error('The office room could not be saved. Please, try again.');
+                $this->Flash->error('The office room could not be updated. Please, try again.');
             }
         }
         $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list', ['limit' => 200]);
