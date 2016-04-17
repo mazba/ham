@@ -21,8 +21,8 @@ use Cake\Core\Configure;
                         <legend><?= __('Add Task/ Menu') ?></legend>
                         <?php
                         echo $this->Form->input('parent_id', ['options' => $parentTasks, 'empty' => 'Select','class'=>'form-control']);
-                        echo $this->Form->input('name_en',['class'=>'form-control']);
-                        echo $this->Form->input('name_bn',['class'=>'form-control']);
+                        echo $this->Form->input('name_en',['class'=>'form-control','label'=>'Name English']);
+                        echo $this->Form->input('name_bn',['class'=>'form-control','label'=>'Name Bangla']);
                         echo $this->Form->input('description',['class'=>'form-control']);
                         echo $this->Form->input('icon',['class'=>'form-control']);
                         echo $this->Form->input('controller',['class'=>'form-control','empty'=>'Select']);

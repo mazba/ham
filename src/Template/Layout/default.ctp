@@ -153,8 +153,9 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
             <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
             <?php
-            $left_menu = 'left_menu'.$this->request->session()->read('Auth.User.user_group_id');
-            echo $this->element('left_menu',[],['cache'=>['config'=>'mcake','key'=>$left_menu]]);
+//            $left_menu = 'left_menu'.$this->request->session()->read('Auth.User.user_group_id');
+//            echo $this->element('left_menu',[],['cache'=>['config'=>'mcake','key'=>$left_menu]]);
+            echo $this->element('left_menu');
             ?>
         </div>
     </div>
