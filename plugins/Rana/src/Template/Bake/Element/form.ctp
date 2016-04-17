@@ -55,11 +55,12 @@ use Cake\Core\Configure;
                     <i class="fa fa-pencil-square-o fa-lg"></i><?= __('Edit <%= $singularHumanName %>') ?>
                 <% else: %>
                     <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New <%= $singularHumanName %>') ?>
+                <% endif; %>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
                 </div>
-                <% endif; %>
+                
             </div>
             <div class="portlet-body">
                 <?= $this->Form->create($<%= $singularVar %>,['class' => 'form-horizontal','role'=>'form']) ?>
