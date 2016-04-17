@@ -83,12 +83,19 @@ $status = \Cake\Core\Configure::read('status_options');
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($<%= $pluralVar %> as $<%= $singularVar %>) {  ?>
+                            <?php foreach ($<%= $pluralVar %> as $key => $<%= $singularVar %>) {  ?>
                                 <tr>
                                     <% foreach ($fields as $field) {
 
                                         if (in_array($field, ['create_by', 'create_date', 'create_time', 'update_by', 'update_date', 'update_time']))
                                         {
+                                            continue;
+                                        }
+                                        if (in_array($field, ['id']))
+                                        {
+                                           %>
+                                                <td><?= $this->Number->format($key+1) ?></td>
+                                            <%
                                             continue;
                                         }
                                         $isKey = false;
