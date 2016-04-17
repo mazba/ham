@@ -110,6 +110,9 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
                         <% endif; %>
                         <% if ($groupedFields['number']) : %>
                         <% foreach ($groupedFields['number'] as $field) : %>
+                            <% if ($field=='create_by' || $field=='update_by' || $field=='create_date' || $field=='create_time' || $field=='update_date' || $field=='update_time') : %>
+                                <% continue; %>
+                            <% endif; %>
                                 <tr>
                                     <th><?= __('<%= Inflector::humanize($field) %>') ?></th>
                                     <td><?= $this->Number->format($<%= $singularVar %>-><%= $field %>) ?></td>
