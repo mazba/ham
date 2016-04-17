@@ -15,10 +15,9 @@ use Cake\Core\Configure;
                 </div>
             </div>
             <div class="portlet-body">
-                <?= $this->Form->create($task) ?>
+                <?= $this->Form->create($task,['class'=>'form-horizontal']) ?>
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <legend><?= __('Add Task/ Menu') ?></legend>
+                    <div class="col-md-12">
                         <?php
                         echo $this->Form->input('parent_id', ['options' => $parentTasks, 'empty' => 'Select','class'=>'form-control']);
                         echo $this->Form->input('name_en',['class'=>'form-control','label'=>'Name English']);
@@ -27,11 +26,12 @@ use Cake\Core\Configure;
                         echo $this->Form->input('icon',['class'=>'form-control']);
                         echo $this->Form->input('controller',['class'=>'form-control','empty'=>'Select']);
                         ?>
-                        <div class="input select required">
-                            <label for="controller">Method</label>
-                                <select id="method" class="form-control" name="method">
-
-                                </select>
+                        <div class="form-group input select">
+                            <label for="controller" class="col-sm-3 control-label text-right"><?php echo __('Method'); ?></label>
+                            <div class="col-sm-9" id="container_controller">
+                                <select id="method" name="method" class="form-control">
+                                    </select>
+                            </div>
                         </div>
                         <?php
                         echo $this->Form->input('ordering',['class'=>'form-control']);

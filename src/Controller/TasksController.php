@@ -11,7 +11,9 @@ use ReflectionMethod;
  */
 class TasksController extends AppController
 {
-
+    public $paginate = [
+        'limit' => 10
+    ];
     /**
      * Index method
      *
@@ -19,9 +21,6 @@ class TasksController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['ParentTasks']
-        ];
         $this->set('tasks', $this->paginate($this->Tasks));
         $this->set('_serialize', ['tasks']);
     }

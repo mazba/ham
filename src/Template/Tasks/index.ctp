@@ -70,6 +70,13 @@ $status = \Cake\Core\Configure::read('status');
                         </tbody>
                     </table>
                 </div>
+                <ul class="pagination">
+                    <?php
+                    echo $this->Paginator->prev(' << ');
+                    echo $this->Paginator->numbers();
+                    echo $this->Paginator->next(' >>');
+                    ?>
+                </ul>
             </div>
         </div>
         <!-- END BORDERED TABLE PORTLET-->

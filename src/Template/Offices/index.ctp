@@ -10,12 +10,6 @@ $status = \Cake\Core\Configure::read('status');
                     <i class="fa fa-suitcase"></i>
                     <?php echo __('Offices'); ?> <?= $this->Html->link(__('New Office'), ['action' => 'add'],['class'=>'btn btn-sm btn-warning']) ?>
                 </div>
-                <div class="tools">
-                    <a class="collapse" href="javascript:;" data-original-title="" title="">
-                    </a>
-                    <a class="remove" href="javascript:;" data-original-title="" title="">
-                    </a>
-                </div>
             </div>
             <div class="portlet-body">
                 <div class="table-scrollable">
