@@ -31,10 +31,10 @@
                             foreach($user_groups as $user_group){
                                 ?>
                                 <tr>
-                                    <td><?= $user_group['title'] ?></td>
-                                    <td><?= $user_group['created_by']['name_en'] ?></td>
+                                    <td><?= $user_group['title_en'] ?></td>
+                                    <td><?= $user_group['created_by']['full_name_bn'] ?></td>
                                     <td><?= $user_group['created_time'] ?></td>
-                                    <td><?= $user_group['updated_by']['name_en'] ?></td>
+                                    <td><?= $user_group['updated_by']['full_name_bn'] ?></td>
                                     <td><?= $user_group['updated_time'] ?></td>
                                     <td>
                                         <?= $this->Html->link(__('Role'), ['action' => 'edit', $user_group['id']],['class'=>'btn-sm btn btn-danger']) ?>
