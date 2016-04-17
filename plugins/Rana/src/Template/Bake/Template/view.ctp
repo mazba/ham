@@ -82,7 +82,7 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('<%= $singularHumanName %> List') ?>
+                    <i class="fa fa-picture-o fa-lg"></i><?= __('<%= $singularHumanName %> Details') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>

@@ -42,7 +42,7 @@ $status = \Cake\Core\Configure::read('status_options');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('<%= $singularHumanName %> List') ?>
+                    <i class="fa fa-list-alt fa-lg"></i><?= __('<%= $singularHumanName %> List') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('New <%= $singularHumanName %>'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']); ?>
