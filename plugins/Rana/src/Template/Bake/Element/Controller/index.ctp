@@ -21,17 +21,17 @@
 */
 public function index()
 {
-<% $belongsTo = $this->Bake->aliasExtractor($modelObj, 'BelongsTo'); %>
-<% if ($belongsTo): %>
-$<%= $pluralName %> = $this-><%= $currentModelName %>->find('all', [
-'conditions' =>['<%= $currentModelName %>.status !=' => 99],
-'contain' => [<%= $this->Bake->stringifyList($belongsTo, ['indent' => false]) %>]
-]);
-<% else: %>
-$<%= $pluralName %> = $this-><%= $currentModelName %>->find('all', [
-'conditions' =>['<%= $currentModelName %>.status !=' => 99]
-]);
-<% endif; %>
-$this->set('<%= $pluralName %>', $this->paginate($<%= $pluralName %>) );
-$this->set('_serialize', ['<%= $pluralName %>']);
-}
+	<% $belongsTo = $this->Bake->aliasExtractor($modelObj, 'BelongsTo'); %>
+	<% if ($belongsTo): %>
+	$<%= $pluralName %> = $this-><%= $currentModelName %>->find('all', [
+	'conditions' =>['<%= $currentModelName %>.status !=' => 99],
+	'contain' => [<%= $this->Bake->stringifyList($belongsTo, ['indent' => false]) %>]
+	]);
+	<% else: %>
+	$<%= $pluralName %> = $this-><%= $currentModelName %>->find('all', [
+	'conditions' =>['<%= $currentModelName %>.status !=' => 99]
+	]);
+	<% endif; %>
+	$this->set('<%= $pluralName %>', $this->paginate($<%= $pluralName %>) );
+	$this->set('_serialize', ['<%= $pluralName %>']);
+	}

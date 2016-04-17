@@ -85,20 +85,7 @@ use Cake\Core\Configure;
                             <%
                                     continue;
                                 }
-                                if (in_array($field, ['name_en']))
-                                {
-                            %>
-                                    echo $this->Form->input('name_en',['label'=> __('NAME_EN')]);
-                            <%
-                                    continue;
-                                }
-                                if (in_array($field, ['name_bn']))
-                                {
-                            %>
-                                    echo $this->Form->input('name_bn',['label'=> __('NAME_BN')]);
-                            <%
-                                    continue;
-                                }
+                                
                                 if (isset($keyFields[$field]))
                                 {
                                     $fieldData = $schema->column($field);
