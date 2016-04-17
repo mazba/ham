@@ -10,7 +10,9 @@ use App\Controller\AppController;
  */
 class OfficesController extends AppController
 {
-
+    public $paginate = [
+        'limit' => 10
+    ];
     /**
      * Index method
      *
@@ -18,11 +20,10 @@ class OfficesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['ParentOffices', 'OfficeLevels', 'AreaDivisions', 'AreaZones', 'AreaDistricts', 'AreaUpazilas']
-        ];
-        $this->set('offices', $this->paginate(area_divisions));
-        $this->set('_serialize', ['offices']);
+        $query = $this->Offices->find('all', [
+            'contain' => ['parentOffices', 'officeLevels', 'areaDivisions', 'areaZones', 'areaDistricts', 'areaUpazilas']
+        ]);
+        $this->set('offices',$this->paginate($query));
     }
 
     /**
@@ -64,7 +65,7 @@ class OfficesController extends AppController
         $areaZones = $this->Offices->AreaZones->find('list', ['limit' => 200]);
         $areaDistricts = $this->Offices->AreaDistricts->find('list', ['limit' => 200]);
         $areaUpazilas = $this->Offices->AreaUpazilas->find('list', ['limit' => 200]);
-        $this->set(compact('office', 'parentOffices', 'officeLevels', 'areaDivisions', 'areaZones', 'areaDistricts', 'areaUpazilas'));
+        $this->set(compact('office', 'parentOffices', 'officeLevels', 'areaDivisions'));
         $this->set('_serialize', ['office']);
     }
 
@@ -116,5 +117,20 @@ class OfficesController extends AppController
             $this->Flash->error(__('The office could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * ajax method
+     *
+     */
+    public function ajax($action){
+        if($action == 'get_zone_district')
+        {
+            $division_id = $this->request->data('division_id');
+            $AreaDistricts=$this->Offices->AreaDistricts->find('list')->where(['area_division_id'=>$division_id]);
+            $AreaZones=$this->Offices->AreaZones->find('list')->where(['area_division_id'=>$division_id]);
+            $this->response->body(json_encode(['district'=>$AreaDistricts,'zone'=>$AreaZones]));
+            return $this->response;
+        }
     }
 }

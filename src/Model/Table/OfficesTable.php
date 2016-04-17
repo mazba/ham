@@ -10,6 +10,42 @@ use Cake\Validation\Validator;
 /**
  * Offices Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $ParentOffices
+ * @property \Cake\ORM\Association\BelongsTo $OfficeLevels
+ * @property \Cake\ORM\Association\BelongsTo $AreaDivisions
+ * @property \Cake\ORM\Association\BelongsTo $AreaZones
+ * @property \Cake\ORM\Association\BelongsTo $AreaDistricts
+ * @property \Cake\ORM\Association\BelongsTo $AreaUpazilas
+ * @property \Cake\ORM\Association\HasMany $Committees
+ * @property \Cake\ORM\Association\HasMany $Designations
+ * @property \Cake\ORM\Association\HasMany $ItemAssigns
+ * @property \Cake\ORM\Association\HasMany $ItemDepreciations
+ * @property \Cake\ORM\Association\HasMany $ItemDocuments
+ * @property \Cake\ORM\Association\HasMany $ItemMaintenanceHistories
+ * @property \Cake\ORM\Association\HasMany $ItemMaintenances
+ * @property \Cake\ORM\Association\HasMany $ItemVehicles
+ * @property \Cake\ORM\Association\HasMany $ItemWithdrawals
+ * @property \Cake\ORM\Association\HasMany $Items
+ * @property \Cake\ORM\Association\HasMany $JobRanks
+ * @property \Cake\ORM\Association\HasMany $OfficeBuildings
+ * @property \Cake\ORM\Association\HasMany $OfficeGarages
+ * @property \Cake\ORM\Association\HasMany $OfficeModuleSettings
+ * @property \Cake\ORM\Association\HasMany $OfficeRooms
+ * @property \Cake\ORM\Association\HasMany $OfficeUnitDesignations
+ * @property \Cake\ORM\Association\HasMany $OfficeUnits
+ * @property \Cake\ORM\Association\HasMany $OfficeWarehouses
+ * @property \Cake\ORM\Association\HasMany $ChildOffices
+ * @property \Cake\ORM\Association\HasMany $SupplierDealingDetails
+ * @property \Cake\ORM\Association\HasMany $Suppliers
+ * @property \Cake\ORM\Association\HasMany $UserActionHistories
+ * @property \Cake\ORM\Association\HasMany $UserCommittees
+ * @property \Cake\ORM\Association\HasMany $UserDesignations
+ * @property \Cake\ORM\Association\HasMany $UserEmploymentHistories
+ * @property \Cake\ORM\Association\HasMany $UserLeaves
+ * @property \Cake\ORM\Association\HasMany $UserMedicals
+ * @property \Cake\ORM\Association\HasMany $UserPayInformations
+ * @property \Cake\ORM\Association\HasMany $UserPerformanceReports
+ * @property \Cake\ORM\Association\HasMany $Users
  */
 class OfficesTable extends Table
 {
@@ -25,7 +61,7 @@ class OfficesTable extends Table
         parent::initialize($config);
 
         $this->table('offices');
-        $this->displayField('id');
+        $this->displayField('name_en');
         $this->primaryKey('id');
 
         $this->belongsTo('ParentOffices', [
@@ -33,16 +69,19 @@ class OfficesTable extends Table
             'foreignKey' => 'parent_id'
         ]);
         $this->belongsTo('OfficeLevels', [
-            'foreignKey' => 'office_level_id'
+            'foreignKey' => 'office_level_id',
+            'joinType' => 'INNER'
         ]);
         $this->belongsTo('AreaDivisions', [
-            'foreignKey' => 'area_division_id'
+            'foreignKey' => 'area_division_id',
+            'joinType' => 'INNER'
         ]);
         $this->belongsTo('AreaZones', [
             'foreignKey' => 'area_zone_id'
         ]);
         $this->belongsTo('AreaDistricts', [
-            'foreignKey' => 'area_district_id'
+            'foreignKey' => 'area_district_id',
+            'joinType' => 'INNER'
         ]);
         $this->belongsTo('AreaUpazilas', [
             'foreignKey' => 'area_upazila_id'
@@ -156,10 +195,12 @@ class OfficesTable extends Table
             ->allowEmpty('code');
 
         $validator
-            ->allowEmpty('name_bn');
+            ->requirePresence('name_bn', 'create')
+            ->notEmpty('name_bn');
 
         $validator
-            ->allowEmpty('name_en');
+            ->requirePresence('name_en', 'create')
+            ->notEmpty('name_en');
 
         $validator
             ->allowEmpty('short_name_bn');

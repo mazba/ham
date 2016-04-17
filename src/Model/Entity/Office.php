@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $parent_id
- * @property \App\Model\Entity\ParentOffice $parent_office
+ * @property \App\Model\Entity\Office $parent_office
  * @property string $code
  * @property int $office_level_id
  * @property \App\Model\Entity\OfficeLevel $office_level
@@ -38,6 +38,7 @@ use Cake\ORM\Entity;
  * @property int $update_time
  * @property int $create_by
  * @property int $update_by
+ * @property \App\Model\Entity\Office[] $child_offices
  * @property \App\Model\Entity\Committee[] $committees
  * @property \App\Model\Entity\Designation[] $designations
  * @property \App\Model\Entity\ItemAssign[] $item_assigns
@@ -56,7 +57,6 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\OfficeUnitDesignation[] $office_unit_designations
  * @property \App\Model\Entity\OfficeUnit[] $office_units
  * @property \App\Model\Entity\OfficeWarehouse[] $office_warehouses
- * @property \App\Model\Entity\ChildOffice[] $child_offices
  * @property \App\Model\Entity\SupplierDealingDetail[] $supplier_dealing_details
  * @property \App\Model\Entity\Supplier[] $suppliers
  * @property \App\Model\Entity\UserActionHistory[] $user_action_histories

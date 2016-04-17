@@ -30,6 +30,15 @@ $(function () {
         });
 
     }
+    // ajax loadder
+    $(document).ajaxStart(function()
+    {
+        $('#loader').show();
+    });
+    $(document).ajaxComplete(function(event,xhr,options)
+    {
+        $('#loader').hide();
+    });
 });
 function checkParentSubMenu(ele)
 {
