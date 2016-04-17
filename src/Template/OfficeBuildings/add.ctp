@@ -10,10 +10,10 @@ use Cake\Core\Configure;
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__('Office Levels'), ['action' => 'index']) ?>
+            <?= $this->Html->link(__('Office Buildings'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
-        <li><?= __('New Office Level') ?></li>
+        <li><?= __('New Office Building') ?></li>
 
     </ul>
 </div>
@@ -25,7 +25,7 @@ use Cake\Core\Configure;
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New Office Level') ?>
+                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New Office Building') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
@@ -33,15 +33,19 @@ use Cake\Core\Configure;
 
             </div>
             <div class="portlet-body">
-                <?= $this->Form->create($officeLevel, ['class' => 'form-horizontal', 'role' => 'form']) ?>
+                <?= $this->Form->create($officeBuilding, ['class' => 'form-horizontal', 'role' => 'form']) ?>
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php
-                        echo $this->Form->input('parent_id', ['options' => $parentOfficeLevels, 'empty' => __('Select')]);
-                        echo $this->Form->input('name_bn', ['label' => __('NAME_BN')]);
-                        echo $this->Form->input('name_en', ['label' => __('NAME_EN')]);
-                        echo $this->Form->input('level');
-                        echo $this->Form->input('sequence');
+                        echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        echo $this->Form->input('type');
+                        echo $this->Form->input('title_bn');
+                        echo $this->Form->input('title_en');
+                        echo $this->Form->input('number_storeys');
+                        echo $this->Form->input('total_area');
+                        echo $this->Form->input('address');
+                        echo $this->Form->input('number_room');
+                        echo $this->Form->input('description');
                         echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
                         ?>
                         <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>

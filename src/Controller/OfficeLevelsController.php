@@ -11,6 +11,13 @@ use App\Controller\AppController;
 class OfficeLevelsController extends AppController
 {
 
+    public $paginate = [
+        'limit' => 15,
+        'order' => [
+            'OfficeLevels.title' => 'desc'
+        ]
+    ];
+
     /**
      * Index method
      *
@@ -18,10 +25,11 @@ class OfficeLevelsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
+        $officeLevels = $this->OfficeLevels->find('all', [
+            'conditions' => ['OfficeLevels.status !=' => 99],
             'contain' => ['ParentOfficeLevels']
-        ];
-        $this->set('officeLevels', $this->paginate($this->OfficeLevels));
+        ]);
+        $this->set('officeLevels', $this->paginate($officeLevels));
         $this->set('_serialize', ['officeLevels']);
     }
 
@@ -34,6 +42,7 @@ class OfficeLevelsController extends AppController
      */
     public function view($id = null)
     {
+        $user = $this->Auth->user();
         $officeLevel = $this->OfficeLevels->get($id, [
             'contain' => ['ParentOfficeLevels', 'ChildOfficeLevels', 'OfficeUnits', 'Offices']
         ]);
@@ -48,14 +57,20 @@ class OfficeLevelsController extends AppController
      */
     public function add()
     {
+        $user = $this->Auth->user();
+        $time = time();
         $officeLevel = $this->OfficeLevels->newEntity();
         if ($this->request->is('post')) {
-            $officeLevel = $this->OfficeLevels->patchEntity($officeLevel, $this->request->data);
+
+            $data = $this->request->data;
+            $data['create_by'] = $user['id'];
+            $data['create_date'] = $time;
+            $officeLevel = $this->OfficeLevels->patchEntity($officeLevel, $data);
             if ($this->OfficeLevels->save($officeLevel)) {
-                $this->Flash->success(__('The office level has been saved.'));
+                $this->Flash->success('The office level has been saved.');
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The office level could not be saved. Please, try again.'));
+                $this->Flash->error('The office level could not be saved. Please, try again.');
             }
         }
         $parentOfficeLevels = $this->OfficeLevels->ParentOfficeLevels->find('list', ['limit' => 200]);
@@ -72,16 +87,21 @@ class OfficeLevelsController extends AppController
      */
     public function edit($id = null)
     {
+        $user = $this->Auth->user();
+        $time = time();
         $officeLevel = $this->OfficeLevels->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $officeLevel = $this->OfficeLevels->patchEntity($officeLevel, $this->request->data);
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
+            $officeLevel = $this->OfficeLevels->patchEntity($officeLevel, $data);
             if ($this->OfficeLevels->save($officeLevel)) {
-                $this->Flash->success(__('The office level has been saved.'));
+                $this->Flash->success('The office level has been updated.');
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The office level could not be saved. Please, try again.'));
+                $this->Flash->error('The office level could not be updated. Please, try again.');
             }
         }
         $parentOfficeLevels = $this->OfficeLevels->ParentOfficeLevels->find('list', ['limit' => 200]);
@@ -98,12 +118,19 @@ class OfficeLevelsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+
         $officeLevel = $this->OfficeLevels->get($id);
-        if ($this->OfficeLevels->delete($officeLevel)) {
-            $this->Flash->success(__('The office level has been deleted.'));
+
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
+        $officeLevel = $this->OfficeLevels->patchEntity($officeLevel, $data);
+        if ($this->OfficeLevels->save($officeLevel)) {
+            $this->Flash->success('The office level has been deleted.');
         } else {
-            $this->Flash->error(__('The office level could not be deleted. Please, try again.'));
+            $this->Flash->error('The office level could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);
     }

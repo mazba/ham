@@ -1,38 +1,55 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $officeLevel->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $officeLevel->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Office Levels'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Parent Office Levels'), ['controller' => 'OfficeLevels', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Parent Office Level'), ['controller' => 'OfficeLevels', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Office Units'), ['controller' => 'OfficeUnits', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Office Unit'), ['controller' => 'OfficeUnits', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Offices'), ['controller' => 'Offices', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Office'), ['controller' => 'Offices', 'action' => 'add']) ?></li>
+<?php
+use Cake\Core\Configure;
+
+?>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="<?= $this->Url->build(('/Dashboard'), true); ?>"><?= __('Dashboard') ?></a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <?= $this->Html->link(__('Office Levels'), ['action' => 'index']) ?>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li><?= __('Edit Office Level') ?></li>
+
     </ul>
-</nav>
-<div class="officeLevels form large-9 medium-8 columns content">
-    <?= $this->Form->create($officeLevel) ?>
-    <fieldset>
-        <legend><?= __('Edit Office Level') ?></legend>
-        <?php
-            echo $this->Form->input('parent_id', ['options' => $parentOfficeLevels, 'empty' => true]);
-            echo $this->Form->input('name_bn');
-            echo $this->Form->input('name_en');
-            echo $this->Form->input('level');
-            echo $this->Form->input('sequence');
-            echo $this->Form->input('status');
-            echo $this->Form->input('create_time');
-            echo $this->Form->input('update_time');
-            echo $this->Form->input('create_by');
-            echo $this->Form->input('update_by');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
 </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN BORDERED TABLE PORTLET-->
+        <div class="portlet box blue-hoki">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-pencil-square-o fa-lg"></i><?= __('Edit Office Level') ?>
+                </div>
+                <div class="tools">
+                    <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <?= $this->Form->create($officeLevel, ['class' => 'form-horizontal', 'role' => 'form']) ?>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <?php
+                        echo $this->Form->input('name_bn', ['label' => __('NAME_BN')]);
+                        echo $this->Form->input('name_en', ['label' => __('NAME_EN')]);
+                        echo $this->Form->input('level');
+                        echo $this->Form->input('sequence');
+                        echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
+                        ?>
+                        <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>
+                    </div>
+                </div>
+                <?= $this->Form->end() ?>
+            </div>
+        </div>
+        <!-- END BORDERED TABLE PORTLET-->
+    </div>
+</div>
+

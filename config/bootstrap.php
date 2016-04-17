@@ -191,6 +191,8 @@ if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
+Plugin::load('Rana');
+
 /**
  * Connect middleware/dispatcher filters.
  */

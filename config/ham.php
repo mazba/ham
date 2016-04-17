@@ -6,7 +6,7 @@
  * Time: 11:27 AM
  */
 return [
-    'status'=>[
+    'status_options'=>[
         1=>'Active',
         2=>'In-Active'
     ],

@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * OfficeLevel Entity.
+ * OfficeBuilding Entity.
  */
-class OfficeLevel extends Entity
+class OfficeBuilding extends Entity
 {
 
 }

@@ -222,8 +222,8 @@ return [
              */
             //'port' => 'nonstandard_port_number',
             'username' => 'root',
-            'password' => 'vertrigo',
-            'database' => 'HAM',
+            'password' => '',
+            'database' => 'ham',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,

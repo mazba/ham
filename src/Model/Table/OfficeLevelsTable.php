@@ -9,11 +9,6 @@ use Cake\Validation\Validator;
 
 /**
  * OfficeLevels Model
- *
- * @property \Cake\ORM\Association\BelongsTo $ParentOfficeLevels
- * @property \Cake\ORM\Association\HasMany $ChildOfficeLevels
- * @property \Cake\ORM\Association\HasMany $OfficeUnits
- * @property \Cake\ORM\Association\HasMany $Offices
  */
 class OfficeLevelsTable extends Table
 {
@@ -26,12 +21,9 @@ class OfficeLevelsTable extends Table
      */
     public function initialize(array $config)
     {
-        parent::initialize($config);
-
         $this->table('office_levels');
-        $this->displayField('name_bn');
+        $this->displayField('id');
         $this->primaryKey('id');
-
         $this->belongsTo('ParentOfficeLevels', [
             'className' => 'OfficeLevels',
             'foreignKey' => 'parent_id'
@@ -59,40 +51,24 @@ class OfficeLevelsTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
-
+            
         $validator
             ->allowEmpty('name_bn');
-
+            
         $validator
             ->allowEmpty('name_en');
-
+            
         $validator
             ->add('level', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('level');
-
+            
         $validator
             ->add('sequence', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('sequence');
-
+            
         $validator
             ->add('status', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('status');
-
-        $validator
-            ->add('create_time', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('create_time');
-
-        $validator
-            ->add('update_time', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('update_time');
-
-        $validator
-            ->add('create_by', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('create_by');
-
-        $validator
-            ->add('update_by', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('update_by');
 
         return $validator;
     }
