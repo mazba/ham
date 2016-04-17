@@ -1,6 +1,12 @@
 /*
 * mazba kamal
 */
+
+.page-header.navbar {
+    background: #ffffff none repeat scroll 0 0;
+    border-bottom: 1px solid #e6e9f2;
+}
+
 #loader{
     width: 100%;
     height: 100%;
