@@ -118,7 +118,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li class="dropdown dropdown-user dropdown-dark">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                            data-close-others="true">
-								<span class="username username-hide-on-mobile">Mazba</span>
+								<span class="username username-hide-on-mobile"><?= $this->request->session()->read('Auth.User.username');?></span>
                             <img alt="" class="img-circle" src="<?= $this->request->webroot; ?>assets/admin/layout4/img/avatar.png"/>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
