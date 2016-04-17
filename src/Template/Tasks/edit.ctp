@@ -46,7 +46,7 @@ use Cake\Core\Configure;
                         echo $this->Form->input('ordering',['class'=>'form-control']);
                         echo $this->Form->input('position_left_01',['class'=>'form-control','type'=>'checkbox']);
                         echo $this->Form->input('position_top_01',['class'=>'form-control','type'=>'checkbox']);
-                        echo $this->Form->input('status',['class'=>'form-control','options'=>Configure::read('status')]);
+                        echo $this->Form->input('status',['class'=>'form-control','options'=>Configure::read('status_options')]);
                         ?>
                         <?= $this->Form->button(__('Submit'),['class'=>'btn blue pull-right','style'=>'margin-top:20px']) ?>
                     </div>

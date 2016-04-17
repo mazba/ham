@@ -1,5 +1,5 @@
 <?php
-$status = \Cake\Core\Configure::read('status');
+$status = \Cake\Core\Configure::read('status_options');
 ?>
 <div class="row">
     <div class="col-md-12">

@@ -1,6 +1,6 @@
 <?php
 use Cake\Core\Configure;
-$status = Configure::read('status');
+$status = Configure::read('status_options');
 ?>
 <div class="row">
     <div class="col-md-12">
