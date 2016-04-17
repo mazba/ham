@@ -1,6 +1,6 @@
 {
-    "name": "your-name-here/Rana",
-    "description": "Rana plugin for CakePHP",
+    "name": "Rana/Rana",
+    "description": "Cake Bake Template. Created by Moh.Ibbrahim Al Naz Rana ",
     "type": "cakephp-plugin",
     "require": {
         "php": ">=5.4.16",
