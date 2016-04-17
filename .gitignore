@@ -1,4 +1,7 @@
-/vendor/*
-/tmp/*
-/logs/*
-/webroot/assets/*
+vendor/*
+
+tmp/*
+
+logs/*
+
+webroot/assets/*
