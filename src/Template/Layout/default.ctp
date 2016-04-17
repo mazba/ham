@@ -118,23 +118,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="extra_profile.html">
+                                <a href="#">
                                     <i class="icon-user"></i> My Profile </a>
                             </li>
                             <li>
-                                <a href="page_todo.html">
-                                    <i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
-									7 </span>
-                                </a>
-                            </li>
-                            <li class="divider">
-                            </li>
-                            <li>
-                                <a href="extra_lock.html">
-                                    <i class="icon-lock"></i> Lock Screen </a>
-                            </li>
-                            <li>
-                                <a href="login.html">
+                                <a href="<?= $this->request->webroot; ?>Dashboard/logout">
                                     <i class="icon-key"></i> Log Out </a>
                             </li>
                         </ul>
