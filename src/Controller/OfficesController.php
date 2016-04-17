@@ -21,7 +21,7 @@ class OfficesController extends AppController
     public function index()
     {
         $query = $this->Offices->find('all', [
-            'contain' => ['parentOffices', 'officeLevels', 'areaDivisions', 'areaZones', 'areaDistricts', 'areaUpazilas']
+            'contain' => ['ParentOffices', 'OfficeLevels', 'AreaDivisions', 'AreaZones', 'AreaDistricts', 'AreaUpazilas']
         ]);
         $this->set('offices',$this->paginate($query));
     }
@@ -59,12 +59,9 @@ class OfficesController extends AppController
                 $this->Flash->error(__('The office could not be saved. Please, try again.'));
             }
         }
-        $parentOffices = $this->Offices->ParentOffices->find('list', ['limit' => 200]);
-        $officeLevels = $this->Offices->OfficeLevels->find('list', ['limit' => 200]);
-        $areaDivisions = $this->Offices->AreaDivisions->find('list', ['limit' => 200]);
-        $areaZones = $this->Offices->AreaZones->find('list', ['limit' => 200]);
-        $areaDistricts = $this->Offices->AreaDistricts->find('list', ['limit' => 200]);
-        $areaUpazilas = $this->Offices->AreaUpazilas->find('list', ['limit' => 200]);
+        $parentOffices = $this->Offices->ParentOffices->find('list');
+        $officeLevels = $this->Offices->OfficeLevels->find('list');
+        $areaDivisions = $this->Offices->AreaDivisions->find('list');
         $this->set(compact('office', 'parentOffices', 'officeLevels', 'areaDivisions'));
         $this->set('_serialize', ['office']);
     }
@@ -90,12 +87,12 @@ class OfficesController extends AppController
                 $this->Flash->error(__('The office could not be saved. Please, try again.'));
             }
         }
-        $parentOffices = $this->Offices->ParentOffices->find('list', ['limit' => 200]);
-        $officeLevels = $this->Offices->OfficeLevels->find('list', ['limit' => 200]);
-        $areaDivisions = $this->Offices->AreaDivisions->find('list', ['limit' => 200]);
-        $areaZones = $this->Offices->AreaZones->find('list', ['limit' => 200]);
-        $areaDistricts = $this->Offices->AreaDistricts->find('list', ['limit' => 200]);
-        $areaUpazilas = $this->Offices->AreaUpazilas->find('list', ['limit' => 200]);
+        $parentOffices = $this->Offices->ParentOffices->find('list');
+        $officeLevels = $this->Offices->OfficeLevels->find('list');
+        $areaDivisions = $this->Offices->AreaDivisions->find('list');
+        $areaZones = $this->Offices->AreaZones->find('list');
+        $areaDistricts = $this->Offices->AreaDistricts->find('list');
+        $areaUpazilas = $this->Offices->AreaUpazilas->find('list')->where(['area_division_id'=>$office['area_division_id'],'area_district_id'=>$office['area_district_id']]);
         $this->set(compact('office', 'parentOffices', 'officeLevels', 'areaDivisions', 'areaZones', 'areaDistricts', 'areaUpazilas'));
         $this->set('_serialize', ['office']);
     }
@@ -130,6 +127,14 @@ class OfficesController extends AppController
             $AreaDistricts=$this->Offices->AreaDistricts->find('list')->where(['area_division_id'=>$division_id]);
             $AreaZones=$this->Offices->AreaZones->find('list')->where(['area_division_id'=>$division_id]);
             $this->response->body(json_encode(['district'=>$AreaDistricts,'zone'=>$AreaZones]));
+            return $this->response;
+        }
+        elseif($action == 'get_upazila')
+        {
+            $division_id = $this->request->data('division_id');
+            $district_id = $this->request->data('district_id');
+            $AreaUpazilas=$this->Offices->AreaUpazilas->find('list')->where(['area_division_id'=>$division_id,'area_district_id'=>$district_id]);
+            $this->response->body(json_encode($AreaUpazilas));
             return $this->response;
         }
     }

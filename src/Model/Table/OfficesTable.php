@@ -215,6 +215,18 @@ class OfficesTable extends Table
             ->allowEmpty('reference_code');
 
         $validator
+            ->requirePresence('office_level_id', 'create')
+            ->notEmpty('office_level_id');
+
+        $validator
+            ->requirePresence('area_division_id', 'create')
+            ->notEmpty('area_division_id');
+
+        $validator
+            ->requirePresence('area_district_id', 'create')
+            ->notEmpty('area_district_id');
+
+        $validator
             ->allowEmpty('phone');
 
         $validator
@@ -273,9 +285,7 @@ class OfficesTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentOffices'));
         $rules->add($rules->existsIn(['office_level_id'], 'OfficeLevels'));
         $rules->add($rules->existsIn(['area_division_id'], 'AreaDivisions'));
-        $rules->add($rules->existsIn(['area_zone_id'], 'AreaZones'));
         $rules->add($rules->existsIn(['area_district_id'], 'AreaDistricts'));
-        $rules->add($rules->existsIn(['area_upazila_id'], 'AreaUpazilas'));
         return $rules;
     }
 }
