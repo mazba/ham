@@ -1,0 +1,4 @@
+msgid "Dashboard"
+msgstr "ড্যাশবোর্ড"
+msgid "Welcome"
+msgstr "স্বাগতম"
