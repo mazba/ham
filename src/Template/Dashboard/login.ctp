@@ -1,60 +1,36 @@
 <!-- BEGIN LOGIN FORM -->
 <form class="login-form" action="login" method="post">
     <div class="form-title">
-        <span class="form-title">Welcome.</span>
-        <span class="form-subtitle">Please login.</span>
+        <span class="form-title"><?= __('Welcome');?></span>
+        <span class="form-subtitle pull-right"><?= __('Please Login');?></span>
     </div>
     <div class="alert alert-danger display-hide">
         <button class="close" data-close="alert"></button>
-			<span>
-			Enter any username and password. </span>
+			<span><?= __('Enter any username and password.');?></span>
     </div>
     <div class="form-group">
-        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-        <label class="control-label visible-ie8 visible-ie9">Username</label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+        <label class="control-label visible-ie8 visible-ie9"><?= __('Username');?></label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="<?= __('Username');?>" name="username"/>
     </div>
     <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Password</label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+        <label class="control-label visible-ie8 visible-ie9"><?= __('Password');?></label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="<?= __('Password');?>" name="password"/>
     </div>
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary btn-block uppercase">Login</button>
+        <button type="submit" class="btn btn-primary btn-block uppercase"><?= __('Login');?></button>
     </div>
     <div class="form-actions">
         <div class="pull-left">
             <label class="rememberme check">
-                <input type="checkbox" name="remember" value="1"/>Remember me </label>
+                <input type="checkbox" name="remember" value="1"/><?= __('Remember me');?></label>
         </div>
         <div class="pull-right forget-password-block">
-            <a href="javascript:;" id="forget-password" class="forget-password"><?= __('Forgot Password?') ?></a>
+            <a href="javascript:;" id="forget-password" class="forget-password"><?= __('Forgot Password?');?></a>
         </div>
     </div>
-    <div class="login-options">
-        <h4 class="pull-left">Or login with</h4>
-        <ul class="social-icons pull-right">
-            <li>
-                <a class="social-icon-color facebook" data-original-title="facebook" href="#"></a>
-            </li>
-            <li>
-                <a class="social-icon-color twitter" data-original-title="Twitter" href="#"></a>
-            </li>
-            <li>
-                <a class="social-icon-color googleplus" data-original-title="Goole Plus" href="#"></a>
-            </li>
-            <li>
-                <a class="social-icon-color linkedin" data-original-title="Linkedin" href="#"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="create-account">
-        <p>
-            <a href="javascript:;" id="register-btn">Create an account</a>
-        </p>
-    </div>
+
 </form>
-<!-- END LOGIN FORM -->
-<!-- BEGIN FORGOT PASSWORD FORM -->
+
 <form class="forget-form" action="index.html" method="post">
     <div class="form-title">
         <span class="form-title">Forget Password ?</span>
@@ -65,7 +41,7 @@
     </div>
     <div class="form-actions">
         <button type="button" id="back-btn" class="btn btn-default">Back</button>
-        <button type="submit" class="btn btn-primary uppercase pull-right">Submit</button>
+        <button type="submit" class="btn btn-primary uppercase pull-right" style="background-color: unset !important;">Submit</button>
     </div>
 </form>
 <!-- END FORGOT PASSWORD FORM -->
