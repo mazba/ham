@@ -39,9 +39,6 @@ class TasksTable extends Table
             'className' => 'Tasks',
             'foreignKey' => 'parent_id'
         ]);
-        $this->hasMany('UserGroupRole', [
-            'foreignKey' => 'task_id'
-        ]);
     }
 
     /**

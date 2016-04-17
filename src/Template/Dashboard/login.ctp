@@ -27,7 +27,7 @@
                 <input type="checkbox" name="remember" value="1"/>Remember me </label>
         </div>
         <div class="pull-right forget-password-block">
-            <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+            <a href="javascript:;" id="forget-password" class="forget-password"><?= __('Forgot Password?') ?></a>
         </div>
     </div>
     <div class="login-options">
