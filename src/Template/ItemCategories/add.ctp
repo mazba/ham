@@ -32,6 +32,7 @@ use Cake\Core\Configure;
                 </div>
 
             </div>
+            
             <div class="portlet-body">
                 <?= $this->Form->create($itemCategory, ['class' => 'form-horizontal', 'role' => 'form']) ?>
                 <div class="row">
