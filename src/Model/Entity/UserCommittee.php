@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Committee Entity.
+ * UserCommittee Entity.
  */
-class Committee extends Entity
+class UserCommittee extends Entity
 {
     protected $_accessible = [
         '*' => true,

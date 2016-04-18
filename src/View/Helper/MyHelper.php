@@ -23,7 +23,7 @@ class MyHelper extends Helper
     protected $_defaultConfig = [];
     public function get_tree_menu()
     {
-        $tasks = TableRegistry::get('tasks')->find('all')->order(['ordering'=>'ASC'])->toArray();
+        $tasks = TableRegistry::get('tasks')->find('all')->order(['ordering'=>'ASC'])->where(['status'=>1])->toArray();
         $menu_tree = $this->buildTree($tasks);
         $this->print_tree_menu($menu_tree);
     }
