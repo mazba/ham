@@ -108,7 +108,7 @@ class FormHelper extends Helper
             'inputSubmit' => '<input type="{{type}}"{{attrs}}>',
             'inputContainer' => '<div class="form-group input {{type}}{{required}}">{{content}}</div>',
             'inputContainerError' => '<div class="form-group input {{type}}{{required}} has-error">{{content}}{{error}}</div>',
-            'label' => '<label class="col-sm-3 control-label text-right" {{attrs}}>{{text}}</label>',
+            'label' => '<label {{attrs}} class="col-sm-3 control-label text-right" >{{text}}</label>',
             'nestingLabel' => '{{hidden}}<label{{attrs}}>{{input}}{{text}}</label>',
             'legend' => '<legend>{{text}}</legend>',
             'option' => '<option value="{{value}}"{{attrs}}>{{text}}</option>',
