@@ -31,7 +31,7 @@ use Cake\Core\Configure;
 
             </div>
             <div class="portlet-body">
-                <?= $this->Form->create($committee, ['class' => 'form-horizontal', 'role' => 'form']) ?>
+                <?= $this->Form->create($committee, ['class' => 'form-horizontal', 'role' => 'form','type' => 'file']) ?>
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php

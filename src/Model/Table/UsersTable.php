@@ -26,7 +26,7 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->table('users');
-        $this->displayField('title');
+        $this->displayField('full_name_bn');
         $this->primaryKey('id');
 
         $this->belongsTo('UserGroups', [

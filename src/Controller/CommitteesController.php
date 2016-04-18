@@ -44,7 +44,7 @@ class CommitteesController extends AppController
     {
         $user=$this->Auth->user();
         $committee = $this->Committees->get($id, [
-            'contain' => ['ParentCommittees', 'Offices', 'ChildCommittees', 'SupplierDealingDetails']
+            'contain' => ['ParentCommittees', 'Offices']
         ]);
         $this->set('committee', $committee);
         $this->set('_serialize', ['committee']);
@@ -78,8 +78,8 @@ class CommitteesController extends AppController
                 $this->Flash->error('The committee could not be saved. Please, try again.');
             }
         }
-        $parentCommittees = $this->Committees->ParentCommittees->find('list', ['limit' => 200]);
-        $offices = $this->Committees->Offices->find('list', ['limit' => 200]);
+        $parentCommittees = $this->Committees->ParentCommittees->find('list')->where(['status'=>1]);
+        $offices = $this->Committees->Offices->find('list')->where(['status'=>1]);
         $this->set(compact('committee', 'parentCommittees', 'offices'));
         $this->set('_serialize', ['committee']);
     }
@@ -114,8 +114,8 @@ class CommitteesController extends AppController
                 $this->Flash->error('The committee could not be saved. Please, try again.');
             }
         }
-        $parentCommittees = $this->Committees->ParentCommittees->find('list', ['limit' => 200]);
-        $offices = $this->Committees->Offices->find('list', ['limit' => 200]);
+        $parentCommittees = $this->Committees->ParentCommittees->find('list')->where(['status'=>1]);
+        $offices = $this->Committees->Offices->find('list')->where(['status'=>1]);
         $this->set(compact('committee', 'parentCommittees', 'offices'));
         $this->set('_serialize', ['committee']);
     }
