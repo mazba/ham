@@ -14,9 +14,7 @@
  */
 $allAssociations = array_merge(
     $this->Bake->aliasExtractor($modelObj, 'BelongsTo'),
-    $this->Bake->aliasExtractor($modelObj, 'BelongsToMany'),
-    $this->Bake->aliasExtractor($modelObj, 'HasOne'),
-    $this->Bake->aliasExtractor($modelObj, 'HasMany')
+    $this->Bake->aliasExtractor($modelObj, 'BelongsToMany')
 );
 %>
 
