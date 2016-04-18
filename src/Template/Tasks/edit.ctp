@@ -18,7 +18,7 @@ use Cake\Core\Configure;
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <?php
-                        echo $this->Form->input('parent_id', ['options' => $parentTasks, 'empty' => 'Select','class'=>'form-control']);
+                        echo $this->Form->input('parent_id', ['class'=>'form-control select2me','options' => $parentTasks, 'empty' => 'Select']);
                         echo $this->Form->input('name_en',['class'=>'form-control']);
                         echo $this->Form->input('name_bn',['class'=>'form-control']);
                         echo $this->Form->input('description',['class'=>'form-control']);
