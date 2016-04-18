@@ -10,8 +10,7 @@ use Cake\Core\Configure;
                     <i class="fa fa-coffee"></i>Edit Task/Menu
                 </div>
                 <div class="tools">
-                    <a class="collapse" href="javascript:;" data-original-title="" title="">
-                    </a>
+                    <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']) ?>
                 </div>
             </div>
             <div class="portlet-body">

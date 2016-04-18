@@ -9,16 +9,6 @@ $status = \Cake\Core\Configure::read('status_options');
                 <div class="caption">
                     <i class="fa fa-coffee"></i>Task List <?= $this->Html->link(__('New Task'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']) ?>
                 </div>
-                <div class="tools">
-                    <a class="collapse" href="javascript:;" data-original-title="" title="">
-                    </a>
-                    <a class="config" data-toggle="modal" href="#portlet-config" data-original-title="" title="">
-                    </a>
-                    <a class="reload" href="javascript:;" data-original-title="" title="">
-                    </a>
-                    <a class="remove" href="javascript:;" data-original-title="" title="">
-                    </a>
-                </div>
             </div>
             <div class="portlet-body">
                 <div class="table-scrollable">
