@@ -22,7 +22,7 @@ class OfficeLevelsTable extends Table
     public function initialize(array $config)
     {
         $this->table('office_levels');
-        $this->displayField('id');
+        $this->displayField('name_bn');
         $this->primaryKey('id');
         $this->belongsTo('ParentOfficeLevels', [
             'className' => 'OfficeLevels',

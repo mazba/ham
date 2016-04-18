@@ -12,30 +12,26 @@ class AssetTypesController extends AppController
 {
 
 	public $paginate = [
-        'limit' => 5,
+        'limit' => 15,
         'order' => [
             'AssetTypes.title' => 'desc'
         ]
     ];
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index()
-    {
-$assetTypes = $this->AssetTypes->find('all', [
-            'conditions' =>['AssetTypes.status !=' => 99]
-        ]);
-
-        $assetTypes = $this->AssetTypes->find('all', [
-            'conditions' =>['AssetTypes.status !=' => 99],
-            'contain' => ['ParentAssetTypes']
-        ]);
-        $this->set('assetTypes', $this->paginate($assetTypes) );
-        $this->set('_serialize', ['assetTypes']);
-    }
+/**
+* Index method
+*
+* @return void
+*/
+public function index()
+{
+			$assetTypes = $this->AssetTypes->find('all', [
+	'conditions' =>['AssetTypes.status !=' => 99],
+	'contain' => ['ParentAssetTypes']
+	]);
+		$this->set('assetTypes', $this->paginate($assetTypes) );
+	$this->set('_serialize', ['assetTypes']);
+	}
 
     /**
      * View method
@@ -48,7 +44,7 @@ $assetTypes = $this->AssetTypes->find('all', [
     {
         $user=$this->Auth->user();
         $assetType = $this->AssetTypes->get($id, [
-            'contain' => ['ParentAssetTypes', 'ChildAssetTypes', 'Items']
+            'contain' => ['ParentAssetTypes']
         ]);
         $this->set('assetType', $assetType);
         $this->set('_serialize', ['assetType']);
@@ -81,7 +77,7 @@ $assetTypes = $this->AssetTypes->find('all', [
                 $this->Flash->error('The asset type could not be saved. Please, try again.');
             }
         }
-        $parentAssetTypes = $this->AssetTypes->ParentAssetTypes->find('list', ['limit' => 200]);
+        $parentAssetTypes = $this->AssetTypes->ParentAssetTypes->find('list', ['limit' => 200, 'conditions'=>['status'=>1]]);
         $this->set(compact('assetType', 'parentAssetTypes'));
         $this->set('_serialize', ['assetType']);
     }
@@ -116,7 +112,7 @@ $assetTypes = $this->AssetTypes->find('all', [
                 $this->Flash->error('The asset type could not be saved. Please, try again.');
             }
         }
-        $parentAssetTypes = $this->AssetTypes->ParentAssetTypes->find('list', ['limit' => 200]);
+        $parentAssetTypes = $this->AssetTypes->ParentAssetTypes->find('list', ['limit' => 200, 'conditions'=>['status'=>1]]);
         $this->set(compact('assetType', 'parentAssetTypes'));
         $this->set('_serialize', ['assetType']);
     }

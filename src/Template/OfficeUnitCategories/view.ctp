@@ -10,10 +10,10 @@ $status = \Cake\Core\Configure::read('status_options');
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__('Asset Types'), ['action' => 'index']) ?>
+            <?= $this->Html->link(__('Office Unit Categories'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
-        <li><?= __('View Asset Type') ?></li>
+        <li><?= __('View Office Unit Category') ?></li>
     </ul>
 </div>
 
@@ -24,7 +24,7 @@ $status = \Cake\Core\Configure::read('status_options');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-picture-o fa-lg"></i><?= __('Asset Type Details') ?>
+                    <i class="fa fa-picture-o fa-lg"></i><?= __('Office Unit Category Details') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -34,22 +34,18 @@ $status = \Cake\Core\Configure::read('status_options');
                 <div class="table-scrollable">
                     <table class="table table-bordered table-hover">
                                                                                                         <tr>
-                                    <th><?= __('Parent Asset Type') ?></th>
-                                    <td><?= $assetType->has('parent_asset_type') ? $this->Html->link($assetType->parent_asset_type->title_bn, ['controller' => 'AssetTypes', 'action' => 'view', $assetType->parent_asset_type->id]) : '' ?></td>
+                                    <th><?= __('Name Bn') ?></th>
+                                    <td><?= h($officeUnitCategory->name_bn) ?></td>
                                 </tr>
                                                                                                         <tr>
-                                    <th><?= __('Title Bn') ?></th>
-                                    <td><?= h($assetType->title_bn) ?></td>
-                                </tr>
-                                                                                                        <tr>
-                                    <th><?= __('Title En') ?></th>
-                                    <td><?= h($assetType->title_en) ?></td>
+                                    <th><?= __('Name En') ?></th>
+                                    <td><?= h($officeUnitCategory->name_en) ?></td>
                                 </tr>
                                                                                                                                                                                                                 
                             
                                 <tr>
                                     <th><?= __('Status') ?></th>
-                                    <td><?= __($status[$assetType->status]) ?></td>
+                                    <td><?= __($status[$officeUnitCategory->status]) ?></td>
                                 </tr>
                                                                                                                                                                                                                                                                                                                                                                             </table>
                 </div>
