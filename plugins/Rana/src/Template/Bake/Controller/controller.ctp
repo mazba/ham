@@ -42,7 +42,7 @@ class <%= $name %>Controller extends AppController
 	public $paginate = [
         'limit' => 15,
         'order' => [
-            '<%= $name %>.title' => 'desc'
+            '<%= $name %>.id' => 'desc'
         ]
     ];
 <%
