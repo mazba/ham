@@ -52,7 +52,7 @@ $compact = ["'" . $singularName . "'"];
             $otherName = $association->target()->alias();
             $otherPlural = $this->_variableName($otherName);
 %>
-        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200, 'conditions'=>['status'=>1]]);
+        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['conditions'=>['status'=>1]]);
 <%
             $compact[] = "'$otherPlural'";
         endforeach;
