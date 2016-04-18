@@ -60,6 +60,10 @@ $groupedFields = collection($fields)
 $groupedFields += ['number' => [], 'string' => [], 'boolean' => [], 'date' => [], 'text' => []];
 $pk = "\$$singularVar->{$primaryKey[0]}";
 %>
+<?php
+$status = \Cake\Core\Configure::read('status_options');
+?>
+
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -111,6 +115,15 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
                         <% if ($groupedFields['number']) : %>
                         <% foreach ($groupedFields['number'] as $field) : %>
                             <% if ($field=='create_by' || $field=='update_by' || $field=='create_date' || $field=='create_time' || $field=='update_date' || $field=='update_time' || $field=='id') : %>
+                                <% continue; %>
+                            <% endif; %>
+
+                            <% if ($field=='status'): %>
+
+                                <tr>
+                                    <th><?= __('<%= Inflector::humanize($field) %>') ?></th>
+                                    <td><?= __($status[$<%= $singularVar %>-><%= $field %>]) ?></td>
+                                </tr>
                                 <% continue; %>
                             <% endif; %>
                                 <tr>

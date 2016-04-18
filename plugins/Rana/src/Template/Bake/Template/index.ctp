@@ -58,17 +58,23 @@ $status = \Cake\Core\Configure::read('status_options');
                                     {
                                         continue;
                                     }
-                                    elseif (in_array($field, ['name_en']))
+                                    elseif (in_array($field, ['id']))
                                     {
                                         %>
-                                        <th><?= __('NAME_EN') ?></th>
+                                        <th><?= __('Sl. No.') ?></th>
+                                        <%
+                                        continue;
+                                    }elseif (in_array($field, ['name_en']))
+                                    {
+                                        %>
+                                        <th><?= __('Name Bn') ?></th>
                                         <%
                                         continue;
                                     }
                                     elseif (in_array($field, ['name_bn']))
                                     {
                                         %>
-                                        <th><?= __('NAME_BN') ?></th>
+                                        <th><?= __('Name En') ?></th>
                                         <%
                                         continue;
                                     }
@@ -95,6 +101,12 @@ $status = \Cake\Core\Configure::read('status_options');
                                         {
                                            %>
                                                 <td><?= $this->Number->format($key+1) ?></td>
+                                            <%
+                                            continue;
+                                        }if (in_array($field, ['status']))
+                                        {
+                                           %>
+                                                <td><?= __($status[$<%= $singularVar %>-><%= $field %>]) ?></td>
                                             <%
                                             continue;
                                         }
