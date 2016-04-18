@@ -113,7 +113,7 @@ class FormHelper extends Helper
             'legend' => '<legend>{{text}}</legend>',
             'option' => '<option value="{{value}}"{{attrs}}>{{text}}</option>',
             'optgroup' => '<optgroup label="{{label}}"{{attrs}}>{{content}}</optgroup>',
-            'select' => '<div id="container_{{name}}" class="col-sm-9"><select class="form-control" name="{{name}}"{{attrs}}>{{content}}</select></div>',
+            'select' => '<div id="container_{{name}}" class="col-sm-9"><select name="{{name}}"{{attrs}} class="form-control">{{content}}</select></div>',
             'selectMultiple' => '<select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select>',
             'radio' => '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}}>',
             'radioWrapper' => '{{label}}',
