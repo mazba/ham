@@ -1,7 +1,6 @@
 <?php
 $status = \Cake\Core\Configure::read('status_options');
 ?>
-
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -12,7 +11,6 @@ $status = \Cake\Core\Configure::read('status_options');
         <li><?= $this->Html->link(__('Designations'), ['action' => 'index']) ?></li>
     </ul>
 </div>
-
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN BORDERED TABLE PORTLET-->
@@ -43,7 +41,7 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td><?= $this->Number->format($key + 1) ?></td>
                                 <td><?= $designation->has('parent_designation') ?
                                         $this->Html->link($designation->parent_designation
-                                            ->id, ['controller' => 'Designations',
+                                            ->name_bn, ['controller' => 'Designations',
                                             'action' => 'view', $designation->parent_designation
                                                 ->id]) : '' ?></td>
                                 <td><?= $designation->has('office') ?
@@ -55,11 +53,8 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td class="actions">
                                     <?php
                                     echo $this->Html->link(__('View'), ['action' => 'view', $designation->id], ['class' => 'btn btn-sm btn-info']);
-
                                     echo $this->Html->link(__('Edit'), ['action' => 'edit', $designation->id], ['class' => 'btn btn-sm btn-warning']);
-
                                     echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $designation->id], ['class' => 'btn btn-sm btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $designation->id)]);
-
                                     ?>
 
                                 </td>

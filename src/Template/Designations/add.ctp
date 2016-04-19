@@ -37,11 +37,11 @@ use Cake\Core\Configure;
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php
-                        echo $this->Form->input('parent_id', ['options' => $parentDesignations, 'empty' => __('Select')]);
-                        echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
-                        echo $this->Form->input('office_unit_designation_id', ['options' => $officeUnitDesignations, 'empty' => __('Select')]);
-                        echo $this->Form->input('name_en', ['label' => __('NAME_EN')]);
-                        echo $this->Form->input('name_bn', ['label' => __('NAME_BN')]);
+                        echo $this->Form->input('parent_id', ['class'=>'select2me form-control','options' => $parentDesignations, 'empty' => __('Select')]);
+                        echo $this->Form->input('office_id', ['class'=>'select2me form-control','options' => $offices, 'empty' => __('Select')]);
+                        echo $this->Form->input('office_unit_designation_id', ['class'=>'select2me form-control','options' => $officeUnitDesignations, 'empty' => __('Select')]);
+                        echo $this->Form->input('name_en');
+                        echo $this->Form->input('name_bn');
                         echo $this->Form->input('level_number');
                         echo $this->Form->input('sequence_number');
                         echo $this->Form->input('post_number');

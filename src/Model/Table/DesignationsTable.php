@@ -87,22 +87,22 @@ class DesignationsTable extends Table
             ->allowEmpty('status');
             
         $validator
-            ->add('created_by', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('created_by', 'create')
-            ->notEmpty('created_by');
+            ->add('create_by', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('create_by', 'create')
+            ->notEmpty('create_by');
             
         $validator
-            ->add('created_date', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('created_date', 'create')
-            ->notEmpty('created_date');
+            ->add('create_date', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('create_date', 'create')
+            ->notEmpty('create_date');
             
         $validator
-            ->add('updated_by', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('updated_by');
+            ->add('update_by', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('update_by');
             
         $validator
-            ->add('updated_date', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('updated_date');
+            ->add('update_date', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('update_date');
 
         return $validator;
     }

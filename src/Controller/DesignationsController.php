@@ -11,27 +11,27 @@ use App\Controller\AppController;
 class DesignationsController extends AppController
 {
 
-	public $paginate = [
+    public $paginate = [
         'limit' => 15,
         'order' => [
             'Designations.title' => 'desc'
         ]
     ];
 
-/**
-* Index method
-*
-* @return void
-*/
-public function index()
-{
-$designations = $this->Designations->find('all', [
-'conditions' =>['Designations.status !=' => 99],
-'contain' => ['ParentDesignations', 'Offices', 'OfficeUnitDesignations']
-]);
-$this->set('designations', $this->paginate($designations) );
-$this->set('_serialize', ['designations']);
-}
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $designations = $this->Designations->find('all', [
+            'conditions' => ['Designations.status !=' => 99],
+            'contain' => ['ParentDesignations', 'Offices', 'OfficeUnitDesignations']
+        ]);
+        $this->set('designations', $this->paginate($designations));
+        $this->set('_serialize', ['designations']);
+    }
 
     /**
      * View method
@@ -42,7 +42,7 @@ $this->set('_serialize', ['designations']);
      */
     public function view($id = null)
     {
-        $user=$this->Auth->user();
+        $user = $this->Auth->user();
         $designation = $this->Designations->get($id, [
             'contain' => ['ParentDesignations', 'Offices', 'OfficeUnitDesignations', 'ChildDesignations', 'ItemAssigns', 'UserEmploymentHistories', 'UserPerformanceReports']
         ]);
@@ -57,29 +57,26 @@ $this->set('_serialize', ['designations']);
      */
     public function add()
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $designation = $this->Designations->newEntity();
-        if ($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
 
-            $data=$this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+            $data = $this->request->data;
+            $data['office_id'] = $user['office_id'];
+            $data['create_by'] = $user['id'];
+            $data['create_date'] = $time;
             $designation = $this->Designations->patchEntity($designation, $data);
-            if ($this->Designations->save($designation))
-            {
+            if ($this->Designations->save($designation)) {
                 $this->Flash->success('The designation has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The designation could not be saved. Please, try again.');
             }
         }
-        $parentDesignations = $this->Designations->ParentDesignations->find('list', ['limit' => 200]);
-        $offices = $this->Designations->Offices->find('list', ['limit' => 200]);
-        $officeUnitDesignations = $this->Designations->OfficeUnitDesignations->find('list', ['limit' => 200]);
+        $parentDesignations = $this->Designations->ParentDesignations->find('list')->where(['status'=>1]);
+        $offices = $this->Designations->Offices->find('list')->where(['status'=>1]);
+        $officeUnitDesignations = $this->Designations->OfficeUnitDesignations->find('list')->where(['status'=>1]);
         $this->set(compact('designation', 'parentDesignations', 'offices', 'officeUnitDesignations'));
         $this->set('_serialize', ['designation']);
     }
@@ -93,24 +90,20 @@ $this->set('_serialize', ['designations']);
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $designation = $this->Designations->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
-        {
-            $data=$this->request->data;
-            $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
             $designation = $this->Designations->patchEntity($designation, $data);
-            if ($this->Designations->save($designation))
-            {
+            if ($this->Designations->save($designation)) {
                 $this->Flash->success('The designation has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The designation could not be saved. Please, try again.');
             }
         }
@@ -133,18 +126,15 @@ $this->set('_serialize', ['designations']);
 
         $designation = $this->Designations->get($id);
 
-        $user=$this->Auth->user();
-        $data=$this->request->data;
-        $data['updated_by']=$user['id'];
-        $data['updated_date']=time();
-        $data['status']=99;
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
         $designation = $this->Designations->patchEntity($designation, $data);
-        if ($this->Designations->save($designation))
-        {
+        if ($this->Designations->save($designation)) {
             $this->Flash->success('The designation has been deleted.');
-        }
-        else
-        {
+        } else {
             $this->Flash->error('The designation could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);
