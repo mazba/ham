@@ -63,7 +63,7 @@ use Cake\Core\Configure;
         $( "#start-date" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
-            dateFormat:'d/m/y',
+            dateFormat:'d-mm-yy',
             numberOfMonths: 1,
             onClose: function( selectedDate ) {
                 $( "#end-date" ).datepicker( "option", "minDate", selectedDate );
@@ -72,7 +72,7 @@ use Cake\Core\Configure;
         $( "#end-date" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
-            dateFormat:'d/m/y',
+            dateFormat:'d-mm-yy',
             numberOfMonths: 1,
             onClose: function( selectedDate ) {
                 $( "#start-date" ).datepicker( "option", "maxDate", selectedDate );

@@ -124,6 +124,7 @@ use Cake\Core\Configure;
         $(".datepicker" ).datepicker();
         $( "#deal-start-date" ).datepicker({
             defaultDate: "+1w",
+            dateFormat:'d-mm-yy',
             changeMonth: true,
             numberOfMonths: 1,
             onClose: function( selectedDate ) {
@@ -132,6 +133,7 @@ use Cake\Core\Configure;
         });
         $( "#deal-end-date" ).datepicker({
             defaultDate: "+1w",
+            dateFormat:'d-mm-yy',
             changeMonth: true,
             numberOfMonths: 1,
             onClose: function( selectedDate ) {
