@@ -71,7 +71,7 @@ use Cake\Core\Configure;
                             <h4 class="text-center"><?= __('Manufacturers') ?></h4>
                             <hr/>
                             <div class="col-md-10" id="manufacturer_wrp">
-                                <select id="manufacturers" class="manufacturers select2me form-control" name="manufacturers[]" style="margin-bottom: 10px">
+                                <select class="manufacturers select2me form-control" name="manufacturers[_ids][]" style="margin-bottom: 10px">
                                     <option value=""><?= __('Select') ?></option>
                                     <?php
                                         foreach($manufacturers as $key=>$manufacturer){
@@ -91,7 +91,7 @@ use Cake\Core\Configure;
                             <h4 class="text-center"><?= __('Offices') ?></h4>
                             <hr/>
                             <div class="col-md-10" id="office_wrp">
-                                <select class="offices select2me form-control" name="offices[]" style="margin-bottom: 10px">
+                                <select class="offices select2me form-control" name="offices[_ids][]" style="margin-bottom: 10px">
                                     <option value=""><?= __('Select') ?></option>
                                     <?php
                                     foreach($offices as $key=>$office){

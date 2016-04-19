@@ -62,11 +62,12 @@ class SupplierDealingDetailsController extends AppController
         $time = time();
         $supplierDealingDetail = $this->SupplierDealingDetails->newEntity();
         if ($this->request->is('post')) {
-
             $data = $this->request->data;
             $data['create_by'] = $user['id'];
             $data['create_date'] = $time;
-            $supplierDealingDetail = $this->SupplierDealingDetails->patchEntity($supplierDealingDetail, $data);
+            $data['deal_start_date'] = $data['deal_start_date'] ? strtotime( $data['deal_start_date']) : 0;
+            $data['deal_end_date'] = $data['deal_end_date'] ? strtotime( $data['deal_end_date']) :0;
+            $supplierDealingDetail = $this->SupplierDealingDetails->patchEntity($supplierDealingDetail, $data,['associated'=>['Manufacturers','Offices']]);
             if ($this->SupplierDealingDetails->save($supplierDealingDetail)) {
                 $this->Flash->success('The supplier dealing detail has been saved.');
                 return $this->redirect(['action' => 'index']);
@@ -90,31 +91,31 @@ class SupplierDealingDetailsController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
-        $user = $this->Auth->user();
-        $time = time();
-        $supplierDealingDetail = $this->SupplierDealingDetails->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $data = $this->request->data;
-            $data['update_by'] = $user['id'];
-            $data['update_date'] = $time;
-            $supplierDealingDetail = $this->SupplierDealingDetails->patchEntity($supplierDealingDetail, $data);
-            if ($this->SupplierDealingDetails->save($supplierDealingDetail)) {
-                $this->Flash->success('The supplier dealing detail has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The supplier dealing detail could not be saved. Please, try again.');
-            }
-        }
-        $committees = $this->SupplierDealingDetails->Committees->find('list', ['conditions' => ['status' => 1]]);
-        $users = $this->SupplierDealingDetails->Users->find('list', ['conditions' => ['status' => 1]]);
-        $itemCategories = $this->SupplierDealingDetails->ItemCategories->find('list', ['conditions' => ['status' => 1]]);
-        $this->set(compact('supplierDealingDetail', 'committees', 'users', 'itemCategories'));
-        $this->set('_serialize', ['supplierDealingDetail']);
-    }
+//    public function edit($id = null)
+//    {
+//        $user = $this->Auth->user();
+//        $time = time();
+//        $supplierDealingDetail = $this->SupplierDealingDetails->get($id, [
+//            'contain' => []
+//        ]);
+//        if ($this->request->is(['patch', 'post', 'put'])) {
+//            $data = $this->request->data;
+//            $data['update_by'] = $user['id'];
+//            $data['update_date'] = $time;
+//            $supplierDealingDetail = $this->SupplierDealingDetails->patchEntity($supplierDealingDetail, $data);
+//            if ($this->SupplierDealingDetails->save($supplierDealingDetail)) {
+//                $this->Flash->success('The supplier dealing detail has been saved.');
+//                return $this->redirect(['action' => 'index']);
+//            } else {
+//                $this->Flash->error('The supplier dealing detail could not be saved. Please, try again.');
+//            }
+//        }
+//        $committees = $this->SupplierDealingDetails->Committees->find('list', ['conditions' => ['status' => 1]]);
+//        $users = $this->SupplierDealingDetails->Users->find('list', ['conditions' => ['status' => 1]]);
+//        $itemCategories = $this->SupplierDealingDetails->ItemCategories->find('list', ['conditions' => ['status' => 1]]);
+//        $this->set(compact('supplierDealingDetail', 'committees', 'users', 'itemCategories'));
+//        $this->set('_serialize', ['supplierDealingDetail']);
+//    }
 
     /**
      * Delete method
