@@ -33,14 +33,6 @@ class UsersTable extends Table
             'foreignKey' => 'user_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('CreatedBy', [
-            'className'=>'Users',
-            'foreignKey' => 'created_by'
-        ]);
-        $this->belongsTo('UpdatedBy', [
-            'className'=>'Users',
-            'foreignKey' => 'updated_by'
-        ]);
         $this->addBehavior('FileUpload',['upload_path'=>'u_load/usr','field'=>'photo']);
     }
 

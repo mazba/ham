@@ -52,7 +52,6 @@ class UsersController extends AppController
         if ($this->request->is('post'))
         {
             $data = $this->request->data;
-            $data['dob'] = strtotime($data['dob']);
             $data['created_by'] = $this->Auth->user('id');;
             $data['created_time'] = time();
             $user = $this->Users->patchEntity($user,$data,['associated' => ['Users']]);
@@ -63,8 +62,13 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $userGroups = $this->Users->UserGroups->find('list');
-        $this->set(compact('user', 'userGroups'));
+
+        $this->loadModel('Offices');
+        $this->loadModel('UserGroups');
+        $userGroups = $this->UserGroups->find('list');
+        $offices = $this->Offices->find('list');
+
+        $this->set(compact('user', 'userGroups','offices'));
         $this->set('_serialize', ['user']);
     }
 
@@ -118,5 +122,38 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function ajax($action=null)
+    {
+        if($action=='get_unit')
+        {
+            $office_id = $this->request->data('office_id');
+            $this->loadModel('OfficeUnits');
+            $units = $this->OfficeUnits->find('list', ['conditions'=>['office_id'=>$office_id, 'status'=>1]]);
+
+            $this->response->body(json_encode($units));
+            return $this->response;
+        }
+        elseif($action=='get_unit_designation')
+        {
+            $office_id = $this->request->data('office_id');
+            $office_unit_id = $this->request->data('office_unit_id');
+            $this->loadModel('OfficeUnitDesignations');
+            $designations = $this->OfficeUnitDesignations->find('list', ['conditions'=>['office_id'=>$office_id, 'office_unit_id'=>$office_unit_id, 'status'=>1]]);
+
+            $this->response->body(json_encode($designations));
+            return $this->response;
+        }
+        elseif($action=='get_user_designation')
+        {
+            $office_id = $this->request->data('office_id');
+            $office_unit_designation_id = $this->request->data('office_unit_designation_id');
+            $this->loadModel('Designations');
+            $userDesignations = $this->Designations->find('list', ['conditions'=>['office_id'=>$office_id, 'office_unit_designation_id'=>$office_unit_designation_id, 'status'=>1]]);
+
+            $this->response->body(json_encode($userDesignations));
+            return $this->response;
+        }
     }
 }

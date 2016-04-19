@@ -61,7 +61,7 @@ class OfficesTable extends Table
         parent::initialize($config);
 
         $this->table('offices');
-        $this->displayField('name_en');
+        $this->displayField('name_bn');
         $this->primaryKey('id');
 
         $this->belongsTo('ParentOffices', [
