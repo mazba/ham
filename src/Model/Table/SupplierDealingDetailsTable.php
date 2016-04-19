@@ -82,6 +82,7 @@ class SupplierDealingDetailsTable extends Table
             ->allowEmpty('deal_end_date');
 
         $validator
+            ->add('deal_attach_file', 'valid', ['rule' => ['mimeType', ['image/jpeg', 'image/png','application/msword','application/vnd.ms-excel','application/vnd.ms-powerpoint','application/vnd.oasis.opendocument.text','application/vnd.oasis.opendocument.spreadsheet','application/pdf']]])
             ->allowEmpty('deal_attach_file');
 
         $validator

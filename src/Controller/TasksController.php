@@ -12,7 +12,10 @@ use ReflectionMethod;
 class TasksController extends AppController
 {
     public $paginate = [
-        'limit' => 10
+        'limit' => 10,
+        'order' => [
+            'Tasks.id' => 'desc'
+        ]
     ];
     /**
      * Index method

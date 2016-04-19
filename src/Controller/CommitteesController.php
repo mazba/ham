@@ -14,7 +14,7 @@ class CommitteesController extends AppController
 	public $paginate = [
         'limit' => 15,
         'order' => [
-            'Committees.title' => 'desc'
+            'Committees.id' => 'desc'
         ]
     ];
 
