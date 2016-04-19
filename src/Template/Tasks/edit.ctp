@@ -23,7 +23,7 @@ use Cake\Core\Configure;
                         echo $this->Form->input('name_bn',['class'=>'form-control']);
                         echo $this->Form->input('description',['class'=>'form-control']);
                         echo $this->Form->input('icon',['class'=>'form-control']);
-                        echo $this->Form->input('controller',['class'=>'form-control','empty'=>'Select']);
+                        echo $this->Form->input('controller',['class'=>'select2me form-control','empty'=>'Select']);
                         ?>
                         <div class="form-group input select">
                             <label for="controller" class="col-sm-3 control-label text-right"><?php echo __('Method'); ?></label>
