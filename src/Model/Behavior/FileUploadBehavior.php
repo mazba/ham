@@ -30,6 +30,9 @@ class FileUploadBehavior extends Behavior
             $name = time().'_'.str_replace(' ','_',$_FILES[$config['field']]['name']);
             if($config['upload_path'])
             {
+                if(!file_exists($config['upload_path'])){
+                    mkdir($config['upload_path'],777,true);
+                }
                 $name=$config['upload_path'].'/'.$name;
             }
             if(move_uploaded_file($tmp_name, $base_upload_path.'/'.$name))
