@@ -61,8 +61,8 @@ use Cake\Core\Configure;
                         echo $this->Form->input('vat_amount');
                         echo $this->Form->input('total_amount');
                         echo $this->Form->input('billing_installment_number');
-                        echo $this->Form->input('final_billing_date');
-                        echo $this->Form->input('actual_final_billing_date');
+                        echo $this->Form->input('final_billing_date',['class'=>'datepicker form-control','type'=>'text']);
+                        echo $this->Form->input('actual_final_billing_date',['class'=>'datepicker form-control','type'=>'text']);
                         echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
                         ?>
                     </div>
@@ -121,6 +121,7 @@ use Cake\Core\Configure;
 
 <script>
     $(document).ready(function() {
+        $(".datepicker" ).datepicker();
         $( "#deal-start-date" ).datepicker({
             defaultDate: "+1w",
             changeMonth: true,
