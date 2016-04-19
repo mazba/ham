@@ -22,7 +22,7 @@ class ManufacturersTable extends Table
     public function initialize(array $config)
     {
         $this->table('manufacturers');
-        $this->displayField('id');
+        $this->displayField('name_bn');
         $this->primaryKey('id');
         $this->hasMany('Items', [
             'foreignKey' => 'manufacturer_id'
