@@ -24,7 +24,11 @@ class TasksController extends AppController
      */
     public function index()
     {
-        $this->set('tasks', $this->paginate($this->Tasks));
+        $tasks = $this->Tasks->find('all',[
+           'contain'=>['ParentTasks','ChildTasks']
+        ]);
+
+        $this->set('tasks', $this->paginate($tasks));
         $this->set('_serialize', ['tasks']);
     }
 

@@ -31,6 +31,9 @@ $status = \Cake\Core\Configure::read('status_options');
                                     Parent
                                 </th>
                                 <th>
+                                    Child
+                                </th>
+                                <th>
                                     Status
                                 </th>
                                 <th>
@@ -47,6 +50,7 @@ $status = \Cake\Core\Configure::read('status_options');
                                     <td><?= h($task->controller) ?></td>
                                     <td><?= h($task->method) ?></td>
                                     <td><?= $task->has('parent_task') ? $this->Html->link($task->parent_task->name_en, ['controller' => 'Tasks', 'action' => 'view', $task->parent_task->id]) : '' ?></td>
+                                    <td><?= $task->has('child_tasks') ? count($task->child_tasks) : '' ?></td>
                                     <td><?= h($status[$task->status]) ?></td>
                                     <td class="actions">
                                         <?= $this->Html->link(__('View'), ['action' => 'view', $task->id],['class'=>'btn btn-sm btn-info']) ?>
