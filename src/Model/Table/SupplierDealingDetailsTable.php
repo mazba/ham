@@ -51,6 +51,7 @@ class SupplierDealingDetailsTable extends Table
             'joinTable' => 'supplier_dealing_detail_office',
             'foreignKey' => 'supplier_dealing_detail_id'
         ]);
+        $this->addBehavior('FileUpload',['upload_path'=>'u_load/supplier_agreement','field'=>'agreement_attach_file']);
     }
 
     /**
