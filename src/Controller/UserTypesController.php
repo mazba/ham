@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Inflector;
 
 /**
  * UserTypes Controller
@@ -11,26 +12,26 @@ use App\Controller\AppController;
 class UserTypesController extends AppController
 {
 
-	public $paginate = [
+    public $paginate = [
         'limit' => 15,
         'order' => [
             'UserTypes.title' => 'desc'
         ]
     ];
 
-/**
-* Index method
-*
-* @return void
-*/
-public function index()
-{
-			$userTypes = $this->UserTypes->find('all', [
-	'conditions' =>['UserTypes.status !=' => 99]
-	]);
-		$this->set('userTypes', $this->paginate($userTypes) );
-	$this->set('_serialize', ['userTypes']);
-	}
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $userTypes = $this->UserTypes->find('all', [
+            'conditions' => ['UserTypes.status !=' => 99]
+        ]);
+        $this->set('userTypes', $this->paginate($userTypes));
+        $this->set('_serialize', ['userTypes']);
+    }
 
     /**
      * View method
@@ -41,7 +42,7 @@ public function index()
      */
     public function view($id = null)
     {
-        $user=$this->Auth->user();
+        $user = $this->Auth->user();
         $userType = $this->UserTypes->get($id, [
             'contain' => []
         ]);
@@ -56,23 +57,19 @@ public function index()
      */
     public function add()
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $userType = $this->UserTypes->newEntity();
-        if ($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
 
-            $data=$this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+            $data = $this->request->data;
+            $data['create_by'] = $user['id'];
+            $data['create_date'] = $time;
             $userType = $this->UserTypes->patchEntity($userType, $data);
-            if ($this->UserTypes->save($userType))
-            {
+            if ($this->UserTypes->save($userType)) {
                 $this->Flash->success('The user type has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The user type could not be saved. Please, try again.');
             }
         }
@@ -89,24 +86,20 @@ public function index()
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $userType = $this->UserTypes->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
-        {
-            $data=$this->request->data;
-            $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
             $userType = $this->UserTypes->patchEntity($userType, $data);
-            if ($this->UserTypes->save($userType))
-            {
+            if ($this->UserTypes->save($userType)) {
                 $this->Flash->success('The user type has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The user type could not be saved. Please, try again.');
             }
         }
@@ -126,18 +119,15 @@ public function index()
 
         $userType = $this->UserTypes->get($id);
 
-        $user=$this->Auth->user();
-        $data=$this->request->data;
-        $data['updated_by']=$user['id'];
-        $data['updated_date']=time();
-        $data['status']=99;
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
         $userType = $this->UserTypes->patchEntity($userType, $data);
-        if ($this->UserTypes->save($userType))
-        {
+        if ($this->UserTypes->save($userType)) {
             $this->Flash->success('The user type has been deleted.');
-        }
-        else
-        {
+        } else {
             $this->Flash->error('The user type could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);

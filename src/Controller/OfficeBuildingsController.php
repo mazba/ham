@@ -11,27 +11,27 @@ use App\Controller\AppController;
 class OfficeBuildingsController extends AppController
 {
 
-	public $paginate = [
+    public $paginate = [
         'limit' => 15,
         'order' => [
             'OfficeBuildings.title' => 'desc'
         ]
     ];
 
-/**
-* Index method
-*
-* @return void
-*/
-public function index()
-{
-$officeBuildings = $this->OfficeBuildings->find('all', [
-'conditions' =>['OfficeBuildings.status !=' => 99],
-'contain' => ['ParentOfficeBuildings', 'Offices']
-]);
-$this->set('officeBuildings', $this->paginate($officeBuildings) );
-$this->set('_serialize', ['officeBuildings']);
-}
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $officeBuildings = $this->OfficeBuildings->find('all', [
+            'conditions' => ['OfficeBuildings.status !=' => 99],
+            'contain' => ['ParentOfficeBuildings', 'Offices']
+        ]);
+        $this->set('officeBuildings', $this->paginate($officeBuildings));
+        $this->set('_serialize', ['officeBuildings']);
+    }
 
     /**
      * View method
@@ -42,7 +42,7 @@ $this->set('_serialize', ['officeBuildings']);
      */
     public function view($id = null)
     {
-        $user=$this->Auth->user();
+        $user = $this->Auth->user();
         $officeBuilding = $this->OfficeBuildings->get($id, [
             'contain' => ['ParentOfficeBuildings', 'Offices', 'ItemAssigns', 'ChildOfficeBuildings', 'OfficeGarages', 'OfficeRooms', 'OfficeWarehouses']
         ]);
@@ -57,23 +57,19 @@ $this->set('_serialize', ['officeBuildings']);
      */
     public function add()
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $officeBuilding = $this->OfficeBuildings->newEntity();
-        if ($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
 
-            $data=$this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+            $data = $this->request->data;
+            $data['create_by'] = $user['id'];
+            $data['create_date'] = $time;
             $officeBuilding = $this->OfficeBuildings->patchEntity($officeBuilding, $data);
-            if ($this->OfficeBuildings->save($officeBuilding))
-            {
+            if ($this->OfficeBuildings->save($officeBuilding)) {
                 $this->Flash->success('The office building has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The office building could not be saved. Please, try again.');
             }
         }
@@ -92,24 +88,20 @@ $this->set('_serialize', ['officeBuildings']);
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $officeBuilding = $this->OfficeBuildings->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
-        {
-            $data=$this->request->data;
-            $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
             $officeBuilding = $this->OfficeBuildings->patchEntity($officeBuilding, $data);
-            if ($this->OfficeBuildings->save($officeBuilding))
-            {
+            if ($this->OfficeBuildings->save($officeBuilding)) {
                 $this->Flash->success('The office building has been updated.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The office building could not be updated. Please, try again.');
             }
         }
@@ -131,18 +123,15 @@ $this->set('_serialize', ['officeBuildings']);
 
         $officeBuilding = $this->OfficeBuildings->get($id);
 
-        $user=$this->Auth->user();
-        $data=$this->request->data;
-        $data['updated_by']=$user['id'];
-        $data['updated_date']=time();
-        $data['status']=99;
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
         $officeBuilding = $this->OfficeBuildings->patchEntity($officeBuilding, $data);
-        if ($this->OfficeBuildings->save($officeBuilding))
-        {
+        if ($this->OfficeBuildings->save($officeBuilding)) {
             $this->Flash->success('The office building has been deleted.');
-        }
-        else
-        {
+        } else {
             $this->Flash->error('The office building could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);

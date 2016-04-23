@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
+use Cake\Utility\Inflector;
 
 /**
  * Users Controller
@@ -10,12 +12,6 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
-
-    /**
-     * Index method
-     *
-     * @return void
-     */
     public function index()
     {
         $this->paginate = [
@@ -25,13 +21,6 @@ class UsersController extends AppController
         $this->set('_serialize', ['users']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
@@ -41,25 +30,46 @@ class UsersController extends AppController
         $this->set('_serialize', ['user']);
     }
 
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $user = $this->Users->newEntity();
+
         if ($this->request->is('post'))
         {
             $data = $this->request->data;
-            $data['created_by'] = $this->Auth->user('id');;
-            $data['created_time'] = time();
-            $user = $this->Users->patchEntity($user,$data,['associated' => ['Users']]);
-            if ($this->Users->save($user)) {
+            $data['create_by']=$user['id'];
+            $data['create_date']=time();
+            $data['user_basic']['create_by']=$user['id'];
+            $data['user_basic']['create_date']=time();
+            $data['user_academic_trainings']['create_by']=$user['id'];
+            $data['user_academic_trainings']['create_date']=time();
+
+            $user = $this->Users->patchEntity($user, $data, [
+                'associated' => [
+                    'UserBasic',
+                    'UserAcademicTrainings',
+                    'UserDependents',
+                    'UserDesignations',
+                    'UserEmergencyContacts',
+                    'UserEmploymentHistories',
+                    'UserLanguageDetails',
+                    'UserMedicals'
+                ]
+            ]);
+
+//            echo '<pre>';
+//            print_r($user);
+//            echo '</pre>';
+//            exit;
+
+            if ($this->Users->save($user))
+            {
                 $this->Flash->success(__('The user has been saved.'));
                 return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            }
+            else
+            {
+                $this->Flash->error(__('The user not saved.'));
             }
         }
 
@@ -72,13 +82,6 @@ class UsersController extends AppController
         $this->set('_serialize', ['user']);
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
@@ -105,13 +108,6 @@ class UsersController extends AppController
         $this->set('_serialize', ['user']);
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return void Redirects to index.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);

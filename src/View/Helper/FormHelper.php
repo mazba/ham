@@ -95,7 +95,7 @@ class FormHelper extends Helper
             'checkboxFormGroup' => '{{label}}',
             'checkboxWrapper' => '<div class="checkbox">{{label}}</div>',
             'dateWidget' => '{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}{{meridian}}',
-            'error' => '<div class="col-sm-2"></div><div class="col-sm-10 error-message">{{content}}</div>',
+            'error' => '<div class="col-sm-3"></div><div class="col-sm-9 error-message">{{content}}</div>',
             'errorList' => '<ul>{{content}}</ul>',
             'errorItem' => '<li>{{text}}</li>',
             'file' => '<div class="col-sm-9 container_{{name}}"> <input {{attrs}} class="" type="file" name="{{name}}"></div>',

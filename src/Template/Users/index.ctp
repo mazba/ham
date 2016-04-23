@@ -6,12 +6,6 @@
                 <div class="caption">
                     <i class="fa fa-coffee"></i>Users List <?= $this->Html->link(__('New User'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']) ?>
                 </div>
-                <div class="tools">
-                    <a class="collapse" href="javascript:;" data-original-title="" title="">
-                    </a>
-                    <a class="remove" href="javascript:;" data-original-title="" title="">
-                    </a>
-                </div>
             </div>
             <div class="portlet-body">
                 <div class="table-scrollable">
@@ -32,8 +26,8 @@
                             <tr>
                                 <td><?= $this->Number->format($user->id) ?></td>
                                 <td><?= h($user->username) ?></td>
-                                <td><?= h($user->name_bn) ?></td>
-                                <td><?= h($user->name_en) ?></td>
+                                <td><?= h($user->full_name_bn) ?></td>
+                                <td><?= h($user->full_name_en) ?></td>
                                 <td><?= $user->has('user_group') ? $this->Html->link($user->user_group->title, ['controller' => 'UserGroups', 'action' => 'view', $user->user_group->id]) : '' ?></td>
                                 <td><?= h($user->designation) ?></td>
                                 <td class="actions">
@@ -44,6 +38,7 @@
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
+                    </table>
                 </div>
             </div>
         </div>
