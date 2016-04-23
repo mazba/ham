@@ -63,5 +63,6 @@ class Supplier extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
+        'agreement_attach_file' => true
     ];
 }

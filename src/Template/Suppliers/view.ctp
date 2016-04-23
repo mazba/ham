@@ -124,7 +124,9 @@ $type = \Cake\Core\Configure::read('supplier_type');
                         </tr>
                         <tr>
                             <th><?= __('Agreement Attach File') ?></th>
-                            <td><?php echo $this->Html->link(__('View File'),'/'.$supplier->agreement_attach_file, ['class' => 'btn btn-sm btn-info']); ?></td>
+                            <?php if($supplier->agreement_attach): ?>
+                            <td><?php echo $this->Html->link(__('View File'),'/'.$supplier->agreement_attach, ['class' => 'btn btn-sm btn-info']); ?></td>
+                            <?php endif; ?>
                         </tr>
                         <tr>
                             <th><?= __('Remarks') ?></th>

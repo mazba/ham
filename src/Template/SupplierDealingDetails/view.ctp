@@ -58,8 +58,8 @@ $deal_type = \Cake\Core\Configure::read('deal_type');
                             <th><?= __('Deal Attach File') ?></th>
                             <td>
                                 <?php
-                                if($supplierDealingDetail->deal_attach_file)
-                                echo $this->Html->link(__('View File'),'/'.$supplierDealingDetail->deal_attach_file, ['class' => 'btn btn-sm btn-info']);
+                                if($supplierDealingDetail->deal_attach)
+                                echo $this->Html->link(__('View File'),'/'.$supplierDealingDetail->deal_attach, ['class' => 'btn btn-sm btn-info']);
                                 ?>
                             </td>
                         </tr>

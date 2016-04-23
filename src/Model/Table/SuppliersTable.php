@@ -5,6 +5,7 @@ use App\Model\Entity\Supplier;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Routing\Router;
 use Cake\Validation\Validator;
 
 /**
@@ -59,7 +60,15 @@ class SuppliersTable extends Table
             'className' => 'Suppliers',
             'foreignKey' => 'parent_id'
         ]);
-        $this->addBehavior('FileUpload',['upload_path'=>'u_load/supplier_agreement','field'=>'agreement_attach_file']);
+//        $this->addBehavior('FileUpload',['upload_path'=>'u_load/supplier_agreement','field'=>'agreement_attach_file']);
+        $this->addBehavior('Xety/Cake3Upload.Upload', [
+                'fields' => [
+                    'agreement_attach' => [
+                        'path' => 'u_load/supplier_agreement/:md5'
+                    ]
+                ]
+            ]
+        );
     }
 
     /**

@@ -65,7 +65,7 @@ use Cake\Core\Configure;
                         echo $this->Form->input('contact_person_email');
                         echo $this->Form->input('supplier_major_sector');
                         echo $this->Form->input('supplier_major_product_tag');
-                        echo $this->Form->input('agreement_attach_file',['type'=>'file']);
+                        echo $this->Form->input('agreement_attach',['type'=>'file']);
                         echo $this->Form->input('agreement_duration');
                         echo $this->Form->input('description',['rows'=>2]);
                         echo $this->Form->input('remarks',['type'=>'textarea','rows'=>2]);

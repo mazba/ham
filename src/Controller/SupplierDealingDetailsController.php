@@ -67,6 +67,8 @@ class SupplierDealingDetailsController extends AppController
             $data['create_date'] = $time;
             $data['deal_start_date'] = $data['deal_start_date'] ? strtotime( $data['deal_start_date']) : 0;
             $data['deal_end_date'] = $data['deal_end_date'] ? strtotime( $data['deal_end_date']) :0;
+            $data['final_billing_date'] = $data['final_billing_date'] ? strtotime( $data['final_billing_date']) :0;
+            $data['actual_final_billing_date'] = $data['actual_final_billing_date'] ? strtotime( $data['actual_final_billing_date']) :0;
             $supplierDealingDetail = $this->SupplierDealingDetails->patchEntity($supplierDealingDetail, $data,['associated'=>['Manufacturers','Offices']]);
             if ($this->SupplierDealingDetails->save($supplierDealingDetail)) {
                 $this->Flash->success('The supplier dealing detail has been saved.');

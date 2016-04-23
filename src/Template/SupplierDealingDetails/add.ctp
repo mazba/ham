@@ -121,7 +121,7 @@ use Cake\Core\Configure;
 
 <script>
     $(document).ready(function() {
-        $(".datepicker" ).datepicker();
+        $(".datepicker" ).datepicker({ dateFormat:'d-mm-yy'});
         $( "#deal-start-date" ).datepicker({
             defaultDate: "+1w",
             dateFormat:'d-mm-yy',
