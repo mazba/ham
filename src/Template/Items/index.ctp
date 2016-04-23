@@ -19,7 +19,7 @@ $status = \Cake\Core\Configure::read('status_options');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('Item List') ?>
+                    <i class="fa fa-list-alt fa-lg"></i><?= __('Item List') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('New Item'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']); ?>
@@ -30,8 +30,8 @@ $status = \Cake\Core\Configure::read('status_options');
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                                                                                            <th><?= __('id') ?></th>
-                                                                                                                                                <th><?= __('parent_id') ?></th>
+                                                                                                            <th><?= __('Sl. No.') ?></th>
+                                                                                                                    <th><?= __('parent_id') ?></th>
                                                                                                                                                 <th><?= __('serial_number') ?></th>
                                                                                                                                                 <th><?= __('office_serial_number') ?></th>
                                                                                                                                                 <th><?= __('model_number') ?></th>
@@ -41,9 +41,9 @@ $status = \Cake\Core\Configure::read('status_options');
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($items as $item) {  ?>
+                            <?php foreach ($items as $key => $item) {  ?>
                                 <tr>
-                                                                                    <td><?= $this->Number->format($item->id) ?></td>
+                                                                                    <td><?= $this->Number->format($key+1) ?></td>
                                                                                                 <td><?= $item->has('parent_item') ?
                                                     $this->Html->link($item->parent_item
                                                     ->id, ['controller' => 'Items',

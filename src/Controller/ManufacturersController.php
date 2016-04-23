@@ -18,20 +18,19 @@ class ManufacturersController extends AppController
         ]
     ];
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index()
-    {
-$manufacturers = $this->Manufacturers->find('all', [
-            'conditions' =>['Manufacturers.status !=' => 99]
-        ]);
-
-        $this->set('manufacturers', $this->paginate($manufacturers) );
-        $this->set('_serialize', ['manufacturers']);
-    }
+/**
+* Index method
+*
+* @return void
+*/
+public function index()
+{
+			$manufacturers = $this->Manufacturers->find('all', [
+	'conditions' =>['Manufacturers.status !=' => 99]
+	]);
+		$this->set('manufacturers', $this->paginate($manufacturers) );
+	$this->set('_serialize', ['manufacturers']);
+	}
 
     /**
      * View method
@@ -44,7 +43,7 @@ $manufacturers = $this->Manufacturers->find('all', [
     {
         $user=$this->Auth->user();
         $manufacturer = $this->Manufacturers->get($id, [
-            'contain' => ['Items', 'SupplierDealingDetails']
+            'contain' => []
         ]);
         $this->set('manufacturer', $manufacturer);
         $this->set('_serialize', ['manufacturer']);

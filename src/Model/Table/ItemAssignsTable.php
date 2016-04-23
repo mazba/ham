@@ -1,16 +1,14 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\OfficeWarehouse;
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * OfficeWarehouses Model
+ * ItemAssigns Model
  */
-class OfficeWarehousesTable extends Table
+class ItemAssignsTable extends Table
 {
 
     /**
@@ -21,13 +19,9 @@ class OfficeWarehousesTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('office_warehouses');
-        $this->displayField('title_bn');
+        $this->table('item_assigns');
+        $this->displayField('id');
         $this->primaryKey('id');
-        $this->belongsTo('ParentOfficeWarehouses', [
-            'className' => 'OfficeWarehouses',
-            'foreignKey' => 'parent_id'
-        ]);
         $this->belongsTo('Offices', [
             'foreignKey' => 'office_id'
         ]);
@@ -37,18 +31,24 @@ class OfficeWarehousesTable extends Table
         $this->belongsTo('OfficeRooms', [
             'foreignKey' => 'office_room_id'
         ]);
-        $this->hasMany('ItemAssigns', [
+        $this->belongsTo('OfficeWarehouses', [
             'foreignKey' => 'office_warehouse_id'
+        ]);
+        $this->belongsTo('OfficeUnits', [
+            'foreignKey' => 'office_unit_id'
+        ]);
+        $this->belongsTo('Designations', [
+            'foreignKey' => 'designation_id'
+        ]);
+        $this->belongsTo('DesignatedUsers', [
+            'className' => 'Users',
+            'foreignKey' => 'designated_user_id'
+        ]);
+        $this->belongsTo('Items', [
+            'foreignKey' => 'item_id'
         ]);
         $this->hasMany('ItemWithdrawals', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('Items', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('ChildOfficeWarehouses', [
-            'className' => 'OfficeWarehouses',
-            'foreignKey' => 'parent_id'
+            'foreignKey' => 'item_assign_id'
         ]);
     }
 
@@ -63,22 +63,31 @@ class OfficeWarehousesTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
-            
+
         $validator
-            ->allowEmpty('code');
-            
+            ->add('assign_type', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('assign_type', 'create')
+            ->notEmpty('assign_type');
+
         $validator
-            ->allowEmpty('title_bn');
-            
+            ->add('quantity', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('quantity');
+
         $validator
-            ->allowEmpty('title_en');
-            
+            ->add('assign_date', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('assign_date');
+
         $validator
-            ->allowEmpty('size');
-            
+            ->add('expected_usage_time', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('expected_usage_time');
+
         $validator
-            ->allowEmpty('description');
-            
+            ->allowEmpty('usage_instruction');
+
+        $validator
+            ->add('next_maintainance_date', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('next_maintainance_date');
+
         $validator
             ->add('status', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('status');
@@ -95,10 +104,14 @@ class OfficeWarehousesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentOfficeWarehouses'));
         $rules->add($rules->existsIn(['office_id'], 'Offices'));
         $rules->add($rules->existsIn(['office_building_id'], 'OfficeBuildings'));
         $rules->add($rules->existsIn(['office_room_id'], 'OfficeRooms'));
+        $rules->add($rules->existsIn(['office_warehouse_id'], 'OfficeWarehouses'));
+        $rules->add($rules->existsIn(['office_unit_id'], 'OfficeUnits'));
+        $rules->add($rules->existsIn(['designation_id'], 'Designations'));
+        $rules->add($rules->existsIn(['designated_user_id'], 'DesignatedUsers'));
+        $rules->add($rules->existsIn(['item_id'], 'Items'));
         return $rules;
     }
 }

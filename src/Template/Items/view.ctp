@@ -1,3 +1,7 @@
+<?php
+$status = \Cake\Core\Configure::read('status_options');
+?>
+
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -20,7 +24,7 @@
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('Item List') ?>
+                    <i class="fa fa-picture-o fa-lg"></i><?= __('Item Details') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -55,27 +59,27 @@
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Manufacturer') ?></th>
-                                    <td><?= $item->has('manufacturer') ? $this->Html->link($item->manufacturer->id, ['controller' => 'Manufacturers', 'action' => 'view', $item->manufacturer->id]) : '' ?></td>
+                                    <td><?= $item->has('manufacturer') ? $this->Html->link($item->manufacturer->name_bn, ['controller' => 'Manufacturers', 'action' => 'view', $item->manufacturer->id]) : '' ?></td>
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Supplier') ?></th>
-                                    <td><?= $item->has('supplier') ? $this->Html->link($item->supplier->id, ['controller' => 'Suppliers', 'action' => 'view', $item->supplier->id]) : '' ?></td>
+                                    <td><?= $item->has('supplier') ? $this->Html->link($item->supplier->name_bn, ['controller' => 'Suppliers', 'action' => 'view', $item->supplier->id]) : '' ?></td>
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Asset Nature') ?></th>
-                                    <td><?= $item->has('asset_nature') ? $this->Html->link($item->asset_nature->id, ['controller' => 'AssetNatures', 'action' => 'view', $item->asset_nature->id]) : '' ?></td>
+                                    <td><?= $item->has('asset_nature') ? $this->Html->link($item->asset_nature->title_bn, ['controller' => 'AssetNatures', 'action' => 'view', $item->asset_nature->id]) : '' ?></td>
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Asset Type') ?></th>
-                                    <td><?= $item->has('asset_type') ? $this->Html->link($item->asset_type->id, ['controller' => 'AssetTypes', 'action' => 'view', $item->asset_type->id]) : '' ?></td>
+                                    <td><?= $item->has('asset_type') ? $this->Html->link($item->asset_type->title_bn, ['controller' => 'AssetTypes', 'action' => 'view', $item->asset_type->id]) : '' ?></td>
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Item Category') ?></th>
-                                    <td><?= $item->has('item_category') ? $this->Html->link($item->item_category->id, ['controller' => 'ItemCategories', 'action' => 'view', $item->item_category->id]) : '' ?></td>
+                                    <td><?= $item->has('item_category') ? $this->Html->link($item->item_category->name_bn, ['controller' => 'ItemCategories', 'action' => 'view', $item->item_category->id]) : '' ?></td>
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Office') ?></th>
-                                    <td><?= $item->has('office') ? $this->Html->link($item->office->id, ['controller' => 'Offices', 'action' => 'view', $item->office->id]) : '' ?></td>
+                                    <td><?= $item->has('office') ? $this->Html->link($item->office->name_en, ['controller' => 'Offices', 'action' => 'view', $item->office->id]) : '' ?></td>
                                 </tr>
                                                                                                         <tr>
                                     <th><?= __('Office Warehouse') ?></th>
@@ -109,63 +113,53 @@
                                     <th><?= __('Remarks') ?></th>
                                     <td><?= h($item->remarks) ?></td>
                                 </tr>
-                                                                                                                                                        <tr>
-                                    <th><?= __('Id') ?></th>
-                                    <td><?= $this->Number->format($item->id) ?></td>
-                                </tr>
-                                                        <tr>
+                                                                                                                                                                                                                
+                                                            <tr>
                                     <th><?= __('Unit Price') ?></th>
                                     <td><?= $this->Number->format($item->unit_price) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Quantity') ?></th>
                                     <td><?= $this->Number->format($item->quantity) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Condition') ?></th>
                                     <td><?= $this->Number->format($item->condition) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Purchase Order Date') ?></th>
                                     <td><?= $this->Number->format($item->purchase_order_date) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Office Receive Date') ?></th>
                                     <td><?= $this->Number->format($item->office_receive_date) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Warranty Start Date') ?></th>
                                     <td><?= $this->Number->format($item->warranty_start_date) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Warranty End Date') ?></th>
                                     <td><?= $this->Number->format($item->warranty_end_date) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                                                            <tr>
                                     <th><?= __('Projected End Of Life') ?></th>
                                     <td><?= $this->Number->format($item->projected_end_of_life) ?></td>
                                 </tr>
-                                                        <tr>
+                                                    
+                            
+                                <tr>
                                     <th><?= __('Status') ?></th>
-                                    <td><?= $this->Number->format($item->status) ?></td>
+                                    <td><?= __($status[$item->status]) ?></td>
                                 </tr>
-                                                        <tr>
-                                    <th><?= __('Create Time') ?></th>
-                                    <td><?= $this->Number->format($item->create_time) ?></td>
-                                </tr>
-                                                        <tr>
-                                    <th><?= __('Update Time') ?></th>
-                                    <td><?= $this->Number->format($item->update_time) ?></td>
-                                </tr>
-                                                        <tr>
-                                    <th><?= __('Create By') ?></th>
-                                    <td><?= $this->Number->format($item->create_by) ?></td>
-                                </tr>
-                                                        <tr>
-                                    <th><?= __('Update By') ?></th>
-                                    <td><?= $this->Number->format($item->update_by) ?></td>
-                                </tr>
-                                                                                                                                                        <tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                <tr>
                                     <th><?= __('Is Depreciable') ?></th>
                                     <td><?= $item->is_depreciable ? __('Yes') : __('No'); ?></td>
                                  </tr>

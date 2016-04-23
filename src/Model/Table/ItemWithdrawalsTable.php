@@ -1,16 +1,16 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\OfficeWarehouse;
+use App\Model\Entity\ItemWithdrawal;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * OfficeWarehouses Model
+ * ItemWithdrawals Model
  */
-class OfficeWarehousesTable extends Table
+class ItemWithdrawalsTable extends Table
 {
 
     /**
@@ -21,34 +21,17 @@ class OfficeWarehousesTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('office_warehouses');
-        $this->displayField('title_bn');
+        $this->table('item_withdrawals');
+        $this->displayField('id');
         $this->primaryKey('id');
-        $this->belongsTo('ParentOfficeWarehouses', [
-            'className' => 'OfficeWarehouses',
-            'foreignKey' => 'parent_id'
+        $this->belongsTo('ItemAssigns', [
+            'foreignKey' => 'item_assign_id'
         ]);
         $this->belongsTo('Offices', [
             'foreignKey' => 'office_id'
         ]);
-        $this->belongsTo('OfficeBuildings', [
-            'foreignKey' => 'office_building_id'
-        ]);
-        $this->belongsTo('OfficeRooms', [
-            'foreignKey' => 'office_room_id'
-        ]);
-        $this->hasMany('ItemAssigns', [
+        $this->belongsTo('OfficeWarehouses', [
             'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('ItemWithdrawals', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('Items', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('ChildOfficeWarehouses', [
-            'className' => 'OfficeWarehouses',
-            'foreignKey' => 'parent_id'
         ]);
     }
 
@@ -65,19 +48,15 @@ class OfficeWarehousesTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->allowEmpty('code');
+            ->add('withdrawal_type', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('withdrawal_type');
             
         $validator
-            ->allowEmpty('title_bn');
+            ->add('withdrawal_time', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('withdrawal_time');
             
         $validator
-            ->allowEmpty('title_en');
-            
-        $validator
-            ->allowEmpty('size');
-            
-        $validator
-            ->allowEmpty('description');
+            ->allowEmpty('remarks');
             
         $validator
             ->add('status', 'valid', ['rule' => 'numeric'])
@@ -95,10 +74,9 @@ class OfficeWarehousesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentOfficeWarehouses'));
+        $rules->add($rules->existsIn(['item_assign_id'], 'ItemAssigns'));
         $rules->add($rules->existsIn(['office_id'], 'Offices'));
-        $rules->add($rules->existsIn(['office_building_id'], 'OfficeBuildings'));
-        $rules->add($rules->existsIn(['office_room_id'], 'OfficeRooms'));
+        $rules->add($rules->existsIn(['office_warehouse_id'], 'OfficeWarehouses'));
         return $rules;
     }
 }

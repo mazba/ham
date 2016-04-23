@@ -1,16 +1,16 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\OfficeWarehouse;
+use App\Model\Entity\ItemVehicle;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * OfficeWarehouses Model
+ * ItemVehicles Model
  */
-class OfficeWarehousesTable extends Table
+class ItemVehiclesTable extends Table
 {
 
     /**
@@ -21,34 +21,14 @@ class OfficeWarehousesTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('office_warehouses');
-        $this->displayField('title_bn');
+        $this->table('item_vehicles');
+        $this->displayField('id');
         $this->primaryKey('id');
-        $this->belongsTo('ParentOfficeWarehouses', [
-            'className' => 'OfficeWarehouses',
-            'foreignKey' => 'parent_id'
-        ]);
         $this->belongsTo('Offices', [
             'foreignKey' => 'office_id'
         ]);
-        $this->belongsTo('OfficeBuildings', [
-            'foreignKey' => 'office_building_id'
-        ]);
-        $this->belongsTo('OfficeRooms', [
-            'foreignKey' => 'office_room_id'
-        ]);
-        $this->hasMany('ItemAssigns', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('ItemWithdrawals', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('Items', [
-            'foreignKey' => 'office_warehouse_id'
-        ]);
-        $this->hasMany('ChildOfficeWarehouses', [
-            'className' => 'OfficeWarehouses',
-            'foreignKey' => 'parent_id'
+        $this->belongsTo('Items', [
+            'foreignKey' => 'item_id'
         ]);
     }
 
@@ -65,19 +45,37 @@ class OfficeWarehousesTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->allowEmpty('code');
+            ->allowEmpty('registration_number');
             
         $validator
-            ->allowEmpty('title_bn');
+            ->allowEmpty('prefix_number');
             
         $validator
-            ->allowEmpty('title_en');
+            ->allowEmpty('engine_number');
             
         $validator
-            ->allowEmpty('size');
+            ->allowEmpty('chasis_number');
             
         $validator
-            ->allowEmpty('description');
+            ->allowEmpty('country_of_origin');
+            
+        $validator
+            ->add('fuel_tank_capacity', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('fuel_tank_capacity');
+            
+        $validator
+            ->add('oil_sump_capacity', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('oil_sump_capacity');
+            
+        $validator
+            ->add('load_capacity', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('load_capacity');
+            
+        $validator
+            ->allowEmpty('engine_capacity');
+            
+        $validator
+            ->allowEmpty('number_plate');
             
         $validator
             ->add('status', 'valid', ['rule' => 'numeric'])
@@ -95,10 +93,8 @@ class OfficeWarehousesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentOfficeWarehouses'));
         $rules->add($rules->existsIn(['office_id'], 'Offices'));
-        $rules->add($rules->existsIn(['office_building_id'], 'OfficeBuildings'));
-        $rules->add($rules->existsIn(['office_room_id'], 'OfficeRooms'));
+        $rules->add($rules->existsIn(['item_id'], 'Items'));
         return $rules;
     }
 }

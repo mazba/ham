@@ -1,3 +1,7 @@
+<?php
+$status = \Cake\Core\Configure::read('status_options');
+?>
+
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -20,7 +24,7 @@
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('Manufacturer List') ?>
+                    <i class="fa fa-picture-o fa-lg"></i><?= __('Manufacturer Details') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -81,31 +85,13 @@
                                     <th><?= __('Remarks') ?></th>
                                     <td><?= h($manufacturer->remarks) ?></td>
                                 </tr>
-                                                                                                                                                        <tr>
-                                    <th><?= __('Id') ?></th>
-                                    <td><?= $this->Number->format($manufacturer->id) ?></td>
-                                </tr>
-                                                        <tr>
+                                                                                                                                                                                                                
+                            
+                                <tr>
                                     <th><?= __('Status') ?></th>
-                                    <td><?= $this->Number->format($manufacturer->status) ?></td>
+                                    <td><?= __($status[$manufacturer->status]) ?></td>
                                 </tr>
-                                                        <tr>
-                                    <th><?= __('Create Time') ?></th>
-                                    <td><?= $this->Number->format($manufacturer->create_time) ?></td>
-                                </tr>
-                                                        <tr>
-                                    <th><?= __('Update Time') ?></th>
-                                    <td><?= $this->Number->format($manufacturer->update_time) ?></td>
-                                </tr>
-                                                        <tr>
-                                    <th><?= __('Create By') ?></th>
-                                    <td><?= $this->Number->format($manufacturer->create_by) ?></td>
-                                </tr>
-                                                        <tr>
-                                    <th><?= __('Update By') ?></th>
-                                    <td><?= $this->Number->format($manufacturer->update_by) ?></td>
-                                </tr>
-                                                                                                                    </table>
+                                                                                                                                                                                                                                                                                                                                                                            </table>
                 </div>
             </div>
         </div>

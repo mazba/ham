@@ -4,32 +4,28 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Manufacturer Entity.
+ * ItemMaintenanceHistory Entity.
  *
  * @property int $id
- * @property string $code
- * @property string $name_bn
- * @property string $name_en
- * @property string $phone
- * @property string $fax
- * @property string $website
- * @property string $email
- * @property string $cell_phone
- * @property string $country
- * @property string $address
- * @property string $major_sector
- * @property string $major_product_tag
- * @property string $description
+ * @property int $office_id
+ * @property \App\Model\Entity\Office $office
+ * @property int $supplier_id
+ * @property \App\Model\Entity\Supplier $supplier
+ * @property int $item_id
+ * @property \App\Model\Entity\Item $item
+ * @property int $type
+ * @property int $start_date
+ * @property int $completion_date
+ * @property int $warranty_covered
+ * @property float $cost
  * @property string $remarks
  * @property int $status
  * @property int $create_time
  * @property int $update_time
  * @property int $create_by
  * @property int $update_by
- * @property \App\Model\Entity\Item[] $items
- * @property \App\Model\Entity\SupplierDealingDetail[] $supplier_dealing_details
  */
-class Manufacturer extends Entity
+class ItemMaintenanceHistory extends Entity
 {
 
     /**

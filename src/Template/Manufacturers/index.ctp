@@ -19,7 +19,7 @@ $status = \Cake\Core\Configure::read('status_options');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('Manufacturer List') ?>
+                    <i class="fa fa-list-alt fa-lg"></i><?= __('Manufacturer List') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('New Manufacturer'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']); ?>
@@ -30,10 +30,10 @@ $status = \Cake\Core\Configure::read('status_options');
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                                                                                            <th><?= __('id') ?></th>
-                                                                                                                                                <th><?= __('code') ?></th>
-                                                                                                                                                <th><?= __('NAME_BN') ?></th>
-                                                                                                                    <th><?= __('NAME_EN') ?></th>
+                                                                                                            <th><?= __('Sl. No.') ?></th>
+                                                                                                                    <th><?= __('code') ?></th>
+                                                                                                                                                <th><?= __('Name En') ?></th>
+                                                                                                                    <th><?= __('Name Bn') ?></th>
                                                                                                                     <th><?= __('phone') ?></th>
                                                                                                                                                 <th><?= __('fax') ?></th>
                                                                                                                                                 <th><?= __('website') ?></th>
@@ -41,9 +41,9 @@ $status = \Cake\Core\Configure::read('status_options');
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($manufacturers as $manufacturer) {  ?>
+                            <?php foreach ($manufacturers as $key => $manufacturer) {  ?>
                                 <tr>
-                                                                                    <td><?= $this->Number->format($manufacturer->id) ?></td>
+                                                                                    <td><?= $this->Number->format($key+1) ?></td>
                                                                                             <td><?= h($manufacturer->code) ?></td>
                                                                                             <td><?= h($manufacturer->name_bn) ?></td>
                                                                                             <td><?= h($manufacturer->name_en) ?></td>

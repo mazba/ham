@@ -25,7 +25,12 @@ use Cake\Core\Configure;
             <div class="portlet-title">
                 <div class="caption">
                                     <i class="fa fa-pencil-square-o fa-lg"></i><?= __('Edit Item') ?>
-                            </div>
+                                </div>
+                <div class="tools">
+                    <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
+                </div>
+                
+            </div>
             <div class="portlet-body">
                 <?= $this->Form->create($item,['class' => 'form-horizontal','role'=>'form']) ?>
                 <div class="row">
