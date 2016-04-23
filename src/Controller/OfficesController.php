@@ -36,7 +36,7 @@ class OfficesController extends AppController
     public function view($id = null)
     {
         $office = $this->Offices->get($id, [
-            'contain' => ['ParentOffices', 'OfficeLevels', 'AreaDivisions', 'AreaZones', 'AreaDistricts', 'AreaUpazilas', 'Committees', 'Designations', 'ItemAssigns', 'ItemDepreciations', 'ItemDocuments', 'ItemMaintenanceHistories', 'ItemMaintenances', 'ItemVehicles', 'ItemWithdrawals', 'Items', 'JobRanks', 'OfficeBuildings', 'OfficeGarages', 'OfficeModuleSettings', 'OfficeRooms', 'OfficeUnitDesignations', 'OfficeUnits', 'OfficeWarehouses', 'ChildOffices', 'SupplierDealingDetails', 'Suppliers', 'UserActionHistories', 'UserCommittees', 'UserDesignations', 'UserEmploymentHistories', 'UserLeaves', 'UserMedicals', 'UserPayInformations', 'UserPerformanceReports', 'Users']
+            'contain' => ['ParentOffices', 'OfficeLevels', 'Users']
         ]);
         $this->set('office', $office);
         $this->set('_serialize', ['office']);

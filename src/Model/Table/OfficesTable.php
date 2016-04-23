@@ -144,7 +144,11 @@ class OfficesTable extends Table
             'className' => 'Offices',
             'foreignKey' => 'parent_id'
         ]);
-        $this->hasMany('SupplierDealingDetails', [
+//        $this->hasMany('SupplierDealingDetails', [
+//            'foreignKey' => 'office_id'
+//        ]);
+        $this->belongsToMany('SupplierDealingDetailOffice', [
+            'joinTable' => 'supplier_dealing_detail_office',
             'foreignKey' => 'office_id'
         ]);
         $this->hasMany('Suppliers', [
