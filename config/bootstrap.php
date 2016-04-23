@@ -191,6 +191,8 @@ if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
+//custom plugin for system
+Plugin::load('Xety/Cake3Upload');
 Plugin::load('Rana');
 
 /**
