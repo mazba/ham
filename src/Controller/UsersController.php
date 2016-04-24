@@ -23,9 +23,27 @@ class UsersController extends AppController
 
     public function view($id = null)
     {
+        $user = $this->request->Session()->read('Auth')['User'];
+
+        if($id != $user['id'] && $user['user_type_id'] != 1)
+        {
+            $this->Flash->error(__('You don not have permission to view this!'));
+            return $this->redirect('/Dashboard');
+        }
+
         $user = $this->Users->get($id, [
-            'contain' => ['UserGroups','CreatedBy','UpdatedBy']
+            'contain' => [
+                'UserBasic',
+                'UserAcademicTrainings',
+                'UserDependents',
+                'UserDesignations',
+                'UserEmergencyContacts',
+                'UserEmploymentHistories',
+                'UserLanguageDetails',
+                'UserMedicals'
+            ]
         ]);
+
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
@@ -33,6 +51,7 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+        $time = time();
 
         if ($this->request->is('post'))
         {
@@ -40,9 +59,33 @@ class UsersController extends AppController
             $data['create_by']=$user['id'];
             $data['create_date']=time();
             $data['user_basic']['create_by']=$user['id'];
-            $data['user_basic']['create_date']=time();
-            $data['user_academic_trainings']['create_by']=$user['id'];
-            $data['user_academic_trainings']['create_date']=time();
+            $data['user_basic']['create_date']=$time;
+
+            for($i=0; $i<sizeof($data['user_academic_trainings']); $i++)
+            {
+                $data['user_academic_trainings'][$i]['create_by']=$user['id'];
+                $data['user_academic_trainings'][$i]['create_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_dependents']); $i++)
+            {
+                $data['user_dependents'][$i]['create_by']=$user['id'];
+                $data['user_dependents'][$i]['create_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_designations']); $i++)
+            {
+                $data['user_designations'][$i]['create_by']=$user['id'];
+                $data['user_designations'][$i]['create_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_employment_histories']); $i++)
+            {
+                $data['user_employment_histories'][$i]['create_by']=$user['id'];
+                $data['user_employment_histories'][$i]['create_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_language_details']); $i++)
+            {
+                $data['user_language_details'][$i]['create_by']=$user['id'];
+                $data['user_language_details'][$i]['create_time']=$time;
+            }
 
             $user = $this->Users->patchEntity($user, $data, [
                 'associated' => [
@@ -56,11 +99,6 @@ class UsersController extends AppController
                     'UserMedicals'
                 ]
             ]);
-
-//            echo '<pre>';
-//            print_r($user);
-//            echo '</pre>';
-//            exit;
 
             if ($this->Users->save($user))
             {
@@ -85,39 +123,100 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => [
+                'UserBasic',
+                'UserAcademicTrainings',
+                'UserDependents',
+                'UserDesignations',
+                'UserEmergencyContacts',
+                'UserEmploymentHistories',
+                'UserLanguageDetails',
+                'UserMedicals'
+            ]
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
+
+        if($this->request->is(['patch', 'post', 'put']))
         {
             $data = $this->request->data;
+            $time = time();
+
             if(empty($data['password']))
+            {
                 unset($data['password']);
+            }
+
             $data['updated_by'] = $this->Auth->user('id');
             $data['updated_time'] = time();
-            $data['dob'] = strtotime($data['dob']);
-            $user = $this->Users->patchEntity($user, $data,['associated' => ['Users']]);
+
+            $data['user_basic']['updated_by']=$user['id'];
+            $data['user_basic']['updated_time']=$time;
+
+            for($i=0; $i<sizeof($data['user_academic_trainings']); $i++)
+            {
+                $data['user_academic_trainings'][$i]['update_by']=$user['id'];
+                $data['user_academic_trainings'][$i]['update_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_dependents']); $i++)
+            {
+                $data['user_dependents'][$i]['update_by']=$user['id'];
+                $data['user_dependents'][$i]['update_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_designations']); $i++)
+            {
+                $data['user_designations'][$i]['update_by']=$user['id'];
+                $data['user_designations'][$i]['update_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_employment_histories']); $i++)
+            {
+                $data['user_employment_histories'][$i]['update_by']=$user['id'];
+                $data['user_employment_histories'][$i]['update_time']=$time;
+            }
+            for($i=0; $i<sizeof($data['user_language_details']); $i++)
+            {
+                $data['user_language_details'][$i]['update_by']=$user['id'];
+                $data['user_language_details'][$i]['update_time']=$time;
+            }
+
+            $user = $this->Users->patchEntity($user, $data, [
+                'associated' => [
+                    'UserBasic',
+                    'UserAcademicTrainings',
+                    'UserDependents',
+                    'UserDesignations',
+                    'UserEmergencyContacts',
+                    'UserEmploymentHistories',
+                    'UserLanguageDetails',
+                    'UserMedicals'
+                ]
+            ]);
+
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('The user has been updated.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $userGroups = $this->Users->UserGroups->find('list');
-        $this->set(compact('user', 'userGroups'));
+
+        $this->loadModel('Offices');
+        $this->loadModel('UserGroups');
+        $userGroups = $this->UserGroups->find('list');
+        $offices = $this->Offices->find('list');
+
+        $this->set(compact('user', 'userGroups','offices'));
         $this->set('_serialize', ['user']);
     }
 
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
+//        $this->request->allowMethod(['post', 'delete']);
+//        $user = $this->Users->get($id);
+//        if ($this->Users->delete($user)) {
+//            $this->Flash->success(__('The user has been deleted.'));
+//        } else {
+//            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+//        }
+//        return $this->redirect(['action' => 'index']);
     }
 
     public function ajax($action=null)

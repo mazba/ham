@@ -1,3 +1,6 @@
+<?php
+$user = $this->request->Session()->read('Auth')['User'];
+?>
 <!DOCTYPE html>
 <!-- 
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.1
@@ -118,7 +121,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="#">
+                                <a href="<?= $this->request->webroot; ?>Users/view/<?= $user['id'];?>">
                                     <i class="icon-user"></i> My Profile </a>
                             </li>
                             <li>

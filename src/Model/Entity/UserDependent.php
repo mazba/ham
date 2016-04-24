@@ -13,11 +13,6 @@ class UserDependent extends Entity
         'id' => false,
     ];
 
-    protected function _getDateOfBirth($date_of_birth)
-    {
-        return $date_of_birth ? date('d-m-Y', $date_of_birth) : '';
-    }
-
     protected function _setDateOfBirth($date_of_birth)
     {
         return $date_of_birth ? strtotime($date_of_birth) : 0;

@@ -28,35 +28,35 @@ class UsersTable extends Table
         ]);
         $this->hasOne('UserBasic', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasMany('UserAcademicTrainings', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasMany('UserDependents', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasMany('UserDesignations', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasOne('UserEmergencyContacts', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasMany('UserEmploymentHistories', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasMany('UserLanguageDetails', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->hasOne('UserMedicals', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
 
         $this->addBehavior('FileUpload',['upload_path'=>'u_load/usr','field'=>'photo']);
