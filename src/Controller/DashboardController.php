@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\Cache\Cache;
 /**
  * Dashborad Controller
@@ -17,7 +18,10 @@ class DashboardController extends AppController
      */
     public function index()
     {
-
+//        echo '<pre>';
+//        print_r((new DefaultPasswordHasher)->hash('123456'));
+//        echo '</pre>';
+//        die;
     }
     public function login()
     {
