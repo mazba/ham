@@ -6,6 +6,11 @@
  * Time: 11:27 AM
  */
 return [
+    'user_group' => [
+        'super_admin'=>1,
+        'office_admin'=>2,
+        'office_user'=>3
+    ],
     'status_options' => [
         1 => 'Active',
         2 => 'In-Active'
