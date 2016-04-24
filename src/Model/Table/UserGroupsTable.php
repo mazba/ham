@@ -60,8 +60,11 @@ class UserGroupsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->requirePresence('title_en', 'create')
+            ->notEmpty('title_en');
+        $validator
+            ->requirePresence('title_bn', 'create')
+            ->notEmpty('title_en');
 
 
         $validator

@@ -32,6 +32,7 @@ use Phinx\Config\Config;
  */
 class AppController extends Controller
 {
+    public $roles=null;
 
     /**
      * Initialization hook method.
@@ -114,6 +115,7 @@ class AppController extends Controller
             Cache::write($cache_variable, $roles,'mcake');
         }
         $roles = isset($roles) ? $roles : Cache::read($cache_variable,'mcake');
+        $this->roles=$roles;
         $controller = strtolower($this->request->param('controller'));
         $action  = strtolower($this->request->param('action'));
         $permission_free = [

@@ -5,13 +5,7 @@
         <div class="portlet box yellow">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i>Users List <?= $this->Html->link(__('New User Group'), ['action' => 'add'],['class'=>'btn btn-sm blue']) ?>
-                </div>
-                <div class="tools">
-                    <a class="collapse" href="javascript:;" data-original-title="" title="">
-                    </a>
-                    <a class="remove" href="javascript:;" data-original-title="" title="">
-                    </a>
+                    <i class="fa fa-coffee"></i>Users List <?= $this->Html->link(__('New User Group'), ['action' => 'add'],['class'=>'btn btn-sm btn-danger']) ?>
                 </div>
             </div>
             <div class="portlet-body">
@@ -28,11 +22,10 @@
                         <tbody>
                             <?php
                             foreach ($userGroups as $i=>$userGroup):
-
                                 ?>
                             <tr>
                                 <td><?= $this->Number->format(++$i) ?></td>
-                                <td><?= h($userGroup->title) ?></td>
+                                <td><?= h($userGroup->title_en) ?></td>
                                 <td><?= $this->Number->format($userGroup->ordering) ?></td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $userGroup->id],['class'=>'btn btn-sm btn-info']) ?>
@@ -41,6 +34,7 @@
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
+                    </table>
                 </div>
             </div>
         </div>

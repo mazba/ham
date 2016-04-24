@@ -18,7 +18,7 @@ use Cake\Core\Configure;
                 <table class="table table-bordered">
                     <tr>
                         <th><?= __('Title') ?></th>
-                        <td><?= h($userGroup->title) ?></td>
+                        <td><?= h($userGroup->name_en) ?></td>
                     </tr>
                     <tr>
                         <th><?= __('Created By') ?></th>
