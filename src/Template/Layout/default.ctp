@@ -214,7 +214,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/index3.js" type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
 <script src="<?php echo $this->request->webroot; ?>assets/global/plugins/select2/select2.min.js" type="text/javascript"></script>
-<link href="<?php echo $this->request->webroot; ?>assets/global/plugins/select2/select2.css" type="text/css" rel="stylesheet">
+<link href="<?php echo $this->request->webroot; ?>assets/global/plugins/select2/select2.css" type="text/css" rel="stylesheet"/>
+
 
 <script src="<?= $this->request->webroot; ?>js/sys_mcake.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
@@ -230,4 +231,4 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
-</html>z
+</html>

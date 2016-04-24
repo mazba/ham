@@ -27,9 +27,12 @@ class DashboardCell extends Cell
         $this->loadModel('Offices');
         $this->loadModel('Users');
         $this->loadModel('Items');
+        //count
         $office_number = $this->Offices->find('all')->where(['status'=>1])->count();
         $user_number = $this->Users->find('all')->where(['status'=>1])->count();
         $item_number = $this->Items->find('all')->where(['status'=>1])->count();
+        //
+
         $this->set(compact('office_number','user_number','item_number'));
 
     }
