@@ -11,6 +11,31 @@ return [
         'office_admin'=>2,
         'office_user'=>3
     ],
+
+    'language_options'=>[
+        'Excellent'=>'Excellent','Moderate'=>'Moderate','Good'=>'Good','Poor'=>'Poor'
+    ],
+    'blood_groups'=>[
+        'A+'=>'A+','A-'=>'A-','B+'=>'B+','B-'=>'B-','AB+'=>'AB+','AB-'=>'AB-','O+'=>'O+','O-'=>'O-'
+    ],
+    'languages'=>[
+        'bangla'=>'Bangla','english'=>'English','hindi'=>'Hindi','arabic'=>'Arabic','portuguese'=>'Portuguese','russian'=>'Russian','chinese'=>'Chinese','spanish'=>'Spanish'
+    ],
+    'genders'=>[
+        1=>'Male',
+        2=>'Female'
+    ],
+    'religions'=>[
+        1=>'Islam',
+        2=>'Hindu',
+        3=>'Buddhist',
+        4=>'Christian',
+    ],
+    'academic_training'=>[
+        1=>'Academic',
+        2=>'Training'
+    ],
+
     'status_options' => [
         1 => 'Active',
         2 => 'In-Active'
@@ -51,6 +76,4 @@ return [
         'Sum of the years digits method' => 3,
         'Units of Activity Depreciation' => 4
     ]
-
-
 ];
