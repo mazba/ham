@@ -8,10 +8,6 @@ $genders = \Cake\Core\Configure::read('genders');
 $religions = \Cake\Core\Configure::read('religions');
 $academicTraining = \Cake\Core\Configure::read('academic_training');
 
-//echo '<pre>';
-//print_r($user);
-//echo '</pre>';
-//exit;
 ?>
 <div class="col-lg-12 col-sm-12">
     <div class="card hovercard">
@@ -21,38 +17,38 @@ $academicTraining = \Cake\Core\Configure::read('academic_training');
         <div class="useravatar">
             <img alt="" src="<?= $this->request->webroot; ?>img/blank.png">
         </div>
-        <div class="card-info"><span class="card-title"><?php echo $user['full_name_bn']; ?></span>
-
+        <div class="card-info">
+            <span class="card-title"><?php echo $user['full_name_bn']; ?></span>
         </div>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span
-                    class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    class="glyphicon glyphicon-home" aria-hidden="true"></span>
                 <div class="hidden-xs"><?= __('Basic') ?></div>
             </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span
-                    class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                    class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                 <div class="hidden-xs"><?= __('Academic') ?></div>
             </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span
-                    class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                 <div class="hidden-xs"><?= __('Designation') ?></div>
             </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab"><span
-                    class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                 <div class="hidden-xs"><?= __('Dependency') ?></div>
             </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab"><span
-                    class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
                 <div class="hidden-xs"><?= __('Other') ?></div>
             </button>
         </div>
@@ -112,6 +108,14 @@ $academicTraining = \Cake\Core\Configure::read('academic_training');
                                                     <tr>
                                                         <td><?= __('Email')?>:</td>
                                                         <td><?= $user['user_basic']['email']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><?= __('Present Address')?>:</td>
+                                                        <td><?= $user['user_basic']['present_address']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><?= __('Permanent Address')?>:</td>
+                                                        <td><?= $user['user_basic']['permanent_address']; ?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
