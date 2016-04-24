@@ -32,7 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="<?= $this->request->webroot; ?>assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?= $this->request->webroot; ?>assets/admin/pages/css/login2.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= $this->request->webroot; ?>assets/admin/pages/css/login-soft.css" rel="stylesheet" type="text/css"/>
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME STYLES -->
     <link href="<?= $this->request->webroot; ?>assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
@@ -46,15 +46,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="login">
+
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 <div class="menu-toggler sidebar-toggler">
 </div>
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="#">
-        <h1>HAM</h1>
-    </a>
+        <h1 style="color: #f1f1e3"><b>HAM</b></h1>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -82,12 +81,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?= $this->request->webroot; ?>assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<?= $this->request->webroot; ?>assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/login.js" type="text/javascript"></script>
+<script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/login-soft.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {
@@ -95,6 +96,17 @@ License: You must have a valid license purchased only from themeforest(the above
         Layout.init(); // init current layout
         Login.init();
         Demo.init();
+        // init background slide images
+        $.backstretch([
+                "<?= $this->request->webroot; ?>assets/admin/pages/media/bg/1.jpg",
+                "<?= $this->request->webroot; ?>assets/admin/pages/media/bg/2.jpg",
+                "<?= $this->request->webroot; ?>assets/admin/pages/media/bg/3.jpg",
+                "<?= $this->request->webroot; ?>assets/admin/pages/media/bg/4.jpg"
+            ], {
+                fade: 1000,
+                duration: 8000
+            }
+        );
     });
 </script>
 <!-- END JAVASCRIPTS -->

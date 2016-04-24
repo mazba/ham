@@ -1,110 +1,57 @@
+
+<!-- END REGISTRATION FORM -->
 <!-- BEGIN LOGIN FORM -->
 <form class="login-form" action="login" method="post">
-    <div class="form-title">
-        <span class="form-title"><?= __('Welcome');?></span>
-        <span class="form-subtitle pull-right"><?= __('Please Login');?></span>
-    </div>
+    <h3 class="form-title">Login to your account</h3>
     <div class="alert alert-danger display-hide">
         <button class="close" data-close="alert"></button>
-			<span><?= __('Enter any username and password.');?></span>
-    </div>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9"><?= __('Username');?></label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="<?= __('Username');?>" name="username"/>
-    </div>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9"><?= __('Password');?></label>
-        <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="<?= __('Password');?>" name="password"/>
-    </div>
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary btn-block uppercase"><?= __('Login');?></button>
-    </div>
-    <div class="form-actions">
-        <div class="pull-left">
-            <label class="rememberme check">
-                <input type="checkbox" name="remember" value="1"/><?= __('Remember me');?></label>
-        </div>
-        <div class="pull-right forget-password-block">
-            <a href="javascript:;" id="forget-password" class="forget-password"><?= __('Forgot Password?');?></a>
-        </div>
-    </div>
-
-</form>
-
-<form class="forget-form" action="index.html" method="post">
-    <div class="form-title">
-        <span class="form-title">Forget Password ?</span>
-        <span class="form-subtitle">Enter your e-mail to reset it.</span>
-    </div>
-    <div class="form-group">
-        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
-    </div>
-    <div class="form-actions">
-        <button type="button" id="back-btn" class="btn btn-default">Back</button>
-        <button type="submit" class="btn btn-primary uppercase pull-right" style="background-color: unset !important;">Submit</button>
-    </div>
-</form>
-<!-- END FORGOT PASSWORD FORM -->
-<!-- BEGIN REGISTRATION FORM -->
-<form class="register-form" action="index.html" method="post">
-    <div class="form-title">
-        <span class="form-title">Sign Up</span>
-    </div>
-    <p class="hint">
-        Enter your personal details below:
-    </p>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Full Name</label>
-        <input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname"/>
+			<span>
+			Enter any username and password. </span>
     </div>
     <div class="form-group">
         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-        <label class="control-label visible-ie8 visible-ie9">Email</label>
-        <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email"/>
-    </div>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Address</label>
-        <input class="form-control placeholder-no-fix" type="text" placeholder="Address" name="address"/>
-    </div>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">City/Town</label>
-        <input class="form-control placeholder-no-fix" type="text" placeholder="City/Town" name="city"/>
-    </div>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Country</label>
-        <select name="country" class="form-control">
-
-        </select>
-    </div>
-    <p class="hint">
-        Enter your account details below:
-    </p>
-    <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">Username</label>
-        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+        </div>
     </div>
     <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">Password</label>
-        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password"/>
-    </div>
-    <div class="form-group">
-        <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword"/>
-    </div>
-    <div class="form-group margin-top-20 margin-bottom-20">
-        <label class="check">
-            <input type="checkbox" name="tnc"/>
-            <span class="loginblue-font">I agree to the </span>
-            <a href="#" class="loginblue-link">Terms of Service</a>
-            <span class="loginblue-font">and</span>
-            <a href="#" class="loginblue-link">Privacy Policy </a>
-        </label>
-        <div id="register_tnc_error">
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
         </div>
     </div>
     <div class="form-actions">
-        <button type="button" id="register-back-btn" class="btn btn-default">Back</button>
-        <button type="submit" id="register-submit-btn" class="btn btn-primary uppercase pull-right">Submit</button>
+
+        <button type="submit" class="btn blue pull-right">
+            Login <i class="m-icon-swapright m-icon-white"></i>
+        </button>
+    </div>
+
+
+
+</form>
+<!-- END LOGIN FORM -->
+<!-- BEGIN FORGOT PASSWORD FORM -->
+<form class="forget-form" action="index.html" method="post">
+    <h3>Forget Password ?</h3>
+    <p>
+        Enter your e-mail address below to reset your password.
+    </p>
+    <div class="form-group">
+        <div class="input-icon">
+            <i class="fa fa-envelope"></i>
+            <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="button" id="back-btn" class="btn">
+            <i class="m-icon-swapleft"></i> Back </button>
+        <button type="submit" class="btn blue pull-right">
+            Submit <i class="m-icon-swapright m-icon-white"></i>
+        </button>
     </div>
 </form>
-<!-- END REGISTRATION FORM -->
+<!-- END FORGOT PASSWORD FORM -->
