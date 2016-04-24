@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div class="dashboard-stat blue-madison">
+        <div class="dashboard-stat blue-chambray">
             <div class="visual">
                 <i class="fa fa-bank"></i>
             </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div class="dashboard-stat red-intense">
+        <div class="dashboard-stat blue-madison ">
             <div class="visual">
                 <i class="fa fa-users"></i>
             </div>
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div class="dashboard-stat green-haze">
+        <div class="dashboard-stat red-intense ">
             <div class="visual">
                 <i class="fa fa-shopping-cart"></i>
             </div>
@@ -55,25 +55,37 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12 col-sm-12">
-        <div class="portlet grey-cascade box">
+    <div class="col-md-12 col-sm-6">
+        <div class="portlet green-haze box">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-cogs"></i>Shopping Cart
-                </div>
-                <div class="actions">
-                    <a class="btn btn-default btn-sm" href="#">
-                        <i class="fa fa-pencil"></i> Edit </a>
+                    <i class="fa fa-cogs"></i><?= __('Office Info') ?>
                 </div>
             </div>
             <div class="portlet-body">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
-
+                            <tr>
+                                <th><?= __('Office') ?></th>
+                                <th><?= __('Number of Items') ?></th>
+                                <th><?= __('Number of Rooms') ?></th>
+                                <th><?= __('Number of Buildings') ?></th>
+                                <th><?= __('Number of Committees') ?></th>
+                                <th><?= __('Number of Units') ?></th>
+                            </tr>
                         </thead>
                         <tbody>
-
+                            <?php foreach($office_items as $office): ?>
+                                <tr>
+                                    <th><?php echo $office->name_bn; ?></th>
+                                    <td><?php echo count($office->items); ?></td>
+                                    <td><?php echo count($office->office_rooms); ?></td>
+                                    <td><?php echo count($office->office_buildings); ?></td>
+                                    <td><?php echo count($office->committees); ?></td>
+                                    <td><?php echo count($office->office_units); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

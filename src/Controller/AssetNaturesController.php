@@ -11,27 +11,27 @@ use App\Controller\AppController;
 class AssetNaturesController extends AppController
 {
 
-	public $paginate = [
+    public $paginate = [
         'limit' => 15,
         'order' => [
             'AssetNatures.title' => 'desc'
         ]
     ];
 
-/**
-* Index method
-*
-* @return void
-*/
-public function index()
-{
-$assetNatures = $this->AssetNatures->find('all', [
-'conditions' =>['AssetNatures.status !=' => 99],
-'contain' => ['ParentAssetNatures']
-]);
-$this->set('assetNatures', $this->paginate($assetNatures) );
-$this->set('_serialize', ['assetNatures']);
-}
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $assetNatures = $this->AssetNatures->find('all', [
+            'conditions' => ['AssetNatures.status !=' => 99],
+            'contain' => ['ParentAssetNatures']
+        ]);
+        $this->set('assetNatures', $this->paginate($assetNatures));
+        $this->set('_serialize', ['assetNatures']);
+    }
 
     /**
      * View method
@@ -42,7 +42,7 @@ $this->set('_serialize', ['assetNatures']);
      */
     public function view($id = null)
     {
-        $user=$this->Auth->user();
+        $user = $this->Auth->user();
         $assetNature = $this->AssetNatures->get($id, [
             'contain' => ['ParentAssetNatures', 'ChildAssetNatures', 'Items']
         ]);
@@ -57,23 +57,19 @@ $this->set('_serialize', ['assetNatures']);
      */
     public function add()
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $assetNature = $this->AssetNatures->newEntity();
-        if ($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
 
-            $data=$this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+            $data = $this->request->data;
+            $data['create_by'] = $user['id'];
+            $data['create_date'] = $time;
             $assetNature = $this->AssetNatures->patchEntity($assetNature, $data);
-            if ($this->AssetNatures->save($assetNature))
-            {
+            if ($this->AssetNatures->save($assetNature)) {
                 $this->Flash->success('The asset nature has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The asset nature could not be saved. Please, try again.');
             }
         }
@@ -91,24 +87,20 @@ $this->set('_serialize', ['assetNatures']);
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $assetNature = $this->AssetNatures->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
-        {
-            $data=$this->request->data;
-            $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
             $assetNature = $this->AssetNatures->patchEntity($assetNature, $data);
-            if ($this->AssetNatures->save($assetNature))
-            {
+            if ($this->AssetNatures->save($assetNature)) {
                 $this->Flash->success('The asset nature has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The asset nature could not be saved. Please, try again.');
             }
         }
@@ -129,18 +121,15 @@ $this->set('_serialize', ['assetNatures']);
 
         $assetNature = $this->AssetNatures->get($id);
 
-        $user=$this->Auth->user();
-        $data=$this->request->data;
-        $data['updated_by']=$user['id'];
-        $data['updated_date']=time();
-        $data['status']=99;
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
         $assetNature = $this->AssetNatures->patchEntity($assetNature, $data);
-        if ($this->AssetNatures->save($assetNature))
-        {
+        if ($this->AssetNatures->save($assetNature)) {
             $this->Flash->success('The asset nature has been deleted.');
-        }
-        else
-        {
+        } else {
             $this->Flash->error('The asset nature could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);

@@ -65,7 +65,7 @@ public function index()
 
             $data=$this->request->data;
             $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+            $data['create_time']=$time;
             $data['office_id']=$user['office_id'];
             $supplier = $this->Suppliers->patchEntity($supplier, $data);
             if ($this->Suppliers->save($supplier))
@@ -101,7 +101,7 @@ public function index()
         {
             $data=$this->request->data;
             $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+            $data['update_time']=$time;
             $supplier = $this->Suppliers->patchEntity($supplier, $data);
             if ($this->Suppliers->save($supplier))
             {
