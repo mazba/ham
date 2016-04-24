@@ -5,12 +5,8 @@
         <div class="portlet box yellow">
             <div class="portlet-title">
                 <div class="caption">
-<<<<<<< .mine
                     <i class="fa fa-coffee"></i>Users
-                    List <?= $this->Html->link(__('New User Group'), ['action' => 'add'], ['class' => 'btn btn-sm blue']) ?>
-=======
-                    <i class="fa fa-coffee"></i>Users List <?= $this->Html->link(__('New User Group'), ['action' => 'add'],['class'=>'btn btn-sm btn-danger']) ?>
->>>>>>> .r80
+                    List <?= $this->Html->link(__('New User Group'), ['action' => 'add'], ['class' => 'btn btn-sm btn-danger']) ?>
                 </div>
             </div>
             <div class="portlet-body">
