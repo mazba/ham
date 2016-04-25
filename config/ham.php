@@ -89,5 +89,6 @@ return [
         'Out for Repair/Maintenance'=>5,
         'User Transfer'=>6,
         'Office Order'=>7,
-    ]
+    ],
+    'lpr_range'=>60//Leave preparatory to Retirement
 ];
