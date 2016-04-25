@@ -218,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/jquery.blockui.min.js"
         type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-<script src="<?= $this->request->webroot; ?>assets/global/plugins/uniform/jquery.uniform.min.js"
+<script src="<?= $this->request->webroot; ?>assets/global/plugins/uniform/jquery.uniform.js"
         type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
         type="text/javascript"></script>
