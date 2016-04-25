@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
-
-use App\Controller\AppController;
+use Cake\Core\Configure;
 
 /**
  * OfficeRooms Controller
@@ -14,7 +13,7 @@ class OfficeRoomsController extends AppController
     public $paginate = [
         'limit' => 15,
         'order' => [
-            'OfficeRooms.title' => 'desc'
+            'OfficeRooms.id' => 'desc'
         ]
     ];
 
@@ -25,10 +24,19 @@ class OfficeRoomsController extends AppController
      */
     public function index()
     {
-        $officeRooms = $this->OfficeRooms->find('all', [
-            'conditions' => ['OfficeRooms.status !=' => 99],
-            'contain' => ['ParentOfficeRooms', 'Offices', 'OfficeBuildings', 'OfficeUnits']
-        ]);
+        $user = $this->Auth->user();
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $officeRooms = $this->OfficeRooms->find('all', [
+                'conditions' => ['OfficeRooms.status' => 1],
+                'contain' => ['ParentOfficeRooms', 'Offices', 'OfficeBuildings', 'OfficeUnits']
+            ]);
+        } else {
+            $officeRooms = $this->OfficeRooms->find('all', [
+                'conditions' => ['OfficeRooms.status' => 1, 'OfficeRooms.office_id' => $user['office_id']],
+                'contain' => ['ParentOfficeRooms', 'Offices', 'OfficeBuildings', 'OfficeUnits']
+            ]);
+        }
+
         $this->set('officeRooms', $this->paginate($officeRooms));
         $this->set('_serialize', ['officeRooms']);
     }
@@ -65,6 +73,11 @@ class OfficeRoomsController extends AppController
             $data = $this->request->data;
             $data['create_by'] = $user['id'];
             $data['create_date'] = $time;
+            if (!isset($data['office_id'])) {
+                $data['office_id'] = $user['office_id'];
+            }
+
+
             $officeRoom = $this->OfficeRooms->patchEntity($officeRoom, $data);
             if ($this->OfficeRooms->save($officeRoom)) {
                 $this->Flash->success('The office room has been saved.');
@@ -73,11 +86,24 @@ class OfficeRoomsController extends AppController
                 $this->Flash->error('The office room could not be saved. Please, try again.');
             }
         }
-        $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list');
-        $offices = $this->OfficeRooms->Offices->find('list');
-        $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list');
-        $officeUnits = $this->OfficeRooms->OfficeUnits->find('list');
-        $this->set(compact('officeRoom', 'parentOfficeRooms', 'offices', 'officeBuildings', 'officeUnits'));
+
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+
+            $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list');
+            $offices = $this->OfficeRooms->Offices->find('list');
+            $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list');
+            $officeUnits = $this->OfficeRooms->OfficeUnits->find('list');
+            $this->set(compact('offices'));
+
+        } else {
+
+            $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+            $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+            $officeUnits = $this->OfficeRooms->OfficeUnits->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+        }
+
+
+        $this->set(compact('officeRoom', 'parentOfficeRooms', 'officeBuildings', 'officeUnits'));
         $this->set('_serialize', ['officeRoom']);
     }
 
@@ -99,6 +125,9 @@ class OfficeRoomsController extends AppController
             $data = $this->request->data;
             $data['update_by'] = $user['id'];
             $data['update_date'] = $time;
+            if (!isset($data['office_id'])) {
+                $data['office_id'] = $user['office_id'];
+            }
             $officeRoom = $this->OfficeRooms->patchEntity($officeRoom, $data);
             if ($this->OfficeRooms->save($officeRoom)) {
                 $this->Flash->success('The office room has been updated.');
@@ -107,10 +136,21 @@ class OfficeRoomsController extends AppController
                 $this->Flash->error('The office room could not be updated. Please, try again.');
             }
         }
-        $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list', ['limit' => 200]);
-        $offices = $this->OfficeRooms->Offices->find('list', ['limit' => 200]);
-        $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list', ['limit' => 200]);
-        $officeUnits = $this->OfficeRooms->OfficeUnits->find('list', ['limit' => 200]);
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+
+            $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list');
+            $offices = $this->OfficeRooms->Offices->find('list');
+            $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list');
+            $officeUnits = $this->OfficeRooms->OfficeUnits->find('list');
+            $this->set(compact('offices'));
+
+        } else {
+
+            $parentOfficeRooms = $this->OfficeRooms->ParentOfficeRooms->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+            $officeBuildings = $this->OfficeRooms->OfficeBuildings->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+            $officeUnits = $this->OfficeRooms->OfficeUnits->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+        }
+
         $this->set(compact('officeRoom', 'parentOfficeRooms', 'offices', 'officeBuildings', 'officeUnits'));
         $this->set('_serialize', ['officeRoom']);
     }

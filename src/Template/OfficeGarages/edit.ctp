@@ -37,7 +37,9 @@ use Cake\Core\Configure;
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php
-                        echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        if(isset($offices)){
+                            echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        }
                         echo $this->Form->input('office_building_id', ['options' => $officeBuildings, 'empty' => __('Select')]);
                         echo $this->Form->input('office_room_id', ['options' => $officeRooms, 'empty' => __('Select')]);
                         echo $this->Form->input('size');

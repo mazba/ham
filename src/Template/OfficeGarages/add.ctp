@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+
 ?>
 <div class="page-bar">
     <ul class="page-breadcrumb">
@@ -12,8 +13,8 @@ use Cake\Core\Configure;
             <?= $this->Html->link(__('Office Garages'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
-                    <li><?= __('New Office Garage') ?></li>
-        
+        <li><?= __('New Office Garage') ?></li>
+
     </ul>
 </div>
 
@@ -24,27 +25,29 @@ use Cake\Core\Configure;
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New Office Garage') ?>
-                                </div>
-                <div class="tools">
-                    <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
+                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New Office Garage') ?>
                 </div>
-                
+                <div class="tools">
+                    <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
+                </div>
+
             </div>
             <div class="portlet-body">
-                <?= $this->Form->create($officeGarage,['class' => 'form-horizontal','role'=>'form']) ?>
+                <?= $this->Form->create($officeGarage, ['class' => 'form-horizontal', 'role' => 'form']) ?>
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php
-                                                                    echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
-                                                                    echo $this->Form->input('office_building_id', ['options' => $officeBuildings, 'empty' => __('Select')]);
-                                                                    echo $this->Form->input('office_room_id', ['options' => $officeRooms, 'empty' => __('Select')]);
-                                                                    echo $this->Form->input('size');
-                                                                    echo $this->Form->input('capacity');
-                                                                    echo $this->Form->input('description');
-                                                                echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
-                                                    ?>
-                        <?= $this->Form->button(__('Submit'),['class'=>'btn blue pull-right','style'=>'margin-top:20px']) ?>
+                        if(isset($offices)){
+                            echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        }
+                        echo $this->Form->input('office_building_id', ['options' => $officeBuildings, 'empty' => __('Select')]);
+                        echo $this->Form->input('office_room_id', ['options' => $officeRooms, 'empty' => __('Select')]);
+                        echo $this->Form->input('size');
+                        echo $this->Form->input('capacity');
+                        echo $this->Form->input('description');
+                        echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
+                        ?>
+                        <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>
                     </div>
                 </div>
                 <?= $this->Form->end() ?>

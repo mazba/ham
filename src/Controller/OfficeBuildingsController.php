@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
+use Cake\Core\Configure;
 
 /**
  * OfficeBuildings Controller
@@ -14,7 +14,7 @@ class OfficeBuildingsController extends AppController
     public $paginate = [
         'limit' => 15,
         'order' => [
-            'OfficeBuildings.title' => 'desc'
+            'OfficeBuildings.id' => 'desc'
         ]
     ];
 
@@ -25,10 +25,19 @@ class OfficeBuildingsController extends AppController
      */
     public function index()
     {
-        $officeBuildings = $this->OfficeBuildings->find('all', [
-            'conditions' => ['OfficeBuildings.status !=' => 99],
-            'contain' => ['ParentOfficeBuildings', 'Offices']
-        ]);
+        $user = $this->Auth->user();
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $officeBuildings = $this->OfficeBuildings->find('all', [
+                'conditions' => ['OfficeBuildings.status ' => 1],
+                'contain' => ['ParentOfficeBuildings', 'Offices']
+            ]);
+        } else {
+            $officeBuildings = $this->OfficeBuildings->find('all', [
+                'conditions' => ['OfficeBuildings.status ' => 1, 'OfficeBuildings.office_id' => $user['office_id']],
+                'contain' => ['ParentOfficeBuildings', 'Offices']
+            ]);
+        }
+
         $this->set('officeBuildings', $this->paginate($officeBuildings));
         $this->set('_serialize', ['officeBuildings']);
     }
@@ -65,6 +74,9 @@ class OfficeBuildingsController extends AppController
             $data = $this->request->data;
             $data['create_by'] = $user['id'];
             $data['create_date'] = $time;
+            if (!isset($data['office_id'])) {
+                $data['office_id'] = $user['office_id'];
+            }
             $officeBuilding = $this->OfficeBuildings->patchEntity($officeBuilding, $data);
             if ($this->OfficeBuildings->save($officeBuilding)) {
                 $this->Flash->success('The office building has been saved.');
@@ -73,9 +85,16 @@ class OfficeBuildingsController extends AppController
                 $this->Flash->error('The office building could not be saved. Please, try again.');
             }
         }
-        $parentOfficeBuildings = $this->OfficeBuildings->ParentOfficeBuildings->find('list', ['limit' => 200]);
-        $offices = $this->OfficeBuildings->Offices->find('list', ['limit' => 200]);
-        $this->set(compact('officeBuilding', 'parentOfficeBuildings', 'offices'));
+
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $offices = $this->OfficeBuildings->Offices->find('list');
+            $parentOfficeBuildings = $this->OfficeBuildings->ParentOfficeBuildings->find('list');
+            $this->set(compact('offices'));
+        } else {
+            $parentOfficeBuildings = $this->OfficeBuildings->ParentOfficeBuildings->find('list', ['conditions' => ['office_id' => $user['office-id']]]);
+        }
+
+        $this->set(compact('officeBuilding', 'parentOfficeBuildings'));
         $this->set('_serialize', ['officeBuilding']);
     }
 
@@ -97,6 +116,9 @@ class OfficeBuildingsController extends AppController
             $data = $this->request->data;
             $data['update_by'] = $user['id'];
             $data['update_date'] = $time;
+            if (!isset($data['office_id'])) {
+                $data['office_id'] = $user['office_id'];
+            }
             $officeBuilding = $this->OfficeBuildings->patchEntity($officeBuilding, $data);
             if ($this->OfficeBuildings->save($officeBuilding)) {
                 $this->Flash->success('The office building has been updated.');
@@ -105,9 +127,15 @@ class OfficeBuildingsController extends AppController
                 $this->Flash->error('The office building could not be updated. Please, try again.');
             }
         }
-        $parentOfficeBuildings = $this->OfficeBuildings->ParentOfficeBuildings->find('list', ['limit' => 200]);
-        $offices = $this->OfficeBuildings->Offices->find('list', ['limit' => 200]);
-        $this->set(compact('officeBuilding', 'parentOfficeBuildings', 'offices'));
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $offices = $this->OfficeBuildings->Offices->find('list');
+            $parentOfficeBuildings = $this->OfficeBuildings->ParentOfficeBuildings->find('list');
+            $this->set(compact('offices'));
+        } else {
+            $parentOfficeBuildings = $this->OfficeBuildings->ParentOfficeBuildings->find('list', ['conditions' => ['office_id' => $user['office-id']]]);
+        }
+
+        $this->set(compact('officeBuilding', 'parentOfficeBuildings'));
         $this->set('_serialize', ['officeBuilding']);
     }
 

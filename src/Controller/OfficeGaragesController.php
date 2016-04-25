@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
-
-use App\Controller\AppController;
+use Cake\Core\Configure;
 
 /**
  * OfficeGarages Controller
@@ -14,7 +13,7 @@ class OfficeGaragesController extends AppController
     public $paginate = [
         'limit' => 15,
         'order' => [
-            'OfficeGarages.title' => 'desc'
+            'OfficeGarages.id' => 'desc'
         ]
     ];
 
@@ -25,10 +24,19 @@ class OfficeGaragesController extends AppController
      */
     public function index()
     {
-        $officeGarages = $this->OfficeGarages->find('all', [
-            'conditions' => ['OfficeGarages.status !=' => 99],
-            'contain' => ['Offices', 'OfficeBuildings', 'OfficeRooms']
-        ]);
+        $user = $this->Auth->user();
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $officeGarages = $this->OfficeGarages->find('all', [
+                'conditions' => ['OfficeGarages.status' => 1],
+                'contain' => ['Offices', 'OfficeBuildings', 'OfficeRooms']
+            ]);
+        } else {
+            $officeGarages = $this->OfficeGarages->find('all', [
+                'conditions' => ['OfficeGarages.status' => 1, 'OfficeGarages.office_id' => $user['office_id']],
+                'contain' => ['Offices', 'OfficeBuildings', 'OfficeRooms']
+            ]);
+        }
+
         $this->set('officeGarages', $this->paginate($officeGarages));
         $this->set('_serialize', ['officeGarages']);
     }
@@ -65,7 +73,14 @@ class OfficeGaragesController extends AppController
             $data = $this->request->data;
             $data['create_by'] = $user['id'];
             $data['create_date'] = $time;
+            if (!isset($data['office_id'])) {
+                $data['office_id'] = $user['office_id'];
+            }
             $officeGarage = $this->OfficeGarages->patchEntity($officeGarage, $data);
+            echo "<pre>";
+            print_r($officeGarage);
+            echo "</pre>";
+            die;
             if ($this->OfficeGarages->save($officeGarage)) {
                 $this->Flash->success('The office garage has been saved.');
                 return $this->redirect(['action' => 'index']);
@@ -73,9 +88,18 @@ class OfficeGaragesController extends AppController
                 $this->Flash->error('The office garage could not be saved. Please, try again.');
             }
         }
-        $offices = $this->OfficeGarages->Offices->find('list');
-        $officeBuildings = $this->OfficeGarages->OfficeBuildings->find('list');
-        $officeRooms = $this->OfficeGarages->OfficeRooms->find('list');
+
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $offices = $this->OfficeGarages->Offices->find('list');
+            $officeRooms = $this->OfficeGarages->OfficeRooms->find('list');
+            $officeBuildings = $this->OfficeGarages->OfficeBuildings->find('list');
+            $this->set(compact('offices'));
+        } else {
+            $officeBuildings = $this->OfficeGarages->OfficeBuildings->find('list');
+            $officeRooms = $this->OfficeGarages->OfficeRooms->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+        }
+
+
         $this->set(compact('officeGarage', 'offices', 'officeBuildings', 'officeRooms'));
         $this->set('_serialize', ['officeGarage']);
     }
@@ -98,6 +122,9 @@ class OfficeGaragesController extends AppController
             $data = $this->request->data;
             $data['update_by'] = $user['id'];
             $data['update_date'] = $time;
+            if (!isset($data['office_id'])) {
+                $data['office_id'] = $user['office_id'];
+            }
             $officeGarage = $this->OfficeGarages->patchEntity($officeGarage, $data);
             if ($this->OfficeGarages->save($officeGarage)) {
                 $this->Flash->success('The office garage has been updated.');
@@ -106,9 +133,16 @@ class OfficeGaragesController extends AppController
                 $this->Flash->error('The office garage could not be updated. Please, try again.');
             }
         }
-        $offices = $this->OfficeGarages->Offices->find('list');
-        $officeBuildings = $this->OfficeGarages->OfficeBuildings->find('list');
-        $officeRooms = $this->OfficeGarages->OfficeRooms->find('list');
+
+        if ($user['user_group_id'] == Configure::read('user_group.super_admin')) {
+            $offices = $this->OfficeGarages->Offices->find('list');
+            $officeRooms = $this->OfficeGarages->OfficeRooms->find('list');
+            $officeBuildings = $this->OfficeGarages->OfficeBuildings->find('list');
+            $this->set(compact('offices'));
+        } else {
+            $officeBuildings = $this->OfficeGarages->OfficeBuildings->find('list');
+            $officeRooms = $this->OfficeGarages->OfficeRooms->find('list', ['conditions' => ['office_id' => $user['office_id']]]);
+        }
         $this->set(compact('officeGarage', 'offices', 'officeBuildings', 'officeRooms'));
         $this->set('_serialize', ['officeGarage']);
     }

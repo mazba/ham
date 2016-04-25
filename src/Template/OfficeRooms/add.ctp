@@ -37,13 +37,15 @@ use Cake\Core\Configure;
                         echo $this->Form->input('title_bn');
                         echo $this->Form->input('title_en');
                         echo $this->Form->input('parent_id', ['options' => $parentOfficeRooms, 'empty' => __('Select')]);
-                        echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        if (isset($offices)) {
+                            echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        }
                         echo $this->Form->input('office_building_id', ['options' => $officeBuildings, 'empty' => __('Select')]);
                         echo $this->Form->input('office_unit_id', ['options' => $officeUnits, 'empty' => __('Select')]);
                         echo $this->Form->input('floor_number');
                         echo $this->Form->input('number');
                         echo $this->Form->input('size');
-                        echo $this->Form->input('common_use');
+                        echo $this->Form->input('common_use',['type'=>'checkbox']);
                         echo $this->Form->input('status', ['options' => Configure::read('status_options')]);
                         ?>
                         <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>

@@ -52,8 +52,11 @@ class ItemAssign extends Entity
         '*' => true,
         'id' => false,
     ];
+
     protected function _getFormattedAssignDate()
     {
         return $this->assign_date ? date('d-m-Y',$this->assign_date) : '';
     }
+
+    
 }

@@ -37,7 +37,9 @@ use Cake\Core\Configure;
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <?php
-                        echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        if(isset($offices)){
+                            echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
+                        }
                         echo $this->Form->input('type');
                         echo $this->Form->input('title_bn');
                         echo $this->Form->input('title_en');
