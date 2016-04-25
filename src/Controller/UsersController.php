@@ -205,6 +205,11 @@ class UsersController extends AppController
                 {
                     $data['user_designations'][$i]['designation_id'] = $data['user_designations'][$i]['office_unit_designation_id'];
                 }
+
+                if($data['user_designations'][$i]['is_basic'] == 1)
+                {
+                    $data['office_id'] = $data['user_designations'][$i]['office_id'];
+                }
             }
 
             $user = $this->Users->patchEntity($user, $data, [
