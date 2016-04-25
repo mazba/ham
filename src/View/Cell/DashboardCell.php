@@ -85,22 +85,28 @@ class DashboardCell extends Cell
     public function officeUser()
     {
         $this->loadModel('ItemAssigns');
+        $this->loadModel('ItemWithdrawals');
         $user = $this->request->session()->read('Auth.User');
-        $recently_assigned_item = $this->ItemAssigns
+        $recently_assigned_items = $this->ItemAssigns
             ->find()
             ->where([
                 'ItemAssigns.status'=>1,
                 'ItemAssigns.designated_user_id'=>$user['id']
             ])
-            ->contain(['Items'])
+            ->contain(['Items','Items.Offices','Items.Manufacturers'])
             ->limit(10);
-        $recently_assigned_item = $this->ItemAssigns
+        $recently_withdrawal_items = $this->ItemWithdrawals
             ->find()
             ->where([
-                'ItemAssigns.status'=>1,
+                'ItemAssigns.status'=>0,
                 'ItemAssigns.designated_user_id'=>$user['id']
             ])
-            ->contain(['Items'])
+            ->contain(['Offices','ItemAssigns','ItemAssigns.Offices','ItemAssigns.Items'])
             ->limit(10);
+//        echo '<pre>';
+//        print_r($recently_withdrawal_items->toArray());
+//        echo '</pre>';
+//        die;
+        $this->set(compact('recently_assigned_items','recently_withdrawal_items'));
     }
 }

@@ -38,4 +38,7 @@ class ItemWithdrawal extends Entity
         '*' => true,
         'id' => false,
     ];
+    protected function _getFormattedWithdrawalTime(){
+        return $this->withdrawal_time ? date('d-m-Y',$this->withdrawal_time) : '';
+    }
 }
