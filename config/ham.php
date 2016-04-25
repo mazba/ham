@@ -7,9 +7,9 @@
  */
 return [
     'user_group' => [
-        'super_admin'=>1,
-        'office_admin'=>2,
-        'office_user'=>3
+        'super_admin' => 1,
+        'office_admin' => 2,
+        'office_user' => 3
     ],
 
     'language_options'=>[
@@ -75,5 +75,10 @@ return [
         'Declining balance method' => 2,
         'Sum of the years digits method' => 3,
         'Units of Activity Depreciation' => 4
+    ],
+
+    'item_assign_type' => [
+        'Individual Assign' => 1,
+        'Office Departmet Assign' => 2
     ]
 ];
