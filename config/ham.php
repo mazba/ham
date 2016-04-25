@@ -79,6 +79,6 @@ return [
 
     'item_assign_type' => [
         'Individual Assign' => 1,
-        'Office Departmet Assign' => 2
+        'Office Department Assign' => 2
     ]
 ];
