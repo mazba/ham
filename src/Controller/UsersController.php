@@ -57,8 +57,8 @@ class UsersController extends AppController
         if ($this->request->is('post'))
         {
             $data = $this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=time();
+            $data['create_by']=$loggedUser['id'];
+            $data['create_date']=$time;
             $data['user_basic']['create_by']=$loggedUser['id'];
             $data['user_basic']['create_time']=$time;
 
