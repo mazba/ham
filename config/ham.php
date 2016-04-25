@@ -80,5 +80,14 @@ return [
     'item_assign_type' => [
         'Individual Assign' => 1,
         'Office Department Assign' => 2
+    ],
+
+    'item_withdrawal_type' => [
+        'Archived' => 1,
+        'Broken' => 2,
+        'Lost/Stolen'=>4,
+        'Out for Repair/Maintenance'=>5,
+        'User Transfer'=>6,
+        'Office Order'=>7,
     ]
 ];
