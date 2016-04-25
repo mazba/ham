@@ -116,8 +116,22 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li class="dropdown dropdown-user dropdown-dark">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                            data-close-others="true">
-								<span class="username username-hide-on-mobile"><?= $this->request->session()->read('Auth.User.username');?></span>
-                            <img alt="" class="img-circle" src="<?= $this->request->webroot; ?>assets/admin/layout4/img/avatar.png"/>
+                            <span class="username username-hide-on-mobile"><?= $this->request->session()->read('Auth.User.username');?></span>
+                            <?php
+                            if(isset($user['picture_name']) && strlen($user['picture_name'])>0)
+                            {
+                                ?>
+                                <img alt="" class="img-circle" src="<?= $this->request->webroot; ?><?= $user['picture_name']?>"/>
+                                <?php
+                            }
+                            else
+                            {
+                                ?>
+                                <img alt="" class="img-circle" src="<?= $this->request->webroot; ?>assets/admin/layout4/img/avatar.png"/>
+                            <?php
+                            }
+                            ?>
+
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>

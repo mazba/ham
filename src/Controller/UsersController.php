@@ -148,8 +148,8 @@ class UsersController extends AppController
             $data['updated_by'] = $this->Auth->user('id');
             $data['updated_time'] = time();
 
-            $data['user_basic']['updated_by']=$user['id'];
-            $data['user_basic']['updated_time']=$time;
+            $data['user_basic']['update_by']=$user['id'];
+            $data['user_basic']['update_time']=$time;
 
             for($i=0; $i<sizeof($data['user_academic_trainings']); $i++)
             {
@@ -191,10 +191,10 @@ class UsersController extends AppController
             ]);
 
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been updated.'));
+                $this->Flash->success(__('The user has been updated!'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('The user could not be saved. Please, try again!'));
             }
         }
 

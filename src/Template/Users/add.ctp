@@ -59,7 +59,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 echo $this->Form->input('user_basic.tin_number',['class'=>'form-control','label'=>__('TIN Number')]);
                                 echo $this->Form->input('user_basic.present_address',['class'=>'form-control','label'=>__('Present Address')]);
                                 echo $this->Form->input('user_basic.permanent_address',['class'=>'form-control','label'=>__('Permanent Address')]);
-                                echo $this->Form->input('picture_name',['class'=>'','type'=>'file','label'=>__('Photo')]);
+                                echo $this->Form->input('picture_name_file',['class'=>'','type'=>'file','label'=>__('Photo')]);
                                 ?>
                             </div>
                         </div>

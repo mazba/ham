@@ -12,10 +12,36 @@ $academicTraining = \Cake\Core\Configure::read('academic_training');
 <div class="col-lg-12 col-sm-12">
     <div class="card hovercard">
         <div class="card-background">
-            <img class="card-bkimg" alt="" src="<?= $this->request->webroot; ?>img/blank.png">
+            <?php
+            if(isset($user['picture_name']) && strlen($user['picture_name'])>0)
+            {
+                ?>
+                <img alt="" class="card-bkimg" src="<?= $this->request->webroot; ?><?= $user['picture_name']?>"/>
+                <?php
+            }
+            else
+            {
+                ?>
+                <img class="card-bkimg" alt="" src="<?= $this->request->webroot; ?>img/blank.png">
+                <?php
+            }
+            ?>
         </div>
         <div class="useravatar">
-            <img alt="" src="<?= $this->request->webroot; ?>img/blank.png">
+            <?php
+            if(isset($user['picture_name']) && strlen($user['picture_name'])>0)
+            {
+                ?>
+                <img alt="" class="img-circle" src="<?= $this->request->webroot; ?><?= $user['picture_name']?>"/>
+                <?php
+            }
+            else
+            {
+                ?>
+                <img alt="" src="<?= $this->request->webroot; ?>img/blank.png">
+                <?php
+            }
+            ?>
         </div>
         <div class="card-info">
             <span class="card-title"><?php echo $user['full_name_bn']; ?></span>

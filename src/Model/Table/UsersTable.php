@@ -59,7 +59,14 @@ class UsersTable extends Table
             'joinType' => 'LEFT'
         ]);
 
-        $this->addBehavior('FileUpload',['upload_path'=>'u_load/usr','field'=>'photo']);
+        $this->addBehavior('Xety/Cake3Upload.Upload', [
+                'fields' => [
+                    'picture_name' => [
+                        'path' => 'u_load/users/:md5'
+                    ]
+                ]
+            ]
+        );
     }
 
     public function validationDefault(Validator $validator)
