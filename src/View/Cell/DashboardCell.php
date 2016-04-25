@@ -76,10 +76,6 @@ class DashboardCell extends Cell
             ->where(['ItemAssigns.status'=>1,'ItemAssigns.office_id'=>$user['office_id']])
             ->contain(['DesignatedUsers','Items'])
             ->limit(10);
-//        echo '<pre>';
-//        print_r($recently_assigned_item->toArray());
-//        echo '</pre>';
-//        die;
         $this->set(compact('building_number','recently_assigned_item','room_number','office_warehouse','committee_number','assign_item_number','user_number','item_number','office_items'));
     }
     public function officeUser()
@@ -103,10 +99,6 @@ class DashboardCell extends Cell
             ])
             ->contain(['Offices','ItemAssigns','ItemAssigns.Offices','ItemAssigns.Items'])
             ->limit(10);
-//        echo '<pre>';
-//        print_r($recently_withdrawal_items->toArray());
-//        echo '</pre>';
-//        die;
         $this->set(compact('recently_assigned_items','recently_withdrawal_items'));
     }
 }

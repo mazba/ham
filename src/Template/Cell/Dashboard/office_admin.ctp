@@ -128,14 +128,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($office_warehouse as $warehouse): ?>
+                            <?php
+                            if($office_warehouse->count()):
+                            foreach($office_warehouse as $warehouse):?>
+                            <tr>
+                                <th><?php echo $warehouse->title_bn; ?></th>
+                                <td><?php echo count($warehouse->items); ?></td>
+                                <td><?php echo count($warehouse->item_assigns); ?></td>
+                                <td><?php echo count($warehouse->item_withdrawals); ?></td>
+                            </tr>
+                            <?php
+                                endforeach;
+                                else:
+                                ?>
                                 <tr>
-                                    <th><?php echo $warehouse->title_bn; ?></th>
-                                    <td><?php echo count($warehouse->items); ?></td>
-                                    <td><?php echo count($warehouse->item_assigns); ?></td>
-                                    <td><?php echo count($warehouse->item_withdrawals); ?></td>
+                                    <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
                                 </tr>
-                            <?php endforeach; ?>
+                                <?php
+                                endif
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -161,14 +172,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($recently_assigned_item as $item): ?>
+                            <?php
+                            if($recently_assigned_item->count()):
+                            foreach($recently_assigned_item as $item):?>
                                 <tr>
                                     <td><?php echo $item->item->title_bn.'('.$item->item->office_serial_number.')'; ?></td>
                                     <td><?php echo $item->designated_user->full_name_bn; ?></td>
                                     <td><?php echo $item->formatted_assign_date; ?></td>
                                     <td><?php echo $item->quantity; ?></td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php
+                            endforeach;
+                            else:
+                            ?>
+                            <tr>
+                                <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
+                            </tr>
+                            <?php
+                            endif;
+                            ?>
                         </tbody>
                     </table>
                 </div>
