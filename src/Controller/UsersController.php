@@ -150,6 +150,13 @@ class UsersController extends AppController
             ]
         ]);
 
+        unset($user['password']);
+
+//        echo '<pre>';
+//        print_r($user);
+//        echo '</pre>';
+//        die();
+
         if($this->request->is(['patch', 'post', 'put']))
         {
             $data = $this->request->data;
