@@ -137,7 +137,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                     <div class="col-md-11" style="border: 0px; margin: 0px;">
                                         <div class="col-md-4 col-md-offset-3">
                                             <?php
-                                            echo $this->Form->input('user_designations.0.is_basic',['type'=>'checkbox','class'=>'form-control is_basic simpleCheckbox','label'=>__('Is Basic'), 'style'=>'margin-top:-7px;']);
+                                            echo $this->Form->input('user_designations.0.is_basic',['type'=>'checkbox','value'=>1,'class'=>'form-control is_basic simpleCheckbox','label'=>__('Is Basic'), 'style'=>'margin-top:-7px;']);
                                             ?>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                         <?php
                                         echo $this->Form->input('user_designations.0.office_id',['options'=>$offices,'empty'=>'Select','class'=>'form-control office','label'=>__('Office')]);
                                         echo $this->Form->input('user_designations.0.office_unit_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                        echo $this->Form->input('test',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
+                                        echo $this->Form->input('user_designations.0.office_unit_designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
                                         echo "<div class='des_div hidden'>";
                                         echo $this->Form->input('user_designations.0.designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control designation_id','label'=>__('Designation')]);
                                         echo "</div>";
@@ -153,7 +153,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </div>
                                     <div class="col-md-6">
                                         <?php
-                                        echo $this->Form->input('user_designations.0.designation_order',['options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
+                                        echo $this->Form->input('user_designations.0.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
                                         echo $this->Form->input('user_designations.0.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
                                         echo $this->Form->input('user_designations.0.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
                                         ?>
@@ -329,7 +329,14 @@ $religions = \Cake\Core\Configure::read('religions');
 
         $(document).on('click', '.is_basic', function()
         {
-            console.log($(this));
+            var count = $("[type='checkbox']:checked").length;
+
+            if(count>1)
+            {
+                alert('You can choose one designation as basic!');
+                $(this).attr('checked', false);
+            }
+
             var obj = $(this).closest('.single_list_designation');
             if($(this).prop('checked'))
             {
@@ -464,7 +471,13 @@ $religions = \Cake\Core\Configure::read('religions');
                 this.name = this.name.replace(/\d+/, index+1);
                 this.id = this.id.replace(/\d+/, index+1);
                 this.value = '';
+
+                if($(this).is(':checkbox')){$(this).attr('checked', false)}
+                $(this).closest('.single_list_designation').find('.office_unit_id').closest('.form-group').show();
+                $(this).closest('.single_list_designation').find('.office_unit_designation_id').closest('.form-group').show();
+                $(this).closest('.single_list_designation').find('.des_div').addClass('hidden');
             }).end();
+
             $('.designationWrapper').append(html);
             $.uniform.update();
         });
@@ -481,29 +494,58 @@ $religions = \Cake\Core\Configure::read('religions');
         $(document).on('change','.office',function()
         {
             var office_id = $(this).val();
-            var obj = $(this);
-            obj.closest('.single_list_designation').find('.office_unit_id').html('<option><?php echo __('Select');?></option>');
-            obj.closest('.single_list_designation').find('.office_unit_designation_id').html('<option><?php echo __('Select');?></option>');
-            obj.closest('.single_list_designation').find('.designation_id').html('<option><?php echo __('Select');?></option>');
+            var obj = $(this).closest('.single_list_designation');
 
-            if(office_id>0)
+            if($(this).closest('.single_list_designation').find('.is_basic').prop('checked'))
             {
-                $.ajax({
-                    url: '<?= $this->Url->build('/Users/ajax/get_unit')?>',
-                    type: 'POST',
-                    data:{office_id:office_id},
+                obj.find('.designation_id').html('<option><?php echo __('Select');?></option>');
 
-                    success: function (data, status)
-                    {
-                        $.each(JSON.parse(data), function(key, value) {
-                            obj.closest('.single_list_designation').find('.office_unit_id').append($("<option></option>").attr("value",key).text(value));
-                        });
-                    },
-                    error: function (xhr, desc, err)
-                    {
-                        console.log("error");
-                    }
-                });
+                if(office_id>0)
+                {
+                    $.ajax({
+                        url: '<?= $this->Url->build('/Users/ajax/get_designation_by_office')?>',
+                        type: 'POST',
+                        data:{office_id:office_id},
+
+                        success: function (data, status)
+                        {
+                            $.each(JSON.parse(data), function(key, value) {
+                                obj.closest('.single_list_designation').find('.designation_id').append($("<option></option>").attr("value",key).text(value));
+                            });
+                        },
+                        error: function (xhr, desc, err)
+                        {
+                            console.log("error");
+                        }
+                    });
+                }
+            }
+            else
+            {
+
+                obj.find('.office_unit_id').html('<option><?php echo __('Select');?></option>');
+                obj.find('.office_unit_designation_id').html('<option><?php echo __('Select');?></option>');
+                obj.find('.designation_id').html('<option><?php echo __('Select');?></option>');
+
+                if(office_id>0)
+                {
+                    $.ajax({
+                        url: '<?= $this->Url->build('/Users/ajax/get_unit')?>',
+                        type: 'POST',
+                        data:{office_id:office_id},
+
+                        success: function (data, status)
+                        {
+                            $.each(JSON.parse(data), function(key, value) {
+                                obj.closest('.single_list_designation').find('.office_unit_id').append($("<option></option>").attr("value",key).text(value));
+                            });
+                        },
+                        error: function (xhr, desc, err)
+                        {
+                            console.log("error");
+                        }
+                    });
+                }
             }
         });
 
@@ -541,32 +583,45 @@ $religions = \Cake\Core\Configure::read('religions');
         // Get user designations by office unit designation AJAX (Designation)
         $(document).on('change','.office_unit_designation_id',function()
         {
-            var obj = $(this);
-            obj.closest('.single_list_designation').find('.designation_id').html('<option><?php echo __('Select');?></option>');
+//            var obj = $(this);
+//            obj.closest('.single_list_designation').find('.designation_id').html('<option><?php //echo __('Select');?>//</option>');
+//
+//            var office_id = obj.closest('.single_list_designation').find('.office').val();
+//            var office_unit_designation_id = obj.val();
+//
+//            if(office_id>0)
+//            {
+//                $.ajax({
+//                    url: '<?//= $this->Url->build('/Users/ajax/get_user_designation')?>//',
+//                    type: 'POST',
+//                    data:{office_id:office_id, office_unit_designation_id:office_unit_designation_id},
+//
+//                    success: function (data, status)
+//                    {
+//                        $.each(JSON.parse(data), function(key, value) {
+//                            obj.closest('.single_list_designation').find('.designation_id').append($("<option></option>").attr("value",key).text(value));
+//                        });
+//                    },
+//                    error: function (xhr, desc, err)
+//                    {
+//                        console.log("error");
+//                    }
+//                });
+//            }
 
-            var office_id = obj.closest('.single_list_designation').find('.office').val();
-            var office_unit_designation_id = obj.val();
-
-            if(office_id>0)
-            {
-                $.ajax({
-                    url: '<?= $this->Url->build('/Users/ajax/get_user_designation')?>',
-                    type: 'POST',
-                    data:{office_id:office_id, office_unit_designation_id:office_unit_designation_id},
-
-                    success: function (data, status)
-                    {
-                        $.each(JSON.parse(data), function(key, value) {
-                            obj.closest('.single_list_designation').find('.designation_id').append($("<option></option>").attr("value",key).text(value));
-                        });
-                    },
-                    error: function (xhr, desc, err)
-                    {
-                        console.log("error");
-                    }
-                });
-            }
         });
 
+        $("form").submit(function(e){
+            if($("[type='checkbox']:checked").length==0)
+            {
+                alert('No Basic Designation!');
+                return false;
+            }
+            else if($("[type='checkbox']:checked").length==0)
+            {
+                alert('You can not choose two designations as basic!');
+                return false;
+            }
+        });
     });
 </script>

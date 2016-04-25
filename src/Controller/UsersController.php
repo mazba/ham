@@ -88,6 +88,19 @@ class UsersController extends AppController
                 $data['user_language_details'][$i]['create_time']=$time;
             }
 
+            for($i=0; $i<sizeof($data['user_designations']); $i++)
+            {
+                if($data['user_designations'][$i]['is_basic'] != 1)
+                {
+                    $data['user_designations'][$i]['designation_id'] = $data['user_designations'][$i]['office_unit_designation_id'];
+                }
+
+                if($data['user_designations'][$i]['is_basic'] == 1)
+                {
+                    $data['office_id'] = $data['user_designations'][$i]['office_id'];
+                }
+            }
+
             $user = $this->Users->patchEntity($user, $data, [
                 'associated' => [
                     'UserBasic',
@@ -179,6 +192,14 @@ class UsersController extends AppController
                 $data['user_language_details'][$i]['update_time']=$time;
             }
 
+            for($i=0; $i<sizeof($data['user_designations']); $i++)
+            {
+                if($data['user_designations'][$i]['is_basic'] != 1)
+                {
+                    $data['user_designations'][$i]['designation_id'] = $data['user_designations'][$i]['office_unit_designation_id'];
+                }
+            }
+
             $user = $this->Users->patchEntity($user, $data, [
                 'associated' => [
                     'UserBasic',
@@ -248,6 +269,15 @@ class UsersController extends AppController
             $office_unit_designation_id = $this->request->data('office_unit_designation_id');
             $this->loadModel('Designations');
             $userDesignations = $this->Designations->find('list', ['conditions'=>['office_id'=>$office_id, 'office_unit_designation_id'=>$office_unit_designation_id, 'status'=>1]]);
+
+            $this->response->body(json_encode($userDesignations));
+            return $this->response;
+        }
+        elseif($action='get_designation_by_office')
+        {
+            $office_id = $this->request->data('office_id');
+            $this->loadModel('Designations');
+            $userDesignations = $this->Designations->find('list', ['conditions'=>['office_id'=>$office_id, 'status'=>1]]);
 
             $this->response->body(json_encode($userDesignations));
             return $this->response;
