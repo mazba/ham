@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Table;
 
+use ArrayObject;
+use Cake\Event\Event;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -113,5 +115,15 @@ class ItemAssignsTable extends Table
         $rules->add($rules->existsIn(['designated_user_id'], 'DesignatedUsers'));
         $rules->add($rules->existsIn(['item_id'], 'Items'));
         return $rules;
+    }
+
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
+    {
+        if (isset($data['assign_date'])) {
+            $data['assign_date'] = $data['assign_date'] ? strtotime($data['assign_date']) : 0;
+        }
+        if (isset($data['next_maintainance_date'])) {
+            $data['next_maintainance_date'] = $data['next_maintainance_date'] ? strtotime($data['next_maintainance_date']) : 0;
+        }
     }
 }
