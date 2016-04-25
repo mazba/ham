@@ -84,6 +84,23 @@ class DashboardCell extends Cell
     }
     public function officeUser()
     {
-
+        $this->loadModel('ItemAssigns');
+        $user = $this->request->session()->read('Auth.User');
+        $recently_assigned_item = $this->ItemAssigns
+            ->find()
+            ->where([
+                'ItemAssigns.status'=>1,
+                'ItemAssigns.designated_user_id'=>$user['id']
+            ])
+            ->contain(['Items'])
+            ->limit(10);
+        $recently_assigned_item = $this->ItemAssigns
+            ->find()
+            ->where([
+                'ItemAssigns.status'=>1,
+                'ItemAssigns.designated_user_id'=>$user['id']
+            ])
+            ->contain(['Items'])
+            ->limit(10);
     }
 }

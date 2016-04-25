@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Auth\DefaultPasswordHasher;
 use Cake\Cache\Cache;
 /**
  * Dashborad Controller
