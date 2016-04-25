@@ -50,6 +50,7 @@ class UsersController extends AppController
 
     public function add()
     {
+        $loggedUser = $this->request->Session()->read('Auth')['User'];
         $user = $this->Users->newEntity();
         $time = time();
 
@@ -58,32 +59,32 @@ class UsersController extends AppController
             $data = $this->request->data;
             $data['create_by']=$user['id'];
             $data['create_date']=time();
-            $data['user_basic']['create_by']=$user['id'];
-            $data['user_basic']['create_date']=$time;
+            $data['user_basic']['create_by']=$loggedUser['id'];
+            $data['user_basic']['create_time']=$time;
 
             for($i=0; $i<sizeof($data['user_academic_trainings']); $i++)
             {
-                $data['user_academic_trainings'][$i]['create_by']=$user['id'];
+                $data['user_academic_trainings'][$i]['create_by']=$loggedUser['id'];
                 $data['user_academic_trainings'][$i]['create_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_dependents']); $i++)
             {
-                $data['user_dependents'][$i]['create_by']=$user['id'];
+                $data['user_dependents'][$i]['create_by']=$loggedUser['id'];
                 $data['user_dependents'][$i]['create_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_designations']); $i++)
             {
-                $data['user_designations'][$i]['create_by']=$user['id'];
+                $data['user_designations'][$i]['create_by']=$loggedUser['id'];
                 $data['user_designations'][$i]['create_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_employment_histories']); $i++)
             {
-                $data['user_employment_histories'][$i]['create_by']=$user['id'];
+                $data['user_employment_histories'][$i]['create_by']=$loggedUser['id'];
                 $data['user_employment_histories'][$i]['create_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_language_details']); $i++)
             {
-                $data['user_language_details'][$i]['create_by']=$user['id'];
+                $data['user_language_details'][$i]['create_by']=$loggedUser['id'];
                 $data['user_language_details'][$i]['create_time']=$time;
             }
 
@@ -122,6 +123,7 @@ class UsersController extends AppController
 
     public function edit($id = null)
     {
+        $loggedUser = $this->request->Session()->read('Auth')['User'];
         $user = $this->Users->get($id, [
             'contain' => [
                 'UserBasic',
@@ -145,35 +147,35 @@ class UsersController extends AppController
                 unset($data['password']);
             }
 
-            $data['updated_by'] = $this->Auth->user('id');
+            $data['updated_by'] = $loggedUser['id'];
             $data['updated_time'] = time();
 
-            $data['user_basic']['update_by']=$user['id'];
+            $data['user_basic']['update_by']=$loggedUser['id'];
             $data['user_basic']['update_time']=$time;
 
             for($i=0; $i<sizeof($data['user_academic_trainings']); $i++)
             {
-                $data['user_academic_trainings'][$i]['update_by']=$user['id'];
+                $data['user_academic_trainings'][$i]['update_by']=$loggedUser['id'];
                 $data['user_academic_trainings'][$i]['update_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_dependents']); $i++)
             {
-                $data['user_dependents'][$i]['update_by']=$user['id'];
+                $data['user_dependents'][$i]['update_by']=$loggedUser['id'];
                 $data['user_dependents'][$i]['update_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_designations']); $i++)
             {
-                $data['user_designations'][$i]['update_by']=$user['id'];
+                $data['user_designations'][$i]['update_by']=$loggedUser['id'];
                 $data['user_designations'][$i]['update_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_employment_histories']); $i++)
             {
-                $data['user_employment_histories'][$i]['update_by']=$user['id'];
+                $data['user_employment_histories'][$i]['update_by']=$loggedUser['id'];
                 $data['user_employment_histories'][$i]['update_time']=$time;
             }
             for($i=0; $i<sizeof($data['user_language_details']); $i++)
             {
-                $data['user_language_details'][$i]['update_by']=$user['id'];
+                $data['user_language_details'][$i]['update_by']=$loggedUser['id'];
                 $data['user_language_details'][$i]['update_time']=$time;
             }
 

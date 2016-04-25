@@ -294,7 +294,6 @@ $academicTraining = \Cake\Core\Configure::read('academic_training');
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-12">
