@@ -57,8 +57,8 @@ $religions = \Cake\Core\Configure::read('religions');
                                 echo $this->Form->input('user_basic.passport_number',['class'=>'form-control','label'=>__('Passport Number')]);
                                 echo $this->Form->input('user_basic.driving_license_number',['class'=>'form-control','label'=>__('Driving License Number')]);
                                 echo $this->Form->input('user_basic.tin_number',['class'=>'form-control','label'=>__('TIN Number')]);
-                                echo $this->Form->input('user_basic.present_address',['class'=>'form-control','label'=>__('Present Address')]);
-                                echo $this->Form->input('user_basic.permanent_address',['class'=>'form-control','label'=>__('Permanent Address')]);
+                                echo $this->Form->input('user_basic.present_address',['type'=>'textarea','class'=>'form-control','label'=>__('Present Address')]);
+                                echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','class'=>'form-control','label'=>__('Permanent Address')]);
                                 echo $this->Form->input('picture_name_file',['class'=>'','type'=>'file','label'=>__('Photo')]);
                                 ?>
                             </div>
@@ -364,7 +364,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
         $(document).on('click', '.is_basic', function()
         {
-            var count = $("[type='checkbox']:checked").length;
+            var count = $(".is_basic:checked").length;
 
             if(count>1)
             {
@@ -646,15 +646,16 @@ $religions = \Cake\Core\Configure::read('religions');
 
         });
 
-        $("form").submit(function(e){
-            if($("[type='checkbox']:checked").length==0)
+        $("form").submit(function(e)
+        {
+            if($(".is_basic:checked").length==0)
             {
                 alert('No Basic Designation!');
                 return false;
             }
-            else if($("[type='checkbox']:checked").length==0)
+            else if($(".is_basic:checked").length>1)
             {
-                alert('You can not choose two designations as basic!');
+                alert('You can not choose more than one designation as basic!');
                 return false;
             }
         });
