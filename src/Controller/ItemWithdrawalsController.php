@@ -11,27 +11,27 @@ use App\Controller\AppController;
 class ItemWithdrawalsController extends AppController
 {
 
-	public $paginate = [
+    public $paginate = [
         'limit' => 15,
         'order' => [
             'ItemWithdrawals.title' => 'desc'
         ]
     ];
 
-/**
-* Index method
-*
-* @return void
-*/
-public function index()
-{
-			$itemWithdrawals = $this->ItemWithdrawals->find('all', [
-	'conditions' =>['ItemWithdrawals.status !=' => 99],
-	'contain' => ['ItemAssigns', 'Offices', 'OfficeWarehouses']
-	]);
-		$this->set('itemWithdrawals', $this->paginate($itemWithdrawals) );
-	$this->set('_serialize', ['itemWithdrawals']);
-	}
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $itemWithdrawals = $this->ItemWithdrawals->find('all', [
+            'conditions' => ['ItemWithdrawals.status !=' => 99],
+            'contain' => ['ItemAssigns', 'Offices', 'OfficeWarehouses']
+        ]);
+        $this->set('itemWithdrawals', $this->paginate($itemWithdrawals));
+        $this->set('_serialize', ['itemWithdrawals']);
+    }
 
     /**
      * View method
@@ -42,7 +42,7 @@ public function index()
      */
     public function view($id = null)
     {
-        $user=$this->Auth->user();
+        $user = $this->Auth->user();
         $itemWithdrawal = $this->ItemWithdrawals->get($id, [
             'contain' => ['ItemAssigns', 'Offices', 'OfficeWarehouses']
         ]);
@@ -57,30 +57,52 @@ public function index()
      */
     public function add()
     {
-        $user=$this->Auth->user();
-        $time=time();
-        $itemWithdrawal = $this->ItemWithdrawals->newEntity();
-        if ($this->request->is('post'))
-        {
+        $this->loadModel('Users');
+        $this->loadModel('ItemAssigns');
+        $this->loadModel('Items');
+        $user = $this->Auth->user();
+        $time = time();
 
-            $data=$this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+        $itemWithdrawal = $this->ItemWithdrawals->newEntity();
+        if ($this->request->is('post')) {
+
+            $data = $this->request->data;
+
+            $itemAssign=$this->ItemAssigns->get($data['item_assign_id']);
+            $items=$this->Items->get($itemAssign->item_id);
+            $data['office_id']=$itemAssign->office_id;
+            $data['withdrawal_time']=strtotime($data['withdrawal_time']);
+            $data['create_by'] = $user['id'];
+            $data['create_time'] = $time;
+
+            $assign_data['id'] =  $itemAssign->id;
+            $assign_data['update_by'] = $user['id'];
+            $assign_data['update_time'] = $time;
+            $assign_data['status'] = 0;
+
+            $item_data['id']= $itemAssign->item_id;
+            $item_data['office_warehouse_id']= $data['office_warehouse_id'];
+            $item_data['update_by'] = $user['id'];
+            $item_data['update_time'] = $time;
+
             $itemWithdrawal = $this->ItemWithdrawals->patchEntity($itemWithdrawal, $data);
-            if ($this->ItemWithdrawals->save($itemWithdrawal))
-            {
+           $itemAssign = $this->ItemAssigns->patchEntity($itemAssign, $assign_data);
+           $items = $this->Items->patchEntity($items, $item_data);
+
+
+            if ($this->ItemWithdrawals->save($itemWithdrawal) && $this->ItemAssigns->save($itemAssign) && $this->Items->save($items)) {
                 $this->Flash->success('The item withdrawal has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The item withdrawal could not be saved. Please, try again.');
             }
         }
-        $itemAssigns = $this->ItemWithdrawals->ItemAssigns->find('list', ['conditions'=>['status'=>1]]);
-        $offices = $this->ItemWithdrawals->Offices->find('list', ['conditions'=>['status'=>1]]);
-        $officeWarehouses = $this->ItemWithdrawals->OfficeWarehouses->find('list', ['conditions'=>['status'=>1]]);
-        $this->set(compact('itemWithdrawal', 'itemAssigns', 'offices', 'officeWarehouses'));
+        $users = $this->Users->find('list', ['conditions' => ['status' => 1]]);
+        $itemAssigns = '';
+//       $itemAssigns = $this->ItemWithdrawals->ItemAssigns->find('list', ['conditions'=>['status'=>1]]);
+//        $offices = $this->ItemWithdrawals->Offices->find('list', ['conditions'=>['status'=>1]]);
+        $officeWarehouses = $this->ItemWithdrawals->OfficeWarehouses->find('list', ['conditions' => ['status' => 1,'office_id'=>$user['office_id']]]);
+        $this->set(compact('itemWithdrawal', 'itemAssigns', 'offices', 'officeWarehouses', 'users'));
         $this->set('_serialize', ['itemWithdrawal']);
     }
 
@@ -93,30 +115,26 @@ public function index()
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $itemWithdrawal = $this->ItemWithdrawals->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
-        {
-            $data=$this->request->data;
-            $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
             $itemWithdrawal = $this->ItemWithdrawals->patchEntity($itemWithdrawal, $data);
-            if ($this->ItemWithdrawals->save($itemWithdrawal))
-            {
+            if ($this->ItemWithdrawals->save($itemWithdrawal)) {
                 $this->Flash->success('The item withdrawal has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The item withdrawal could not be saved. Please, try again.');
             }
         }
-        $itemAssigns = $this->ItemWithdrawals->ItemAssigns->find('list', ['conditions'=>['status'=>1]]);
-        $offices = $this->ItemWithdrawals->Offices->find('list', ['conditions'=>['status'=>1]]);
-        $officeWarehouses = $this->ItemWithdrawals->OfficeWarehouses->find('list', ['conditions'=>['status'=>1]]);
+        $itemAssigns = $this->ItemWithdrawals->ItemAssigns->find('list', ['conditions' => ['status' => 1]]);
+        $offices = $this->ItemWithdrawals->Offices->find('list', ['conditions' => ['status' => 1]]);
+        $officeWarehouses = $this->ItemWithdrawals->OfficeWarehouses->find('list', ['conditions' => ['status' => 1]]);
         $this->set(compact('itemWithdrawal', 'itemAssigns', 'offices', 'officeWarehouses'));
         $this->set('_serialize', ['itemWithdrawal']);
     }
@@ -133,20 +151,40 @@ public function index()
 
         $itemWithdrawal = $this->ItemWithdrawals->get($id);
 
-        $user=$this->Auth->user();
-        $data=$this->request->data;
-        $data['updated_by']=$user['id'];
-        $data['updated_date']=time();
-        $data['status']=99;
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
         $itemWithdrawal = $this->ItemWithdrawals->patchEntity($itemWithdrawal, $data);
-        if ($this->ItemWithdrawals->save($itemWithdrawal))
-        {
+        if ($this->ItemWithdrawals->save($itemWithdrawal)) {
             $this->Flash->success('The item withdrawal has been deleted.');
-        }
-        else
-        {
+        } else {
             $this->Flash->error('The item withdrawal could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function ajax($action = null)
+    {
+        if ($action == 'get_user_items') {
+
+            $this->loadModel('ItemAssigns');
+
+
+
+            $items = $this->ItemAssigns
+                ->find()
+                ->select(['id'=>'ItemAssigns.id', 'itemName'=>'Items.title_bn'])
+                ->where([
+                    'ItemAssigns.status'=>1,
+                    'ItemAssigns.designated_user_id'=>$this->request->data('user_id')
+                ])
+                ->contain(['Items']);
+
+            $this->response->body(json_encode($items));
+            return $this->response;
+
+        }
     }
 }
