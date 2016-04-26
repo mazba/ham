@@ -226,36 +226,36 @@ class ItemsController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
-        $user = $this->Auth->user();
-        $time = time();
-        $item = $this->Items->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $data = $this->request->data;
-            $data['update_by'] = $user['id'];
-            $data['update_date'] = $time;
-            $item = $this->Items->patchEntity($item, $data);
-            if ($this->Items->save($item)) {
-                $this->Flash->success('The item has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The item could not be saved. Please, try again.');
-            }
-        }
-        $parentItems = $this->Items->ParentItems->find('list', ['conditions' => ['status' => 1]]);
-        $manufacturers = $this->Items->Manufacturers->find('list', ['conditions' => ['status' => 1]]);
-        $suppliers = $this->Items->Suppliers->find('list', ['conditions' => ['status' => 1]]);
-        $assetNatures = $this->Items->AssetNatures->find('list', ['conditions' => ['status' => 1]]);
-        $assetTypes = $this->Items->AssetTypes->find('list', ['conditions' => ['status' => 1]]);
-        $itemCategories = $this->Items->ItemCategories->find('list', ['conditions' => ['status' => 1]]);
-        $offices = $this->Items->Offices->find('list', ['conditions' => ['status' => 1]]);
-        $officeWarehouses = $this->Items->OfficeWarehouses->find('list', ['conditions' => ['status' => 1]]);
-        $this->set(compact('item', 'parentItems', 'manufacturers', 'suppliers', 'assetNatures', 'assetTypes', 'itemCategories', 'offices', 'officeWarehouses'));
-        $this->set('_serialize', ['item']);
-    }
+//    public function edit($id = null)
+//    {
+//        $user = $this->Auth->user();
+//        $time = time();
+//        $item = $this->Items->get($id, [
+//            'contain' => []
+//        ]);
+//        if ($this->request->is(['patch', 'post', 'put'])) {
+//            $data = $this->request->data;
+//            $data['update_by'] = $user['id'];
+//            $data['update_date'] = $time;
+//            $item = $this->Items->patchEntity($item, $data);
+//            if ($this->Items->save($item)) {
+//                $this->Flash->success('The item has been saved.');
+//                return $this->redirect(['action' => 'index']);
+//            } else {
+//                $this->Flash->error('The item could not be saved. Please, try again.');
+//            }
+//        }
+//        $parentItems = $this->Items->ParentItems->find('list', ['conditions' => ['status' => 1]]);
+//        $manufacturers = $this->Items->Manufacturers->find('list', ['conditions' => ['status' => 1]]);
+//        $suppliers = $this->Items->Suppliers->find('list', ['conditions' => ['status' => 1]]);
+//        $assetNatures = $this->Items->AssetNatures->find('list', ['conditions' => ['status' => 1]]);
+//        $assetTypes = $this->Items->AssetTypes->find('list', ['conditions' => ['status' => 1]]);
+//        $itemCategories = $this->Items->ItemCategories->find('list', ['conditions' => ['status' => 1]]);
+//        $offices = $this->Items->Offices->find('list', ['conditions' => ['status' => 1]]);
+//        $officeWarehouses = $this->Items->OfficeWarehouses->find('list', ['conditions' => ['status' => 1]]);
+//        $this->set(compact('item', 'parentItems', 'manufacturers', 'suppliers', 'assetNatures', 'assetTypes', 'itemCategories', 'offices', 'officeWarehouses'));
+//        $this->set('_serialize', ['item']);
+//    }
 
     /**
      * Delete method
@@ -264,24 +264,24 @@ class ItemsController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
-
-        $item = $this->Items->get($id);
-
-        $user = $this->Auth->user();
-        $data = $this->request->data;
-        $data['updated_by'] = $user['id'];
-        $data['updated_date'] = time();
-        $data['status'] = 99;
-        $item = $this->Items->patchEntity($item, $data);
-        if ($this->Items->save($item)) {
-            $this->Flash->success('The item has been deleted.');
-        } else {
-            $this->Flash->error('The item could not be deleted. Please, try again.');
-        }
-        return $this->redirect(['action' => 'index']);
-    }
+//    public function delete($id = null)
+//    {
+//
+//        $item = $this->Items->get($id);
+//
+//        $user = $this->Auth->user();
+//        $data = $this->request->data;
+//        $data['updated_by'] = $user['id'];
+//        $data['updated_date'] = time();
+//        $data['status'] = 99;
+//        $item = $this->Items->patchEntity($item, $data);
+//        if ($this->Items->save($item)) {
+//            $this->Flash->success('The item has been deleted.');
+//        } else {
+//            $this->Flash->error('The item could not be deleted. Please, try again.');
+//        }
+//        return $this->redirect(['action' => 'index']);
+//    }
 
     public function ajax($action = null)
     {

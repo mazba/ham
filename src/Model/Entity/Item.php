@@ -75,5 +75,20 @@ class Item extends Entity
         '*' => true,
         'id' => false,
     ];
+    protected function _getFormattedPurchaseOrderDate(){
+        return $this->purchase_order_date?date('d-m-Y',$this->purchase_order_date):'';
+    }
+    protected function _getFormattedOfficeReceiveDate(){
+        return $this->office_receive_date?date('d-m-Y',$this->office_receive_date):'';
+    }
+    protected function _getFormattedWarrantyEndDate(){
+        return $this->warranty_end_date?date('d-m-Y',$this->warranty_end_date):'';
+    }
+    protected function _getFormattedWarrantyStartDate(){
+        return $this->warranty_start_date?date('d-m-Y',$this->warranty_start_date):'';
+    }
+    protected function _getFormattedProjectedEndOfLife(){
+        return $this->projected_end_of_life?date('d-m-Y',$this->projected_end_of_life):'';
+    }
 
 }

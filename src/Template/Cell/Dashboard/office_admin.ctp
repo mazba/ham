@@ -1,110 +1,124 @@
 <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <div class="dashboard-stat blue-madison ">
-            <div class="visual">
-                <i class="fa fa-users"></i>
-            </div>
-            <div class="details">
-                <div class="number">
-                    <?php echo $user_number; ?>
+    <div class="col-md-6">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat blue-madison ">
+                <div class="visual">
+                    <i class="fa fa-users"></i>
                 </div>
-                <div class="desc">
-                    <?= __('Total User') ?>
+                <div class="details">
+                    <div class="number">
+                        <?php echo $user_number; ?>
+                    </div>
+                    <div class="desc">
+                        <?= __('Total User') ?>
+                    </div>
                 </div>
+                <?php
+                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'users'], ['class' => 'more']);
+                ?>
             </div>
-            <?php
-            echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'users'], ['class' => 'more']);
-            ?>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat red-intense ">
+                <div class="visual">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <?php echo $item_number; ?>
+                    </div>
+                    <div class="desc">
+                        <?= __('Number Of Item') ?>
+                    </div>
+                </div>
+                <?php
+                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'items'], ['class' => 'more']);
+                ?>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat red-haze">
+                <div class="visual">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <?php echo $assign_item_number; ?>
+                    </div>
+                    <div class="desc">
+                        <?= __('Assigned Items') ?>
+                    </div>
+                </div>
+                <?php
+                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'item_assigns'], ['class' => 'more']);
+                ?>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat blue-hoki">
+                <div class="visual">
+                    <i class="fa fa-bank"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <?php echo $building_number; ?>
+                    </div>
+                    <div class="desc">
+                        <?= __('Number of Buildings') ?>
+                    </div>
+                </div>
+                <?php
+                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_buildings'], ['class' => 'more']);
+                ?>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat yellow-casablanca">
+                <div class="visual">
+                    <i class="fa fa-cube "></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <?php echo $room_number; ?>
+                    </div>
+                    <div class="desc">
+                        <?= __('Number of Rooms') ?>
+                    </div>
+                </div>
+                <?php
+                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_rooms'], ['class' => 'more']);
+                ?>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="dashboard-stat green-seagreen">
+                <div class="visual">
+                    <i class="fa fa-mortar-board "></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <?php echo $committee_number; ?>
+                    </div>
+                    <div class="desc">
+                        <?= __('Number of Committee') ?>
+                    </div>
+                </div>
+                <?php
+                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'committees'], ['class' => 'more']);
+                ?>
+            </div>
         </div>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <div class="dashboard-stat red-intense ">
-            <div class="visual">
-                <i class="fa fa-shopping-cart"></i>
-            </div>
-            <div class="details">
-                <div class="number">
-                    <?php echo $item_number; ?>
-                </div>
-                <div class="desc">
-                    <?= __('Number Of Item') ?>
+    <div class="col-md-6">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="caption" style="color: red; font-weight: bold;">
+                    <i class="fa fa-globe"></i><?= __('Leave preparatory to Retirement (LPR)') ?>
                 </div>
             </div>
-            <?php
-            echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'items'], ['class' => 'more']);
-            ?>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <div class="dashboard-stat red-haze">
-            <div class="visual">
-                <i class="fa fa-shopping-cart"></i>
+            <div class="portlet-body">
+
             </div>
-            <div class="details">
-                <div class="number">
-                    <?php echo $assign_item_number; ?>
-                </div>
-                <div class="desc">
-                    <?= __('Assigned Items') ?>
-                </div>
-            </div>
-            <?php
-            echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'item_assigns'], ['class' => 'more']);
-            ?>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <div class="dashboard-stat blue-hoki">
-            <div class="visual">
-                <i class="fa fa-bank"></i>
-            </div>
-            <div class="details">
-                <div class="number">
-                    <?php echo $building_number; ?>
-                </div>
-                <div class="desc">
-                    <?= __('Number of Buildings') ?>
-                </div>
-            </div>
-            <?php
-            echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_buildings'], ['class' => 'more']);
-            ?>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <div class="dashboard-stat yellow-casablanca">
-            <div class="visual">
-                <i class="fa fa-cube "></i>
-            </div>
-            <div class="details">
-                <div class="number">
-                    <?php echo $room_number; ?>
-                </div>
-                <div class="desc">
-                    <?= __('Number of Rooms') ?>
-                </div>
-            </div>
-            <?php
-            echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_rooms'], ['class' => 'more']);
-            ?>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-        <div class="dashboard-stat green-seagreen">
-            <div class="visual">
-                <i class="fa fa-mortar-board "></i>
-            </div>
-            <div class="details">
-                <div class="number">
-                    <?php echo $committee_number; ?>
-                </div>
-                <div class="desc">
-                    <?= __('Number of Committee') ?>
-                </div>
-            </div>
-            <?php
-            echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'committees'], ['class' => 'more']);
-            ?>
         </div>
     </div>
 </div>

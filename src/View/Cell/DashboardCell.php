@@ -1,6 +1,8 @@
 <?php
 namespace App\View\Cell;
 
+use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\View\Cell;
 
 /**
@@ -50,6 +52,7 @@ class DashboardCell extends Cell
         $this->loadModel('OfficeRooms');
         $this->loadModel('Committees');
         $this->loadModel('OfficeWarehouses');
+        $this->loadModel('Users');
 
         //count
         $user_number = $this->Users->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
@@ -76,6 +79,18 @@ class DashboardCell extends Cell
             ->where(['ItemAssigns.status'=>1,'ItemAssigns.office_id'=>$user['office_id']])
             ->contain(['DesignatedUsers','Items'])
             ->limit(10);
+        //Leave preparatory to Retirement
+        $lpr_range = Configure::read('lpr_range');
+        $lpr_year = new Time('-'.$lpr_range.' years');
+        $lpr_year = $lpr_year->addMonth(1)->toUnixString();
+        $recently_assigned_item = $this->Users
+            ->find()
+            ->where(['Users.status'=>1,'UserBasic.date_of_birth <'=>$lpr_year,'Users.office_id'=>$user['office_id']])
+            ->contain(['UserBasic']);
+        echo '<pre>';
+        print_r($recently_assigned_item->toArray());
+        echo '</pre>';
+        die;
         $this->set(compact('building_number','recently_assigned_item','room_number','office_warehouse','committee_number','assign_item_number','user_number','item_number','office_items'));
     }
     public function officeUser()
