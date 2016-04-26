@@ -60,4 +60,8 @@ class UserBasic extends Entity
     {
         return $date_of_birth?strtotime($date_of_birth):0;
     }
+    protected function _getFormattedDateOfBirth()
+    {
+        return $this->date_of_birth?date('d-m-Y',$this->date_of_birth):'';
+    }
 }
