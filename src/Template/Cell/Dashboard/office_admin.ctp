@@ -113,11 +113,47 @@
         <div class="portlet">
             <div class="portlet-title">
                 <div class="caption" style="color: red; font-weight: bold;">
-                    <i class="fa fa-globe"></i><?= __('Leave preparatory to Retirement (LPR)') ?>
+                    <i class="fa fa-joomla "></i><?= __('Leave preparatory to Retirement (LPR)') ?>
                 </div>
             </div>
-            <div class="portlet-body">
-
+            <div class="portlet-body" style="padding: 6px; background:#fff">
+                <div class="scroller" style="height: 205px;" data-always-visible="1" data-rail-visible="0">
+                    <?php
+                    if(count($leave_preparatory_users)):
+                    ?>
+                    <ul class="feeds">
+                        <?php
+                        foreach ($leave_preparatory_users as $leave_preparatory_user) :
+                        ?>
+                            <li>
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-info">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                                <?php echo $leave_preparatory_user->full_name_bn; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date">
+                                        <?php echo $leave_preparatory_user->user_basic->formatted_date_of_birth; ?>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                        endforeach;
+                        ?>
+                    </ul>
+                    <?php else: ?>
+                        <h2 style="text-align: center"><?= __('No Data Found') ?></h2>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
@@ -132,37 +168,39 @@
             </div>
             <div class="portlet-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th><?= __('Warehouse') ?></th>
-                                <th><?= __('Total Item') ?></th>
-                                <th><?= __('Assigned Item') ?></th>
-                                <th><?= __('Total Withdrawals Item') ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if($office_warehouse->count()):
-                            foreach($office_warehouse as $warehouse):?>
-                            <tr>
-                                <th><?php echo $warehouse->title_bn; ?></th>
-                                <td><?php echo count($warehouse->items); ?></td>
-                                <td><?php echo count($warehouse->item_assigns); ?></td>
-                                <td><?php echo count($warehouse->item_withdrawals); ?></td>
-                            </tr>
-                            <?php
-                                endforeach;
-                                else:
-                                ?>
+                    <div class="scroller" style="height: 155px;" data-always-visible="1" data-rail-visible="0">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
+                                    <th><?= __('Warehouse') ?></th>
+                                    <th><?= __('Total Item') ?></th>
+                                    <th><?= __('Assigned Item') ?></th>
+                                    <th><?= __('Total Withdrawals Item') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if($office_warehouse->count()):
+                                foreach($office_warehouse as $warehouse):?>
+                                <tr>
+                                    <th><?php echo $warehouse->title_bn; ?></th>
+                                    <td><?php echo count($warehouse->items); ?></td>
+                                    <td><?php echo count($warehouse->item_assigns); ?></td>
+                                    <td><?php echo count($warehouse->item_withdrawals); ?></td>
                                 </tr>
                                 <?php
-                                endif
-                            ?>
-                        </tbody>
-                    </table>
+                                    endforeach;
+                                    else:
+                                    ?>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
+                                    </tr>
+                                    <?php
+                                    endif
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,37 +214,39 @@
             </div>
             <div class="portlet-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th><?= __('Item') ?></th>
-                                <th><?= __('Designated Users') ?></th>
-                                <th><?= __('Assigned Date') ?></th>
-                                <th><?= __('Quantity') ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if($recently_assigned_item->count()):
-                            foreach($recently_assigned_item as $item):?>
+                    <div class="scroller" style="height: 155px;" data-always-visible="1" data-rail-visible="0">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td><?php echo $item->item->title_bn.'('.$item->item->office_serial_number.')'; ?></td>
-                                    <td><?php echo $item->designated_user->full_name_bn; ?></td>
-                                    <td><?php echo $item->formatted_assign_date; ?></td>
-                                    <td><?php echo $item->quantity; ?></td>
+                                    <th><?= __('Item') ?></th>
+                                    <th><?= __('Designated Users') ?></th>
+                                    <th><?= __('Assigned Date') ?></th>
+                                    <th><?= __('Quantity') ?></th>
                                 </tr>
-                            <?php
-                            endforeach;
-                            else:
-                            ?>
-                            <tr>
-                                <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
-                            </tr>
-                            <?php
-                            endif;
-                            ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if($recently_assigned_item->count()):
+                                foreach($recently_assigned_item as $item):?>
+                                    <tr>
+                                        <td><?php echo $item->item->title_bn.'('.$item->item->office_serial_number.')'; ?></td>
+                                        <td><?php echo $item->designated_user->full_name_bn; ?></td>
+                                        <td><?php echo $item->formatted_assign_date; ?></td>
+                                        <td><?php echo $item->quantity; ?></td>
+                                    </tr>
+                                <?php
+                                endforeach;
+                                else:
+                                ?>
+                                <tr>
+                                    <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
+                                </tr>
+                                <?php
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
