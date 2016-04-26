@@ -58,3 +58,6 @@
 .portlet.box.jomi_box > .portlet-title{
     background-color: #8DC541;
 }
+.page-header.navbar .page-logo{
+    width: 380px;
+}
