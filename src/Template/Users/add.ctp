@@ -371,6 +371,8 @@ $religions = \Cake\Core\Configure::read('religions');
                 this.name = this.name.replace(/\d+/, index+1);
                 this.id = this.id.replace(/\d+/, index+1);
                 this.value = '';
+                $(this).closest('.single_list').find('.academic_container').addClass('hidden');
+                $(this).closest('.single_list').find('.training_container').addClass('hidden');
             }).end();
 
             $('.academicWrapper').append(html);
