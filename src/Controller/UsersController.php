@@ -66,6 +66,12 @@ class UsersController extends AppController
             {
                 $data['user_academic_trainings'][$i]['create_by']=$loggedUser['id'];
                 $data['user_academic_trainings'][$i]['create_time']=$time;
+
+                if($data['user_academic_trainings'][$i]['type']==2)
+                {
+                    $data['user_academic_trainings'][$i]['title_bn']=$data['user_academic_trainings'][$i]['training_type'];
+                    $data['user_academic_trainings'][$i]['title_en']=$data['user_academic_trainings'][$i]['training_type'];
+                }
             }
             for($i=0; $i<sizeof($data['user_dependents']); $i++)
             {
@@ -177,6 +183,12 @@ class UsersController extends AppController
             {
                 $data['user_academic_trainings'][$i]['update_by']=$loggedUser['id'];
                 $data['user_academic_trainings'][$i]['update_time']=$time;
+
+                if($data['user_academic_trainings'][$i]['type']==2)
+                {
+                    $data['user_academic_trainings'][$i]['title_bn']=$data['user_academic_trainings'][$i]['training_type'];
+                    $data['user_academic_trainings'][$i]['title_en']=$data['user_academic_trainings'][$i]['training_type'];
+                }
             }
             for($i=0; $i<sizeof($data['user_dependents']); $i++)
             {
@@ -285,13 +297,22 @@ class UsersController extends AppController
             $this->response->body(json_encode($userDesignations));
             return $this->response;
         }
-        elseif($action='get_designation_by_office')
+        elseif($action=='get_designation_by_office')
         {
             $office_id = $this->request->data('office_id');
             $this->loadModel('Designations');
             $userDesignations = $this->Designations->find('list', ['conditions'=>['office_id'=>$office_id, 'status'=>1]]);
 
             $this->response->body(json_encode($userDesignations));
+            return $this->response;
+        }
+        elseif($action=='get_training_types')
+        {
+            $qString = $this->request->data('qstring');
+            $this->loadModel('TrainingTypes');
+            $tYpes = $this->TrainingTypes->find('list', ['conditions'=>['status'=>1, 'title like'=>$qString.'%']]);
+
+            $this->response->body(json_encode($tYpes));
             return $this->response;
         }
     }

@@ -7,86 +7,103 @@ $languages = \Cake\Core\Configure::read('languages');
 $genders = \Cake\Core\Configure::read('genders');
 $religions = \Cake\Core\Configure::read('religions');
 ?>
-<div class="row">
-    <div class="col-md-12">
-        <div class="portlet box green-seagreen">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-coffee"></i><?= __('Edit User');?>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <?= $this->Form->create($user,['type' => 'file', 'class'=>'form-horizontal myForm','novalidate']) ?>
-                <div id="tabs" class="portlet-body">
-                    <ul style="background: none !important; border: 0px !important;">
-                        <li class="ui-tabs-active ui-state-active"><a href="#tabs-1"><?= __('Basic')?></a></li>
-                        <li><a href="#tabs-2"><?= __('Academic')?></a></li>
-                        <li><a href="#tabs-3"><?= __('Dependent');?></a></li>
-                        <li><a href="#tabs-4"><?= __('Designation');?></a></li>
-                        <li><a href="#tabs-5"><?= __('Emergency');?></a></li>
-                        <li><a href="#tabs-6"><?= __('Employment History');?></a></li>
-                        <li><a href="#tabs-7"><?= __('Language');?></a></li>
-                        <li><a href="#tabs-8"><?= __('Medical');?></a></li>
-                        <li class="tabs-9"><a href="#tabs-9"><?= __('Login Info');?></a></li>
-                    </ul>
-                    <div id="tabs-1">
-                        <div class="row whiteWrapper basicWrapper">
-                            <div class="col-md-8 col-md-offset-2">
-                                <?php
-                                echo $this->Form->input('full_name_bn');
-                                echo $this->Form->input('full_name_en');
-                                echo $this->Form->input('user_basic.father_name_bn');
-                                echo $this->Form->input('user_basic.father_name_en');
-                                echo $this->Form->input('user_basic.mother_name_bn');
-                                echo $this->Form->input('user_basic.mother_name_en');
-                                echo $this->Form->input('user_basic.nid');
-                                echo $this->Form->input('user_basic.bin_brn');
-                                echo $this->Form->input('user_basic.date_of_birth',['value'=>isset($user['date_of_birth'])?date('d-m-y', $user['date_of_birth']):'','class'=>'form-control datepicker','type'=>'text']);
-                                echo $this->Form->input('user_basic.place_of_birth',['class'=>'form-control','label'=>__('Place Of Birth')]);
-                                echo $this->Form->input('user_basic.nationality',['class'=>'form-control','label'=>__('Nationality')]);
-                                echo $this->Form->input('user_basic.is_ethnic',['type'=>'checkbox','class'=>'form-control','label'=>__('Is Ethnic')]);
-                                echo $this->Form->input('user_basic.is_disable',['type'=>'checkbox','class'=>'form-control','label'=>__('Is Disable')]);
-                                echo $this->Form->input('user_basic.is_married',['type'=>'checkbox','class'=>'form-control married','label'=>__('Is Married')]);
-                                echo $this->Form->input('user_basic.spouse_name_bn',['class'=>'for_married form-control','readonly'=>'readonly','label'=>__('Spouse Name Bn')]);
-                                echo $this->Form->input('user_basic.spouse_name_en',['class'=>'for_married form-control','readonly'=>'readonly','label'=>__('Spouse Name En')]);
-                                echo $this->Form->input('user_basic.gender',['options'=>$genders,'class'=>'form-control','label'=>__('Gender')]);
-                                echo $this->Form->input('user_basic.religion',['options'=>$religions,'class'=>'form-control','label'=>__('Religion')]);
-                                echo $this->Form->input('user_basic.home_phone',['class'=>'form-control','label'=>__('Home Phone')]);
-                                echo $this->Form->input('user_basic.cell_phone',['class'=>'form-control','label'=>__('Cell Phone')]);
-                                echo $this->Form->input('user_basic.email',['class'=>'form-control','label'=>__('Email')]);
-                                echo $this->Form->input('user_basic.passport_number',['class'=>'form-control','label'=>__('Passport Number')]);
-                                echo $this->Form->input('user_basic.driving_license_number',['class'=>'form-control','label'=>__('Driving License Number')]);
-                                echo $this->Form->input('user_basic.tin_number',['class'=>'form-control','label'=>__('TIN Number')]);
-                                echo $this->Form->input('user_basic.present_address',['type'=>'textarea','class'=>'form-control','label'=>__('Present Address')]);
-                                echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','class'=>'form-control','label'=>__('Permanent Address')]);
-                                echo $this->Form->input('picture_name_file',['class'=>'','type'=>'file','label'=>__('Photo')]);
-                                ?>
-                            </div>
+<div class="portlet box green-seagreen">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i><?= __('Edit User');?>
+        </div>
+        <div class="tools">
+            <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <?= $this->Form->create($user,['type' => 'file', 'class'=>'form-horizontal myForm','novalidate']) ?>
+        <div class="tabbable-custom ">
+            <ul class="nav nav-tabs ">
+                <li class="active"><a href="#tab_5_1" data-toggle="tab"><?= __('Basic')?></a></li>
+                <li><a href="#tab_5_2" data-toggle="tab"><?= __('Academic')?></a></li>
+                <li><a href="#tab_5_3" data-toggle="tab"><?= __('Dependent');?></a></li>
+                <li><a href="#tab_5_4" data-toggle="tab"><?= __('Designation');?></a></li>
+                <li><a href="#tab_5_5" data-toggle="tab"><?= __('Emergency');?></a></li>
+                <li><a href="#tab_5_6" data-toggle="tab"><?= __('Employment History');?></a></li>
+                <li><a href="#tab_5_7" data-toggle="tab"><?= __('Language');?></a></li>
+                <li><a href="#tab_5_8" data-toggle="tab"><?= __('Medical');?></a></li>
+                <li><a href="#tab_5_9" data-toggle="tab"><?= __('Login Info');?></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_5_1">
+                    <div class="row whiteWrapper basicWrapper">
+                        <div class="col-md-8 col-md-offset-2">
+                            <?php
+                            echo $this->Form->input('full_name_bn');
+                            echo $this->Form->input('full_name_en');
+                            echo $this->Form->input('user_basic.father_name_bn');
+                            echo $this->Form->input('user_basic.father_name_en');
+                            echo $this->Form->input('user_basic.mother_name_bn');
+                            echo $this->Form->input('user_basic.mother_name_en');
+                            echo $this->Form->input('user_basic.nid');
+                            echo $this->Form->input('user_basic.bin_brn');
+                            echo $this->Form->input('user_basic.date_of_birth',['value'=>isset($user['date_of_birth'])?date('d-m-y', $user['date_of_birth']):'','class'=>'form-control datepicker','type'=>'text']);
+                            echo $this->Form->input('user_basic.place_of_birth',['class'=>'form-control','label'=>__('Place Of Birth')]);
+                            echo $this->Form->input('user_basic.nationality',['class'=>'form-control','label'=>__('Nationality')]);
+                            echo $this->Form->input('user_basic.is_ethnic',['type'=>'checkbox','class'=>'form-control','label'=>__('Is Ethnic')]);
+                            echo $this->Form->input('user_basic.is_disable',['type'=>'checkbox','class'=>'form-control','label'=>__('Is Disable')]);
+                            echo $this->Form->input('user_basic.is_married',['type'=>'checkbox','class'=>'form-control married','label'=>__('Is Married')]);
+                            echo $this->Form->input('user_basic.spouse_name_bn',['class'=>'for_married form-control','readonly'=>'readonly','label'=>__('Spouse Name Bn')]);
+                            echo $this->Form->input('user_basic.spouse_name_en',['class'=>'for_married form-control','readonly'=>'readonly','label'=>__('Spouse Name En')]);
+                            echo $this->Form->input('user_basic.gender',['options'=>$genders,'class'=>'form-control','label'=>__('Gender')]);
+                            echo $this->Form->input('user_basic.religion',['options'=>$religions,'class'=>'form-control','label'=>__('Religion')]);
+                            echo $this->Form->input('user_basic.home_phone',['class'=>'form-control','label'=>__('Home Phone')]);
+                            echo $this->Form->input('user_basic.cell_phone',['class'=>'form-control','label'=>__('Cell Phone')]);
+                            echo $this->Form->input('user_basic.email',['class'=>'form-control','label'=>__('Email')]);
+                            echo $this->Form->input('user_basic.passport_number',['class'=>'form-control','label'=>__('Passport Number')]);
+                            echo $this->Form->input('user_basic.driving_license_number',['class'=>'form-control','label'=>__('Driving License Number')]);
+                            echo $this->Form->input('user_basic.tin_number',['class'=>'form-control','label'=>__('TIN Number')]);
+                            echo $this->Form->input('user_basic.present_address',['type'=>'textarea','class'=>'form-control','label'=>__('Present Address')]);
+                            echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','class'=>'form-control','label'=>__('Permanent Address')]);
+                            echo $this->Form->input('picture_name_file',['class'=>'','type'=>'file','label'=>__('Photo')]);
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-2">
-                        <div class="row list" data-index_no="<?= sizeof($user['user_academic_trainings'])-1;?>">
-                            <div class="academicWrapper">
-                                <?php
-                                foreach($user['user_academic_trainings'] as $key=>$academic_training_data)
-                                {
+                </div>
+                <div class="tab-pane" id="tab_5_2">
+                    <div class="row list" data-index_no="<?= sizeof($user['user_academic_trainings'])-1;?>">
+                        <div class="academicWrapper">
+                            <?php
+                            foreach($user['user_academic_trainings'] as $key=>$academic_training_data)
+                            {
                                 ?>
                                 <div class="col-md-12 single_list">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <div class="col-md-6">
                                         <?php
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.type',['options' => ['1'=>__('Academic'),'2'=>__('Training')],'value'=>$academic_training_data['type'],'class'=>'form-control academic_type','empty'=>__('Select'),'label'=>['text'=>'Type','class'=>'col-sm-3 control-label text-right']]);
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.title_bn',['value'=>$academic_training_data['title_bn'],'class'=>'form-control title_bn','label'=>__('Title Bn')]);
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.title_en',['value'=>$academic_training_data['title_en'],'class'=>'form-control title_en']);
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.result',['value'=>$academic_training_data['result'],'class'=>'form-control result','label'=>__('Result')]);
+                                        ?>
+                                        <div class="training_container <?php if($academic_training_data['type']==1){echo 'hidden';}?>">
+                                        <?php
+                                            echo $this->Form->input('user_academic_trainings.'.$key.'.training_type',['value'=>$academic_training_data['title_bn'],'class'=>'form-control training_type','label'=>__('Training')]);
+                                        ?>
+                                        </div>
+                                        <div class="academic_container <?php if($academic_training_data['type']==2){echo 'hidden';}?>">
+                                            <?php
+                                            echo $this->Form->input('user_academic_trainings.'.$key.'.title_bn',['value'=>$academic_training_data['title_bn'],'class'=>'form-control title_bn','label'=>__('Title Bn')]);
+                                            echo $this->Form->input('user_academic_trainings.'.$key.'.title_en',['value'=>$academic_training_data['title_en'],'class'=>'form-control title_en']);
+                                            echo $this->Form->input('user_academic_trainings.'.$key.'.result',['value'=>$academic_training_data['result'],'class'=>'form-control result','label'=>__('Result')]);
+                                            ?>
+                                        </div>
+                                        <?php
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.institute_name',['value'=>$academic_training_data['institute_name'],'class'=>'form-control institute_name','label'=>__('Institute')]);
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.institute_address',['value'=>$academic_training_data['institute_address'],'class'=>'form-control institute_address','label'=>__('Institute Address')]);
                                         ?>
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="academic_container <?php if($academic_training_data['type']==2){echo 'hidden';}?>">
+                                            <?php
+                                            echo $this->Form->input('user_academic_trainings.'.$key.'.board_name',['value'=>$academic_training_data['board_name'],'class'=>'form-control board_name','label'=>__('Board Name')]);
+                                            echo $this->Form->input('user_academic_trainings.'.$key.'.major_subject',['value'=>$academic_training_data['major_subject'],'class'=>'form-control major_subject','label'=>__('Major Subject')]);
+                                            ?>
+                                        </div>
                                         <?php
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.board_name',['value'=>$academic_training_data['board_name'],'class'=>'form-control board_name','label'=>__('Board Name')]);
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.major_subject',['value'=>$academic_training_data['major_subject'],'class'=>'form-control major_subject','label'=>__('Major Subject')]);
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.starting_time',['value'=>isset($academic_training_data['starting_time'])?date('d-m-y', $academic_training_data['starting_time']):'','type'=>'text','class'=>'form-control starting_time datepicker','label'=>__('Starting Time')]);
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.completion_time',['value'=>isset($academic_training_data['completion_time'])?date('d-m-y', $academic_training_data['completion_time']):'','type'=>'text','class'=>'form-control completion_time datepicker','label'=>__('Completion Time')]);
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.duration',['value'=>$academic_training_data['duration'],'class'=>'form-control duration','label'=>__('Duration')]);
@@ -95,60 +112,60 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </div>
                                 </div>
                                 <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-11">
-                            <input type="button" class="btn btn-circle green add_more" value="Add" />
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-3">
-                        <div class="row list_dependent" data-index_no="<?= sizeof($user['user_dependents'])-1;?>">
-                            <div class="dependentWrapper">
-                                <?php
-                                foreach($user['user_dependents'] as $key=>$user_dependent_data)
-                                {
-                                    ?>
-                                    <div class="col-md-12 single_list_dependent">
-                                        <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
-                                        <div class="col-md-6">
-                                            <?php
-                                            echo $this->Form->input('user_dependents.'.$key.'.full_name_bn', ['value'=>$user_dependent_data['full_name_bn'],'class' => 'form-control full_name_bn', 'label' => __('Full Name Bn')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.full_name_en', ['value'=>$user_dependent_data['full_name_en'],'class' => 'form-control full_name_en', 'label' => __('Full Name En')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.relation', ['value'=>$user_dependent_data['relation'],'class' => 'form-control relation', 'label' => __('Relation')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.gender', ['value'=>$user_dependent_data['gender'],'options' => [1 => 'Male', 2 => 'Female'], 'class' => 'form-control gender', 'label' => __('Gender')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.date_of_birth', ['value'=>isset($user_dependent_data['date_of_birth'])?date('d-m-y', $user_dependent_data['date_of_birth']):'','type' => 'text', 'class' => 'form-control date_of_birth datepicker', 'label' => __('Date Of Birth')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.nid', ['value'=>$user_dependent_data['nid'],'class' => 'form-control nid', 'label' => __('NID')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.bin_brn', ['value'=>$user_dependent_data['bin_brn'],'class' => 'form-control bin_brn', 'label' => __('Bin Brn')]);
-                                            ?>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <?php
-                                            echo $this->Form->input('user_dependents.'.$key.'.occupation', ['value'=>$user_dependent_data['occupation'],'class' => 'form-control occupation', 'label' => __('Occupation')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.phone_number', ['value'=>$user_dependent_data['phone_number'],'class' => 'form-control phone_number', 'label' => __('Phone Number')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.cell_number', ['value'=>$user_dependent_data['cell_number'],'class' => 'form-control cell_number', 'label' => __('Cell Number')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.email', ['value'=>$user_dependent_data['email'],'class' => 'form-control email', 'label' => __('Email')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.address', ['value'=>$user_dependent_data['address'],'type' => 'textarea', 'rows' => 2, 'class' => 'form-control address', 'label' => __('Address')]);
-                                            echo $this->Form->input('user_dependents.'.$key.'.photo', ['class' => '', 'type' => 'file', 'label' => __('Photo')]);
-                                            ?>
-                                        </div>
+                    <div class="row col-md-offset-11">
+                        <input type="button" class="btn btn-circle green add_more" value="Add" />
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_5_3">
+                    <div class="row list_dependent" data-index_no="<?= sizeof($user['user_dependents'])-1;?>">
+                        <div class="dependentWrapper">
+                            <?php
+                            foreach($user['user_dependents'] as $key=>$user_dependent_data)
+                            {
+                                ?>
+                                <div class="col-md-12 single_list_dependent">
+                                    <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
+                                    <div class="col-md-6">
+                                        <?php
+                                        echo $this->Form->input('user_dependents.'.$key.'.full_name_bn', ['value'=>$user_dependent_data['full_name_bn'],'class' => 'form-control full_name_bn', 'label' => __('Full Name Bn')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.full_name_en', ['value'=>$user_dependent_data['full_name_en'],'class' => 'form-control full_name_en', 'label' => __('Full Name En')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.relation', ['value'=>$user_dependent_data['relation'],'class' => 'form-control relation', 'label' => __('Relation')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.gender', ['value'=>$user_dependent_data['gender'],'options' => [1 => 'Male', 2 => 'Female'], 'class' => 'form-control gender', 'label' => __('Gender')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.date_of_birth', ['value'=>isset($user_dependent_data['date_of_birth'])?date('d-m-y', $user_dependent_data['date_of_birth']):'','type' => 'text', 'class' => 'form-control date_of_birth datepicker', 'label' => __('Date Of Birth')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.nid', ['value'=>$user_dependent_data['nid'],'class' => 'form-control nid', 'label' => __('NID')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.bin_brn', ['value'=>$user_dependent_data['bin_brn'],'class' => 'form-control bin_brn', 'label' => __('Bin Brn')]);
+                                        ?>
                                     </div>
-                                    <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-11">
-                            <input type="button" class="btn btn-circle green add_more_dependent" value="Add" />
+                                    <div class="col-md-6">
+                                        <?php
+                                        echo $this->Form->input('user_dependents.'.$key.'.occupation', ['value'=>$user_dependent_data['occupation'],'class' => 'form-control occupation', 'label' => __('Occupation')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.phone_number', ['value'=>$user_dependent_data['phone_number'],'class' => 'form-control phone_number', 'label' => __('Phone Number')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.cell_number', ['value'=>$user_dependent_data['cell_number'],'class' => 'form-control cell_number', 'label' => __('Cell Number')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.email', ['value'=>$user_dependent_data['email'],'class' => 'form-control email', 'label' => __('Email')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.address', ['value'=>$user_dependent_data['address'],'type' => 'textarea', 'rows' => 2, 'class' => 'form-control address', 'label' => __('Address')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.photo', ['class' => '', 'type' => 'file', 'label' => __('Photo')]);
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-4">
-                        <div class="row list_designation" data-index_no="<?= sizeof($user['user_designations'])-1;?>">
-                            <div class="designationWrapper">
-                                <?php
-                                foreach($user['user_designations'] as $key=>$user_designation_data)
-                                {
+                    <div class="row col-md-offset-11">
+                        <input type="button" class="btn btn-circle green add_more_dependent" value="Add" />
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_5_4">
+                    <div class="row list_designation" data-index_no="<?= sizeof($user['user_designations'])-1;?>">
+                        <div class="designationWrapper">
+                            <?php
+                            foreach($user['user_designations'] as $key=>$user_designation_data)
+                            {
                                 ?>
                                 <div class="col-md-12 single_list_designation">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
@@ -178,34 +195,34 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </div>
                                 </div>
                                 <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-11">
-                            <input type="button" class="btn btn-circle green add_more_designation" value="Add" />
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-5">
-                        <div class="row whiteWrapper emergencyWrapper">
-                            <div class="col-md-8 col-md-offset-2">
-                                <?php
-                                echo $this->Form->input('user_emergency_contact.name_bn',['class'=>'form-control','label'=>__('Name Bn')]);
-                                echo $this->Form->input('user_emergency_contact.name_en',['class'=>'form-control','label'=>__('Name En')]);
-                                echo $this->Form->input('user_emergency_contact.relation',['class'=>'form-control','label'=>__('Relation')]);
-                                echo $this->Form->input('user_emergency_contact.contact_number_phone',['class'=>'form-control', 'label'=>__('Contact No. Phone')]);
-                                echo $this->Form->input('user_emergency_contact.contact_number_cell',['class'=>'form-control','label'=>__('Contact No. Cell')]);
-                                echo $this->Form->input('user_emergency_contact.address',['type'=>'textarea','rows'=>2,'class'=>'form-control','label'=>__('Address')]);
-                                ?>
-                            </div>
+                    <div class="row col-md-offset-11">
+                        <input type="button" class="btn btn-circle green add_more_designation" value="Add" />
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_5_5">
+                    <div class="row whiteWrapper emergencyWrapper">
+                        <div class="col-md-8 col-md-offset-2">
+                            <?php
+                            echo $this->Form->input('user_emergency_contact.name_bn',['class'=>'form-control','label'=>__('Name Bn')]);
+                            echo $this->Form->input('user_emergency_contact.name_en',['class'=>'form-control','label'=>__('Name En')]);
+                            echo $this->Form->input('user_emergency_contact.relation',['class'=>'form-control','label'=>__('Relation')]);
+                            echo $this->Form->input('user_emergency_contact.contact_number_phone',['class'=>'form-control', 'label'=>__('Contact No. Phone')]);
+                            echo $this->Form->input('user_emergency_contact.contact_number_cell',['class'=>'form-control','label'=>__('Contact No. Cell')]);
+                            echo $this->Form->input('user_emergency_contact.address',['type'=>'textarea','rows'=>2,'class'=>'form-control','label'=>__('Address')]);
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-6">
-                        <div class="row list_history" data-index_no="<?= sizeof($user['user_employment_histories'])-1;?>">
-                            <div class="historyWrapper">
-                                <?php
-                                foreach($user['user_employment_histories'] as $key=>$user_employment_history_data)
-                                {
+                </div>
+                <div class="tab-pane" id="tab_5_6">
+                    <div class="row list_history" data-index_no="<?= sizeof($user['user_employment_histories'])-1;?>">
+                        <div class="historyWrapper">
+                            <?php
+                            foreach($user['user_employment_histories'] as $key=>$user_employment_history_data)
+                            {
                                 ?>
                                 <div class="col-md-12 single_list_history">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
@@ -232,20 +249,20 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </div>
                                 </div>
                                 <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-11">
-                            <input type="button" class="btn btn-circle green add_more_history" value="Add" />
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-7">
-                        <div class="row list_language" data-index_no="<?= sizeof($user['user_language_details'])-1;?>">
-                            <div class="languageWrapper">
-                                <?php
-                                foreach($user['user_language_details'] as $key=>$user_language_detail_data)
-                                {
+                    <div class="row col-md-offset-11">
+                        <input type="button" class="btn btn-circle green add_more_history" value="Add" />
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_5_7">
+                    <div class="row list_language" data-index_no="<?= sizeof($user['user_language_details'])-1;?>">
+                        <div class="languageWrapper">
+                            <?php
+                            foreach($user['user_language_details'] as $key=>$user_language_detail_data)
+                            {
                                 ?>
                                 <div class="col-md-12 single_list_language">
                                     <div class="form-group"><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
@@ -262,95 +279,49 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </table>
                                 </div>
                                 <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row col-md-offset-11">
-                            <input type="button" class="btn btn-circle green add_more_language" value="Add" />
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div id="tabs-8">
-                        <div class="row whiteWrapper medicalWrapper">
-                            <div class="col-md-8 col-md-offset-2">
-                                <?php
-                                echo $this->Form->input('user_medical.blood_group',['empty'=>'Select','options'=>$blood_groups,'class'=>'form-control','label'=>__('Blood Group')]);
-                                echo $this->Form->input('user_medical.medical_history',['type'=>'textarea','rows'=>3,'class'=>'form-control','label'=>__('Medical History')]);
-                                ?>
-                            </div>
-                        </div>
+                    <div class="row col-md-offset-11">
+                        <input type="button" class="btn btn-circle green add_more_language" value="Add" />
                     </div>
-                    <div id="tabs-9">
-                        <div class="row whiteWrapper loginWrapper">
-                            <div class="col-md-6 col-md-offset-2">
-                                <?php
-                                echo $this->Form->input('username',['class'=>'form-control','label'=>__('Username')]);
-                                echo $this->Form->input('password',['class'=>'form-control','label'=>__('Password')]);
-                                echo $this->Form->input('user_group_id', ['options' => $userGroups,'class'=>'form-control','label'=>__('User Group')]);
-                                ?>
-                            </div>
+                </div>
+                <div class="tab-pane" id="tab_5_8">
+                    <div class="row whiteWrapper medicalWrapper">
+                        <div class="col-md-8 col-md-offset-2">
+                            <?php
+                            echo $this->Form->input('user_medical.blood_group',['empty'=>'Select','options'=>$blood_groups,'class'=>'form-control','label'=>__('Blood Group')]);
+                            echo $this->Form->input('user_medical.medical_history',['type'=>'textarea','rows'=>3,'class'=>'form-control','label'=>__('Medical History')]);
+                            ?>
                         </div>
                     </div>
                 </div>
-                <div class="text-center"><?= $this->Form->button(__('Submit'),['class'=>'btn green-seagreen','style'=>'margin:20px 0 10px 0']) ?></div>
+                <div class="tab-pane" id="tab_5_9">
+                    <div class="row whiteWrapper loginWrapper">
+                        <div class="col-md-6 col-md-offset-2">
+                            <?php
+                            echo $this->Form->input('username',['class'=>'form-control','label'=>__('Username')]);
+                            echo $this->Form->input('password',['class'=>'form-control','label'=>__('Password')]);
+                            echo $this->Form->input('user_group_id', ['options' => $userGroups,'class'=>'form-control','label'=>__('User Group')]);
+                            ?>
+                        </div>
+                    </div>
+                </div>
                 <?= $this->Form->end() ?>
+                <div class="text-center"><?= $this->Form->button(__('Submit'),['class'=>'btn green-seagreen','style'=>'margin:20px 0 10px 0']) ?></div>
             </div>
         </div>
     </div>
 </div>
+
 <style>
-
-    .whiteWrapper
-    {
-        border: 1px solid seagreen;
-        margin-bottom: 15px;
-        padding: 20px;
-        background-color: white;
-    }
-    .academicWrapper .col-md-12
-    {
-        border: 1px solid seagreen;
-        margin-bottom: 15px;
-        padding: 20px;
-        background-color: white;
-    }
-    .dependentWrapper .col-md-12
-    {
-        border: 1px solid seagreen;
-        margin-bottom: 15px;
-        padding: 20px;
-        background-color: white;
-    }
-    .languageWrapper .col-md-12
-    {
-        border: 1px solid seagreen;
-        margin-bottom: 15px;
-        padding: 20px;
-        background-color: white;
-    }
-    .historyWrapper .col-md-12
-    {
-        border: 1px solid seagreen;
-        margin-bottom: 15px;
-        padding: 20px;
-        background-color: white;
-    }
-    .designationWrapper .col-md-12
-    {
-        border: 1px solid seagreen;
-        margin-bottom: 15px;
-        padding: 20px;
-        background-color: white;
-    }
-
+    .remove{margin-right: 20px;}
     .my-error-class {
         color:darkred !important;
     }
 </style>
 <script>
-    $(function() {
-        $( "#tabs" ).tabs();
-    });
 
     $(document).ready(function(){
         // Validation Identifier Start START
@@ -361,6 +332,25 @@ $religions = \Cake\Core\Configure::read('religions');
 //            }
 //        });
         // Validation Identifier Start END
+
+        $(document).on('focus','.training_type', function()
+        {
+            $(this).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "<?= $this->Url->build('/Users/ajax/get_training_types')?>",
+                        dataType: "json",
+                        data: {
+                            qstring: request.term
+                        },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                }
+            });
+        });
 
         $(document).on('click', '.is_basic', function()
         {
@@ -408,11 +398,18 @@ $religions = \Cake\Core\Configure::read('religions');
         $(document).on('change','.academic_type',function(){
             if($(this).val()==1)
             {
-                $(this).closest('.single_list').find('.hidden_container').removeClass('hidden');
+                $(this).closest('.single_list').find('.academic_container').removeClass('hidden');
+                $(this).closest('.single_list').find('.training_container').addClass('hidden');
+            }
+            else if($(this).val()==2)
+            {
+                $(this).closest('.single_list').find('.training_container').removeClass('hidden');
+                $(this).closest('.single_list').find('.academic_container').addClass('hidden');
             }
             else
             {
-                $(this).closest('.single_list').find('.hidden_container').addClass('hidden');
+                $(this).closest('.single_list').find('.training_container').addClass('hidden');
+                $(this).closest('.single_list').find('.academic_container').addClass('hidden');
             }
         });
 

@@ -37,7 +37,7 @@ class UserDesignationsTable extends Table
                             ->requirePresence('office_unit_designation_id');
                         break;
 
-                    case '1':
+                    case 1:
                         $this->validator()
                             ->requirePresence('designation_id');
                         break;

@@ -1,10 +1,13 @@
 <div class="row">
     <div class="col-md-12">
         <!-- BEGIN BORDERED TABLE PORTLET-->
-        <div class="portlet box blue-hoki">
+        <div class="portlet box green-seagreen">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i>Users List <?= $this->Html->link(__('New User'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']) ?>
+                    <i class="fa fa-coffee"></i>Users List
+                </div>
+                <div class="tools">
+                    <?= $this->Html->link(__('New User'), ['action' => 'add'],['class'=>'btn btn-sm btn-primary']) ?>
                 </div>
             </div>
             <div class="portlet-body">
@@ -42,6 +45,5 @@
                 </div>
             </div>
         </div>
-        <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
