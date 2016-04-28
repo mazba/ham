@@ -156,12 +156,11 @@ class UsersController extends AppController
             ]
         ]);
 
+        unset($user['password']);
+
         if($this->request->is(['patch', 'post', 'put']))
         {
-            echo '<pre>';
-            print_r($this->request->data);
-            echo '</pre>';
-            die();
+
             $data = $this->request->data;
             $time = time();
 
@@ -238,6 +237,11 @@ class UsersController extends AppController
                     'UserMedicals'
                 ]
             ]);
+
+//            echo '<pre>';
+//            print_r($user->toArray());
+//            echo '</pre>';
+//            die();
 
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been updated!'));

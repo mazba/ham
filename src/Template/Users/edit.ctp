@@ -230,34 +230,66 @@ $religions = \Cake\Core\Configure::read('religions');
                     <div class="row list_history" data-index_no="<?= sizeof($user['user_employment_histories'])-1;?>">
                         <div class="historyWrapper">
                             <?php
-                            foreach($user['user_employment_histories'] as $key=>$user_employment_history_data)
+                            if(is_array($user['user_employment_histories']) && sizeof($user['user_employment_histories'])>0)
                             {
-                                ?>
+                                foreach ($user['user_employment_histories'] as $key => $user_employment_history_data)
+                                {
+                                    ?>
+                                    <div class="col-md-12 single_list_history">
+                                        <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
+                                        <div class="col-md-6">
+                                            <?php
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.office_id', ['type' => 'text', 'class' => 'form-control office', 'label' => __('Office')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.office_unit_id', ['type' => 'text', 'class' => 'form-control office_unit_id', 'label' => __('Office Unit')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.designation_id', ['type' => 'text', 'class' => 'form-control designation_id', 'label' => __('Designation')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.user_designation_id', ['type' => 'text', 'class' => 'form-control user_designation_id', 'label' => __('User Designation')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.initial_job_status_id', ['type' => 'text', 'class' => 'form-control', 'label' => __('Initial Job Status')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.ending_job_status_id', ['type' => 'text', 'class' => 'form-control', 'label' => __('Ending Job Status')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.start_date', ['value' => $user_employment_history_data['start_date'] ? date('d-m-Y', $user_employment_history_data['start_date']) : '', 'type' => 'text', 'class' => 'form-control datepicker', 'label' => __('Start Date')]);
+                                            ?>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <?php
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.end_date', ['value' => $user_employment_history_data['end_date'] ? date('d-m-Y', $user_employment_history_data['end_date']) : '', 'type' => 'text', 'class' => 'form-control datepicker', 'label' => __('End Date')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.reason', ['class' => 'form-control', 'label' => __('Reason')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.remarks', ['class' => 'form-control', 'label' => __('Remarks')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.job_description', ['class' => 'form-control', 'label' => __('Job Description')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.job_grade', ['class' => 'form-control', 'label' => __('Job Grade')]);
+                                            echo $this->Form->input('user_employment_histories.' . $key . '.pay_scale', ['class' => 'form-control', 'label' => __('Pay Scale')]);
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            else
+                            {
+                            ?>
                                 <div class="col-md-12 single_list_history">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <div class="col-md-6">
                                         <?php
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.office_id',['type'=>'text','class'=>'form-control office','label'=>__('Office')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.office_unit_id',['type'=>'text','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.designation_id',['type'=>'text','class'=>'form-control designation_id','label'=>__('Designation')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.user_designation_id',['type'=>'text','class'=>'form-control user_designation_id','label'=>__('User Designation')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.initial_job_status_id',['type'=>'text','class'=>'form-control','label'=>__('Initial Job Status')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.ending_job_status_id',['type'=>'text','class'=>'form-control','label'=>__('Ending Job Status')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.start_date',['value'=>$user_employment_history_data['start_date']?date('d-m-Y', $user_employment_history_data['start_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('Start Date')]);
+                                        echo $this->Form->input('user_employment_histories.0.office_id',['type'=>'text','class'=>'form-control office','label'=>__('Office')]);
+                                        echo $this->Form->input('user_employment_histories.0.office_unit_id',['type'=>'text','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
+                                        echo $this->Form->input('user_employment_histories.0.designation_id',['type'=>'text','class'=>'form-control designation_id','label'=>__('Designation')]);
+                                        echo $this->Form->input('user_employment_histories.0.user_designation_id',['type'=>'text','class'=>'form-control user_designation_id','label'=>__('User Designation')]);
+                                        echo $this->Form->input('user_employment_histories.0.initial_job_status_id',['type'=>'text','class'=>'form-control','label'=>__('Initial Job Status')]);
+                                        echo $this->Form->input('user_employment_histories.0.ending_job_status_id',['type'=>'text','class'=>'form-control','label'=>__('Ending Job Status')]);
+                                        echo $this->Form->input('user_employment_histories.0.start_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Start Date')]);
                                         ?>
                                     </div>
                                     <div class="col-md-6">
                                         <?php
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.end_date',['value'=>$user_employment_history_data['end_date']?date('d-m-Y', $user_employment_history_data['end_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('End Date')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.reason',['class'=>'form-control','label'=>__('Reason')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.remarks',['class'=>'form-control','label'=>__('Remarks')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.job_description',['class'=>'form-control','label'=>__('Job Description')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.job_grade',['class'=>'form-control','label'=>__('Job Grade')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.pay_scale',['class'=>'form-control','label'=>__('Pay Scale')]);
+                                        echo $this->Form->input('user_employment_histories.0.end_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('End Date')]);
+                                        echo $this->Form->input('user_employment_histories.0.reason',['class'=>'form-control','label'=>__('Reason')]);
+                                        echo $this->Form->input('user_employment_histories.0.remarks',['class'=>'form-control','label'=>__('Remarks')]);
+                                        echo $this->Form->input('user_employment_histories.0.job_description',['class'=>'form-control','label'=>__('Job Description')]);
+                                        echo $this->Form->input('user_employment_histories.0.job_grade',['class'=>'form-control','label'=>__('Job Grade')]);
+                                        echo $this->Form->input('user_employment_histories.0.pay_scale',['class'=>'form-control','label'=>__('Pay Scale')]);
                                         ?>
                                     </div>
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
