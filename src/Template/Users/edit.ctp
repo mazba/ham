@@ -43,7 +43,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             echo $this->Form->input('user_basic.mother_name_en');
                             echo $this->Form->input('user_basic.nid');
                             echo $this->Form->input('user_basic.bin_brn');
-                            echo $this->Form->input('user_basic.date_of_birth',['value'=>isset($user['date_of_birth'])?date('d-m-y', $user['date_of_birth']):'','class'=>'form-control datepicker','type'=>'text']);
+                            echo $this->Form->input('user_basic.date_of_birth',['value'=>$user['user_basic']['date_of_birth']?date('d-m-Y', $user['user_basic']['date_of_birth']):'','class'=>'form-control datepicker','type'=>'text']);
                             echo $this->Form->input('user_basic.place_of_birth',['class'=>'form-control','label'=>__('Place Of Birth')]);
                             echo $this->Form->input('user_basic.nationality',['class'=>'form-control','label'=>__('Nationality')]);
                             echo $this->Form->input('user_basic.is_ethnic',['type'=>'checkbox','class'=>'form-control','label'=>__('Is Ethnic')]);
@@ -59,8 +59,8 @@ $religions = \Cake\Core\Configure::read('religions');
                             echo $this->Form->input('user_basic.passport_number',['class'=>'form-control','label'=>__('Passport Number')]);
                             echo $this->Form->input('user_basic.driving_license_number',['class'=>'form-control','label'=>__('Driving License Number')]);
                             echo $this->Form->input('user_basic.tin_number',['class'=>'form-control','label'=>__('TIN Number')]);
-                            echo $this->Form->input('user_basic.present_address',['type'=>'textarea','class'=>'form-control','label'=>__('Present Address')]);
-                            echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','class'=>'form-control','label'=>__('Permanent Address')]);
+                            echo $this->Form->input('user_basic.present_address',['type'=>'textarea','rows'=>2,'class'=>'form-control','label'=>__('Present Address')]);
+                            echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','rows'=>2,'class'=>'form-control','label'=>__('Permanent Address')]);
                             echo $this->Form->input('picture_name_file',['class'=>'','type'=>'file','label'=>__('Photo')]);
                             ?>
                         </div>
@@ -104,8 +104,8 @@ $religions = \Cake\Core\Configure::read('religions');
                                             ?>
                                         </div>
                                         <?php
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.starting_time',['value'=>isset($academic_training_data['starting_time'])?date('d-m-y', $academic_training_data['starting_time']):'','type'=>'text','class'=>'form-control starting_time datepicker','label'=>__('Starting Time')]);
-                                        echo $this->Form->input('user_academic_trainings.'.$key.'.completion_time',['value'=>isset($academic_training_data['completion_time'])?date('d-m-y', $academic_training_data['completion_time']):'','type'=>'text','class'=>'form-control completion_time datepicker','label'=>__('Completion Time')]);
+                                        echo $this->Form->input('user_academic_trainings.'.$key.'.starting_time',['value'=>$academic_training_data['starting_time']?date('d-m-Y', $academic_training_data['starting_time']):'','type'=>'text','class'=>'form-control starting_time datepicker','label'=>__('Starting Time')]);
+                                        echo $this->Form->input('user_academic_trainings.'.$key.'.completion_time',['value'=>$academic_training_data['completion_time']?date('d-m-Y', $academic_training_data['completion_time']):'','type'=>'text','class'=>'form-control completion_time datepicker','label'=>__('Completion Time')]);
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.duration',['value'=>$academic_training_data['duration'],'class'=>'form-control duration','label'=>__('Duration')]);
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.remarks',['value'=>$academic_training_data['remarks'],'type'=>'textarea','rows'=>2,'class'=>'form-control remarks','label'=>__('Remarks')]);
                                         ?>
@@ -135,7 +135,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                         echo $this->Form->input('user_dependents.'.$key.'.full_name_en', ['value'=>$user_dependent_data['full_name_en'],'class' => 'form-control full_name_en', 'label' => __('Full Name En')]);
                                         echo $this->Form->input('user_dependents.'.$key.'.relation', ['value'=>$user_dependent_data['relation'],'class' => 'form-control relation', 'label' => __('Relation')]);
                                         echo $this->Form->input('user_dependents.'.$key.'.gender', ['value'=>$user_dependent_data['gender'],'options' => [1 => 'Male', 2 => 'Female'], 'class' => 'form-control gender', 'label' => __('Gender')]);
-                                        echo $this->Form->input('user_dependents.'.$key.'.date_of_birth', ['value'=>isset($user_dependent_data['date_of_birth'])?date('d-m-y', $user_dependent_data['date_of_birth']):'','type' => 'text', 'class' => 'form-control date_of_birth datepicker', 'label' => __('Date Of Birth')]);
+                                        echo $this->Form->input('user_dependents.'.$key.'.date_of_birth', ['value'=>$user_dependent_data['date_of_birth']?date('d-m-Y', $user_dependent_data['date_of_birth']):'','type' => 'text', 'class' => 'form-control date_of_birth datepicker', 'label' => __('Date Of Birth')]);
                                         echo $this->Form->input('user_dependents.'.$key.'.nid', ['value'=>$user_dependent_data['nid'],'class' => 'form-control nid', 'label' => __('NID')]);
                                         echo $this->Form->input('user_dependents.'.$key.'.bin_brn', ['value'=>$user_dependent_data['bin_brn'],'class' => 'form-control bin_brn', 'label' => __('Bin Brn')]);
                                         ?>
@@ -166,31 +166,40 @@ $religions = \Cake\Core\Configure::read('religions');
                             <?php
                             foreach($user['user_designations'] as $key=>$user_designation_data)
                             {
+                                $designations = $this->Utility->getDesignations($user_designation_data['office_id']);
+                                $officeUnits = $this->Utility->getOfficeUnits($user_designation_data['office_id']);
+                                $officeUnitDesignations = $this->Utility->getOfficeUnitDesignations($user_designation_data['office_id'],$user_designation_data['office_unit_id']);
                                 ?>
                                 <div class="col-md-12 single_list_designation">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <div class="col-md-11" style="border: 0px; margin: 0px;">
                                         <div class="col-md-4 col-md-offset-3">
-                                            <?php
-                                            echo $this->Form->input('user_designations.'.$key.'.is_basic',['type'=>'checkbox','value'=>1,'class'=>'form-control is_basic simpleCheckbox','label'=>__('Is Basic'), 'style'=>'margin-top:-7px;']);
-                                            ?>
+                                        <?php
+                                        echo $this->Form->input('user_designations.'.$key.'.is_basic',['type'=>'checkbox','value'=>1,'class'=>'form-control is_basic simpleCheckbox','label'=>__('Is Basic'), 'style'=>'margin-top:-7px;']);
+                                        ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <?php
                                         echo $this->Form->input('user_designations.'.$key.'.office_id',['options'=>$offices,'empty'=>'Select','class'=>'form-control office','label'=>__('Office')]);
-                                        echo $this->Form->input('user_designations.'.$key.'.office_unit_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                        echo $this->Form->input('user_designations.'.$key.'.office_unit_designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
-                                        echo "<div class='des_div hidden'>";
-                                        echo $this->Form->input('user_designations.'.$key.'.designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control designation_id','label'=>__('Designation')]);
-                                        echo "</div>";
                                         ?>
+                                        <div class="non_basic <?php if($user_designation_data['is_basic']==1){echo 'hidden';}?>">
+                                        <?php
+                                        echo $this->Form->input('user_designations.'.$key.'.office_unit_id',['options'=>$officeUnits,'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
+                                        echo $this->Form->input('user_designations.'.$key.'.office_unit_designation_id',['options'=>$officeUnitDesignations,'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
+                                        ?>
+                                        </div>
+                                        <div class='des_div <?php if($user_designation_data['is_basic']!=1){echo 'hidden';}?>'>
+                                        <?php
+                                        echo $this->Form->input('user_designations.'.$key.'.designation_id',['options'=>$designations,'empty'=>'Select','class'=>'form-control designation_id','label'=>__('Designation')]);
+                                        ?>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <?php
                                         echo $this->Form->input('user_designations.'.$key.'.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
-                                        echo $this->Form->input('user_designations.'.$key.'.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
-                                        echo $this->Form->input('user_designations.'.$key.'.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
+                                        echo $this->Form->input('user_designations.'.$key.'.starting_date',['value'=>$user_designation_data['starting_date']?date('d-m-Y', $user_designation_data['starting_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
+                                        echo $this->Form->input('user_designations.'.$key.'.ending_date',['value'=>$user_designation_data['starting_date']?date('d-m-Y', $user_designation_data['starting_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
                                         ?>
                                     </div>
                                 </div>
@@ -234,12 +243,12 @@ $religions = \Cake\Core\Configure::read('religions');
                                         echo $this->Form->input('user_employment_histories.'.$key.'.user_designation_id',['type'=>'text','class'=>'form-control user_designation_id','label'=>__('User Designation')]);
                                         echo $this->Form->input('user_employment_histories.'.$key.'.initial_job_status_id',['type'=>'text','class'=>'form-control','label'=>__('Initial Job Status')]);
                                         echo $this->Form->input('user_employment_histories.'.$key.'.ending_job_status_id',['type'=>'text','class'=>'form-control','label'=>__('Ending Job Status')]);
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.start_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Start Date')]);
+                                        echo $this->Form->input('user_employment_histories.'.$key.'.start_date',['value'=>$user_employment_history_data['start_date']?date('d-m-Y', $user_employment_history_data['start_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('Start Date')]);
                                         ?>
                                     </div>
                                     <div class="col-md-6">
                                         <?php
-                                        echo $this->Form->input('user_employment_histories.'.$key.'.end_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('End Date')]);
+                                        echo $this->Form->input('user_employment_histories.'.$key.'.end_date',['value'=>$user_employment_history_data['end_date']?date('d-m-Y', $user_employment_history_data['end_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('End Date')]);
                                         echo $this->Form->input('user_employment_histories.'.$key.'.reason',['class'=>'form-control','label'=>__('Reason')]);
                                         echo $this->Form->input('user_employment_histories.'.$key.'.remarks',['class'=>'form-control','label'=>__('Remarks')]);
                                         echo $this->Form->input('user_employment_histories.'.$key.'.job_description',['class'=>'form-control','label'=>__('Job Description')]);

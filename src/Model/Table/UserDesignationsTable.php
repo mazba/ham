@@ -29,25 +29,25 @@ class UserDesignationsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator->requirePresence('office_id', true)->notEmpty('office_id', 'Please fill this field');
-        $validator->add('is_basic', 'valid', [
-            'rule' => function($value) {
-                switch ($value) {
-                    case null:
-                        $this->validator()
-                            ->requirePresence('office_unit_designation_id');
-                        break;
-
-                    case 1:
-                        $this->validator()
-                            ->requirePresence('designation_id');
-                        break;
-
-                    default:
-                        return false;
-                }
-                return true;
-            }
-        ]);
+//        $validator->add('is_basic', [
+//            'rule' => function($value) {
+//                switch ($value) {
+//                    case null:
+//                        $this->validator()
+//                            ->requirePresence('office_unit_designation_id');
+//                        break;
+//
+//                    case 1:
+//                        $this->validator()
+//                            ->requirePresence('designation_id');
+//                        break;
+//
+//                    default:
+//                        return false;
+//                }
+//                return true;
+//            }
+//        ]);
 
         return $validator;
     }

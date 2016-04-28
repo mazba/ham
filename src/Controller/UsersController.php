@@ -156,15 +156,12 @@ class UsersController extends AppController
             ]
         ]);
 
-        unset($user['password']);
-
-//        echo '<pre>';
-//        print_r($user);
-//        echo '</pre>';
-//        die();
-
         if($this->request->is(['patch', 'post', 'put']))
         {
+            echo '<pre>';
+            print_r($this->request->data);
+            echo '</pre>';
+            die();
             $data = $this->request->data;
             $time = time();
 
@@ -174,7 +171,7 @@ class UsersController extends AppController
             }
 
             $data['updated_by'] = $loggedUser['id'];
-            $data['updated_time'] = time();
+            $data['updated_time'] = $time;
 
             $data['user_basic']['update_by']=$loggedUser['id'];
             $data['user_basic']['update_time']=$time;
@@ -213,12 +210,12 @@ class UsersController extends AppController
 
             for($i=0; $i<sizeof($data['user_designations']); $i++)
             {
-                if($data['user_designations'][$i]['is_basic'] != 1)
+                if(!isset($data['user_designations'][$i]['is_basic']))
                 {
                     $data['user_designations'][$i]['designation_id'] = $data['user_designations'][$i]['office_unit_designation_id'];
                 }
 
-                if($data['user_designations'][$i]['is_basic'] == 1)
+                if(isset($data['user_designations'][$i]['is_basic']) && $data['user_designations'][$i]['is_basic'] == 1)
                 {
                     $data['office_id'] = $data['user_designations'][$i]['office_id'];
                 }
