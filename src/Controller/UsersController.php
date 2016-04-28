@@ -201,6 +201,11 @@ class UsersController extends AppController
             {
                 $data['user_employment_histories'][$i]['update_by']=$loggedUser['id'];
                 $data['user_employment_histories'][$i]['update_time']=$time;
+
+                if(empty($data['user_employment_histories'][$i]['office_id']))
+                {
+                    unset($data['user_employment_histories'][$i]);
+                }
             }
             for($i=0; $i<sizeof($data['user_language_details']); $i++)
             {
