@@ -76,6 +76,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <div class="col-md-12 single_list">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <div class="col-md-6">
+                                        <input type="hidden" name="user_academic_trainings[<?= $key?>][id]" value="<?= $academic_training_data['id'];?>" />
                                         <?php
                                         echo $this->Form->input('user_academic_trainings.'.$key.'.type',['options' => ['1'=>__('Academic'),'2'=>__('Training')],'value'=>$academic_training_data['type'],'class'=>'form-control academic_type','empty'=>__('Select'),'label'=>['text'=>'Type','class'=>'col-sm-3 control-label text-right']]);
                                         ?>
@@ -130,6 +131,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <div class="col-md-12 single_list_dependent">
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <div class="col-md-6">
+                                        <input type="hidden" name="user_dependents[<?= $key?>][id]" value="<?= $user_dependent_data['id'];?>" />
                                         <?php
                                         echo $this->Form->input('user_dependents.'.$key.'.full_name_bn', ['value'=>$user_dependent_data['full_name_bn'],'class' => 'form-control full_name_bn', 'label' => __('Full Name Bn')]);
                                         echo $this->Form->input('user_dependents.'.$key.'.full_name_en', ['value'=>$user_dependent_data['full_name_en'],'class' => 'form-control full_name_en', 'label' => __('Full Name En')]);
@@ -174,6 +176,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                     <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <div class="col-md-11" style="border: 0px; margin: 0px;">
                                         <div class="col-md-4 col-md-offset-3">
+                                        <input type="hidden" name="user_designations[<?= $key?>][id]" value="<?= $user_designation_data['id'];?>" />
                                         <?php
                                         echo $this->Form->input('user_designations.'.$key.'.is_basic',['type'=>'checkbox','value'=>1,'class'=>'form-control is_basic simpleCheckbox','label'=>__('Is Basic'), 'style'=>'margin-top:-7px;']);
                                         ?>
@@ -183,10 +186,10 @@ $religions = \Cake\Core\Configure::read('religions');
                                         <?php
                                         echo $this->Form->input('user_designations.'.$key.'.office_id',['options'=>$offices,'empty'=>'Select','class'=>'form-control office','label'=>__('Office')]);
                                         ?>
-                                        <div class="non_basic <?php if($user_designation_data['is_basic']==1){echo 'hidden';}?>">
+                                        <div class="non_basic_div <?php if($user_designation_data['is_basic']==1){echo 'hidden';}?>">
                                         <?php
                                         echo $this->Form->input('user_designations.'.$key.'.office_unit_id',['options'=>$officeUnits,'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                        echo $this->Form->input('user_designations.'.$key.'.office_unit_designation_id',['options'=>$officeUnitDesignations,'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
+                                        echo $this->Form->input('user_designations.'.$key.'.office_unit_designation_id',['options'=>$officeUnitDesignations,'value'=>$user_designation_data['designation_id'],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
                                         ?>
                                         </div>
                                         <div class='des_div <?php if($user_designation_data['is_basic']!=1){echo 'hidden';}?>'>
@@ -197,7 +200,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </div>
                                     <div class="col-md-6">
                                         <?php
-                                        echo $this->Form->input('user_designations.'.$key.'.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
+                                        echo $this->Form->input('user_designations.'.$key.'.designation_order',['type'=>'text','empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
                                         echo $this->Form->input('user_designations.'.$key.'.starting_date',['value'=>$user_designation_data['starting_date']?date('d-m-Y', $user_designation_data['starting_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
                                         echo $this->Form->input('user_designations.'.$key.'.ending_date',['value'=>$user_designation_data['starting_date']?date('d-m-Y', $user_designation_data['starting_date']):'','type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
                                         ?>
@@ -238,6 +241,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                     <div class="col-md-12 single_list_history">
                                         <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                         <div class="col-md-6">
+                                            <input type="hidden" name="user_employment_histories[<?= $key?>][id]" value="<?= $user_employment_history_data['id'];?>" />
                                             <?php
                                             echo $this->Form->input('user_employment_histories.' . $key . '.office_id', ['type' => 'text', 'class' => 'form-control office', 'label' => __('Office')]);
                                             echo $this->Form->input('user_employment_histories.' . $key . '.office_unit_id', ['type' => 'text', 'class' => 'form-control office_unit_id', 'label' => __('Office Unit')]);
@@ -309,7 +313,10 @@ $religions = \Cake\Core\Configure::read('religions');
                                     <div class="form-group"><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                     <table class="table table-bordered">
                                         <tr>
-                                            <td colspan="4" class="col-md-3 col-md-offset-4"><?php echo $this->Form->input('user_language_details.'.$key.'.name_en',['options'=>$languages,'empty'=>'Select','style'=>'width:400px','class'=>'form-control','label'=>['text'=>__('Language')]]);?></td>
+                                            <td colspan="4" class="col-md-3 col-md-offset-4">
+                                                <input type="hidden" name="user_language_details[<?= $key?>][id]" value="<?= $user_language_detail_data['id'];?>" />
+                                                <?php echo $this->Form->input('user_language_details.'.$key.'.name_en',['options'=>$languages,'empty'=>'Select','style'=>'width:400px','class'=>'form-control','label'=>['text'=>__('Language')]]);?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="col-md-3"><?php echo $this->Form->input('user_language_details.'.$key.'.read_level',['empty'=>'Reading Skill','options'=>$language_options,'class'=>'form-control','label'=>['text'=>'','class'=>'hidden']]);?></td>
@@ -409,12 +416,14 @@ $religions = \Cake\Core\Configure::read('religions');
                 obj.find('.office_unit_id').closest('.form-group').hide();
                 obj.find('.office_unit_designation_id').closest('.form-group').hide();
                 obj.find('.des_div').removeClass('hidden');
+                obj.find('.non_basic_div').addClass('hidden');
             }
             else
             {
                 obj.find('.office_unit_id').closest('.form-group').show();
                 obj.find('.office_unit_designation_id').closest('.form-group').show();
                 obj.find('.des_div').addClass('hidden');
+                obj.find('.non_basic_div').removeClass('hidden');
             }
         });
 
@@ -551,6 +560,7 @@ $religions = \Cake\Core\Configure::read('religions');
                 $(this).closest('.single_list_designation').find('.office_unit_id').closest('.form-group').show();
                 $(this).closest('.single_list_designation').find('.office_unit_designation_id').closest('.form-group').show();
                 $(this).closest('.single_list_designation').find('.des_div').addClass('hidden');
+                $(this).closest('.single_list_designation').find('.non_basic_div').removeClass('hidden');
             }).end();
 
             $('.designationWrapper').append(html);
