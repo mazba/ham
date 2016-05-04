@@ -11,27 +11,27 @@ use App\Controller\AppController;
 class JobRanksController extends AppController
 {
 
-	public $paginate = [
+    public $paginate = [
         'limit' => 15,
         'order' => [
             'JobRanks.title' => 'desc'
         ]
     ];
 
-/**
-* Index method
-*
-* @return void
-*/
-public function index()
-{
-$jobRanks = $this->JobRanks->find('all', [
-'conditions' =>['JobRanks.status !=' => 99],
-'contain' => ['Offices']
-]);
-$this->set('jobRanks', $this->paginate($jobRanks) );
-$this->set('_serialize', ['jobRanks']);
-}
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $jobRanks = $this->JobRanks->find('all', [
+            'conditions' => ['JobRanks.status !=' => 99],
+            'contain' => ['Offices']
+        ]);
+        $this->set('jobRanks', $this->paginate($jobRanks));
+        $this->set('_serialize', ['jobRanks']);
+    }
 
     /**
      * View method
@@ -42,7 +42,7 @@ $this->set('_serialize', ['jobRanks']);
      */
     public function view($id = null)
     {
-        $user=$this->Auth->user();
+        $user = $this->Auth->user();
         $jobRank = $this->JobRanks->get($id, [
             'contain' => ['Offices', 'JobGrades']
         ]);
@@ -57,23 +57,19 @@ $this->set('_serialize', ['jobRanks']);
      */
     public function add()
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $jobRank = $this->JobRanks->newEntity();
-        if ($this->request->is('post'))
-        {
+        if ($this->request->is('post')) {
 
-            $data=$this->request->data;
-            $data['create_by']=$user['id'];
-            $data['create_date']=$time;
+            $data = $this->request->data;
+            $data['create_by'] = $user['id'];
+            $data['create_date'] = $time;
             $jobRank = $this->JobRanks->patchEntity($jobRank, $data);
-            if ($this->JobRanks->save($jobRank))
-            {
+            if ($this->JobRanks->save($jobRank)) {
                 $this->Flash->success('The job rank has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The job rank could not be saved. Please, try again.');
             }
         }
@@ -91,24 +87,20 @@ $this->set('_serialize', ['jobRanks']);
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
-        $time=time();
+        $user = $this->Auth->user();
+        $time = time();
         $jobRank = $this->JobRanks->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put']))
-        {
-            $data=$this->request->data;
-            $data['update_by']=$user['id'];
-            $data['update_date']=$time;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $data['update_by'] = $user['id'];
+            $data['update_date'] = $time;
             $jobRank = $this->JobRanks->patchEntity($jobRank, $data);
-            if ($this->JobRanks->save($jobRank))
-            {
+            if ($this->JobRanks->save($jobRank)) {
                 $this->Flash->success('The job rank has been saved.');
                 return $this->redirect(['action' => 'index']);
-            }
-            else
-            {
+            } else {
                 $this->Flash->error('The job rank could not be saved. Please, try again.');
             }
         }
@@ -129,18 +121,15 @@ $this->set('_serialize', ['jobRanks']);
 
         $jobRank = $this->JobRanks->get($id);
 
-        $user=$this->Auth->user();
-        $data=$this->request->data;
-        $data['updated_by']=$user['id'];
-        $data['updated_date']=time();
-        $data['status']=99;
+        $user = $this->Auth->user();
+        $data = $this->request->data;
+        $data['updated_by'] = $user['id'];
+        $data['updated_date'] = time();
+        $data['status'] = 99;
         $jobRank = $this->JobRanks->patchEntity($jobRank, $data);
-        if ($this->JobRanks->save($jobRank))
-        {
+        if ($this->JobRanks->save($jobRank)) {
             $this->Flash->success('The job rank has been deleted.');
-        }
-        else
-        {
+        } else {
             $this->Flash->error('The job rank could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);

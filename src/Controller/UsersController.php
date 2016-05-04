@@ -2,9 +2,13 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\User;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Database\Connection;
 use Cake\Utility\Inflector;
 use Cake\Datasource\ConnectionManager;
+use Cake\ORM\TableRegistry;
+use Cake\Collection\Collection;
 
 /**
  * Users Controller
@@ -274,8 +278,6 @@ class UsersController extends AppController
                         ]
                     ]);
 
-
-
                     if ($this->Users->save($user)) {
                         $this->Flash->success(__('The user has been updated!'));
                         return $this->redirect(['action' => 'index']);
@@ -285,7 +287,7 @@ class UsersController extends AppController
                 });
 
             } catch (\Exception $e) {
-                $this->Flash->error('The item could not be saved. Please, try again.');
+                $this->Flash->error('The user could not be saved. Please try again!');
             }
         }
 
