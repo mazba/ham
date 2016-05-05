@@ -90,5 +90,6 @@ return [
         'User Transfer'=>6,
         'Office Order'=>7,
     ],
-    'lpr_range'=>60//Leave preparatory to Retirement
+    'lpr_range'=>60,//Leave preparatory to Retirement
+    'experience_report_type'=>['1'=>'Remaining Time Of LPR', '2'=>'Years Of Experience'],
 ];
