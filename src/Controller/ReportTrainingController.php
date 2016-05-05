@@ -10,10 +10,16 @@ class ReportTrainingController extends AppController
     {
         $user = $this->Auth->user();
         $items = TableRegistry::get('items')->find('list');
-        $trainingTypes = TableRegistry::get('training_types')->find('list')->select(['title', 'title']);
+        $trainingTypes = TableRegistry::get('training_types')->find('list')->select(['id', 'title']);
+
+        $arrangedTrainingTypes = [];
+        foreach($trainingTypes as $type)
+        {
+            $arrangedTrainingTypes[trim($type)] = $type;
+        }
 
         $this->set('items', $items);
-        $this->set('trainingTypes', $trainingTypes);
+        $this->set('trainingTypes', $arrangedTrainingTypes);
         $this->set('_serialize', ['items', 'trainingTypes']);
 
         if($this->request->is('post'))
@@ -26,7 +32,7 @@ class ReportTrainingController extends AppController
 
             $trainings->select(['users.full_name_bn']);
             $trainings->select(['title_bn', 'institute_name', 'starting_time', 'completion_time', 'duration']);
-
+            $trainings->where(['users.status'=>1]);
             if(!empty($training_type) && strlen($training_type)>0)
             {
                 $trainings->where(['user_academic_trainings.title_bn like' => '%' . $training_type . '%']);

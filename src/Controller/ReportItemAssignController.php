@@ -27,6 +27,7 @@ class ReportItemAssignController extends AppController
             $items->select(['users.full_name_bn']);
             $items->select(['item_assigns.assign_type', 'item_assigns.office_id', 'item_assigns.office_building_id', 'item_assigns.office_room_id', 'item_assigns.office_warehouse_id', 'item_assigns.office_unit_id', 'item_assigns.designation_id', 'item_assigns.designated_user_id', 'item_assigns.item_id', 'item_assigns.quantity', 'item_assigns.assign_date', 'item_assigns.expected_usage_time', 'item_assigns.next_maintainance_date']);
 
+            $items->where(['items.status'=>1]);
             if(!empty($assigned_to) && $assigned_to>0)
             {
                 $items->where(['designated_user_id'=>$assigned_to]);

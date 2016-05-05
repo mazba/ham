@@ -34,7 +34,7 @@ $user = $this->request->Session()->read('Auth')['User'];
                 <div class="row">
                     <div class="col-md-7 col-md-offset-2">
                         <?php
-                        echo $this->Form->input('item_category_id', ['class' => 'form-control item_category_id', 'options' => $itemCategories, 'empty' => __('Select'), 'templates' => ['inputContainer' => '<div class="form-group item_category {{type}}{{required}}">{{content}}</div>']]);
+                        echo $this->Form->input('item_category_id', ['class' => 'form-control select2me item_category_id', 'options' => $itemCategories, 'empty' => __('Select'), 'templates' => ['inputContainer' => '<div class="form-group item_category {{type}}{{required}}">{{content}}</div>']]);
                         ?>
                     </div>
                     <div class="col-md-12 text-center">
@@ -79,7 +79,8 @@ $user = $this->request->Session()->read('Auth')['User'];
                                         <th><?= __('Item') ?></th>
                                         <th><?= __('Item Serial#') ?></th>
                                         <th><?= __('Item Model#') ?></th>
-                                        <th><?= __('Quantity') ?></th>
+                                        <th><?= __('Warehouse Quantity') ?></th>
+                                        <th><?= __('Assigned Quantity') ?></th>
                                     </tr>
                                 </thead>
 
@@ -92,6 +93,7 @@ $user = $this->request->Session()->read('Auth')['User'];
                                             <td><?= $detail['serial_number'];?></td>
                                             <td><?= $detail['model_number'];?></td>
                                             <td><?= $detail['quantity'];?></td>
+                                            <td><?= $detail['item_assigns']['quantity'];?></td>
                                         </tr>
                                     <?php endforeach;?>
                                     <?php else:?>
@@ -107,14 +109,20 @@ $user = $this->request->Session()->read('Auth')['User'];
     </div>
 </div>
 <?php endif;?>
+<style>
+    .ui-datepicker-month
+    {
+        color: dimgrey !important;
+    }
+</style>
 
 <script type="text/javascript">
     $(document).ready(function(){
         $(document).on("focus",".datepicker", function()
         {
-            $(this).removeClass('hasDatepicker').datepicker({
-                dateFormat: 'dd-mm-yy'
-            });
+//            $(this).removeClass('hasDatepicker').datepicker({
+//                dateFormat: 'dd-mm-yy'
+//            });
         });
 
         $(document).on('change', '.item_category_id', function () {

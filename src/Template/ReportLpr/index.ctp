@@ -2,6 +2,18 @@
 use Cake\Core\Configure;
 
 $user = $this->request->Session()->read('Auth')['User'];
+
+//echo $this->System->get_date_diff(strtotime('05-05-1916'), time());
+//$years = 60;
+//$dateBeforePostYears = strtotime("- ".$years." year", time());
+//echo date('d-m-y', $dateBeforePostYears);
+//exit;
+
+//echo strtotime('10-12-1950');
+//exit;
+//$dateBeforePostYears = strtotime("- 60 year", time());
+//echo $dateBeforePostYears;
+//exit;
 ?>
 <div class="page-bar">
     <ul class="page-breadcrumb">
@@ -11,7 +23,7 @@ $user = $this->request->Session()->read('Auth')['User'];
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__('Item Assign Report'), ['action' => 'index']) ?>
+            <?= $this->Html->link(__('LPR Report'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
     </ul>
@@ -22,7 +34,7 @@ $user = $this->request->Session()->read('Auth')['User'];
         <div class="portlet box green-seagreen">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Item Assign Report') ?>
+                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('LPR Report') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
@@ -34,9 +46,8 @@ $user = $this->request->Session()->read('Auth')['User'];
                 <div class="row">
                     <div class="col-md-7 col-md-offset-2">
                         <?php
-                        echo $this->Form->input('assigned_to', ['empty'=>'Select', 'class'=>'form-control select2me', 'options'=>$employees]);
-                        echo $this->Form->input('from_date', ['class'=>'form-control from_date datepicker']);
-                        echo $this->Form->input('to_date', ['class'=>'form-control to_date datepicker']);
+//                        echo $this->Form->input('employee', ['empty'=>'Select', 'class'=>'form-control select2me', 'options'=>$employees]);
+//                        echo $this->Form->input('minimum_years', ['class'=>'form-control select2me', 'options'=>$yearRange, 'empty'=>'Select']);
                         ?>
                     </div>
                     <div class="col-md-12 text-center">
@@ -69,19 +80,7 @@ $user = $this->request->Session()->read('Auth')['User'];
                         <h3 class="text-center"><?= $offices[$user['office_id']] ?></h3>
                     </div>
                     <div class="row">
-                        <h4 class="text-center"><?= __('Item Assign Report') ?></h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <?php if($from_date>0):?>
-                                <p class="text-left"><?= __('Start Date: '). date('d-m-Y', $from_date) ?></p>
-                            <?php endif;?>
-                        </div>
-                        <div class="col-md-6">
-                            <?php if($to_date>0):?>
-                                <p class="text-right"><?= __('End Date: ') . date('d-m-Y', $to_date) ?></p>
-                            <?php endif;?>
-                        </div>
+                        <h4 class="text-center"><?= __('LPR Report') ?></h4>
                     </div>
 
                     <div class="row">
@@ -90,14 +89,8 @@ $user = $this->request->Session()->read('Auth')['User'];
                                 <thead>
                                     <tr style="border-top: 3px solid #ddd">
                                         <th><?= __('Sl#') ?></th>
-                                        <th><?= __('Employee Name') ?></th>
-                                        <th><?= __('Item') ?></th>
-                                        <th><?= __('Item Type') ?></th>
-                                        <th><?= __('Item Serial#') ?></th>
-                                        <th><?= __('Item Model#') ?></th>
-                                        <th><?= __('Quantity') ?></th>
-                                        <th><?= __('Assign Date') ?></th>
-                                        <th><?= __('Expected Usage Time') ?></th>
+                                        <th><?= __('Employee') ?></th>
+                                        <th><?= __('Joining Date') ?></th>
                                     </tr>
                                 </thead>
 
@@ -106,14 +99,8 @@ $user = $this->request->Session()->read('Auth')['User'];
                                     <?php foreach($reportData as $key=>$detail):?>
                                         <tr>
                                             <td><?= $key+1;?></td>
-                                            <td><?= $detail['users']['full_name_bn'];?></td>
-                                            <td><?= $detail['items']['title_bn'];?></td>
-                                            <td><?= '';?></td>
-                                            <td><?= $detail['items']['serial_number'];?></td>
-                                            <td><?= $detail['items']['model_number'];?></td>
-                                            <td><?= $detail['quantity'];?></td>
-                                            <td><?= $detail['assign_date']?date('d-m-y', $detail['assign_date']):'Not Set';?></td>
-                                            <td><?= $detail['expected_usage_time'];?></td>
+                                            <td><?= $detail['full_name_bn'];?></td>
+                                            <td><?= date('d-m-y', $detail['create_date']);?></td>
                                         </tr>
                                     <?php endforeach;?>
                                     <?php else:?>
@@ -130,35 +117,7 @@ $user = $this->request->Session()->read('Auth')['User'];
 </div>
 <?php endif;?>
 
-<style>
-    .ui-datepicker-month
-    {
-        color: dimgrey !important;
-    }
-</style>
-
 <script type="text/javascript">
-
-    $(function() {
-        $( ".from_date" ).datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            dateFormat: 'dd-mm-yy',
-            numberOfMonths: 3,
-            onClose: function( selectedDate ) {
-                $( ".to_date" ).datepicker( "option", "minDate", selectedDate );
-            }
-        });
-        $( ".to_date" ).datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            dateFormat: 'dd-mm-yy',
-            numberOfMonths: 3,
-            onClose: function( selectedDate ) {
-                $( ".from_date" ).datepicker( "option", "maxDate", selectedDate );
-            }
-        });
-    });
 
     $(document).ready(function(){
 //        $(document).on("focus",".datepicker", function()
@@ -167,8 +126,6 @@ $user = $this->request->Session()->read('Auth')['User'];
 //                dateFormat: 'dd-mm-yy'
 //            });
 //        });
-
-
     });
 
     function print_rpt() {

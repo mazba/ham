@@ -34,9 +34,9 @@ $user = $this->request->Session()->read('Auth')['User'];
                 <div class="row">
                     <div class="col-md-7 col-md-offset-2">
                         <?php
-                        echo $this->Form->input('training_type', ['empty'=>'Select','options'=>$trainingTypes]);
-                        echo $this->Form->input('training_start_date', ['class'=>'form-control datepicker']);
-                        echo $this->Form->input('training_end_date', ['class'=>'form-control datepicker']);
+                        echo $this->Form->input('training_type', ['empty'=>'Select','class'=>'form-control select2me', 'options'=>$trainingTypes]);
+                        echo $this->Form->input('training_start_date', ['class'=>'form-control from_date datepicker']);
+                        echo $this->Form->input('training_end_date', ['class'=>'form-control to_date datepicker']);
                         ?>
                     </div>
                     <div class="col-md-12 text-center">
@@ -127,14 +127,42 @@ $user = $this->request->Session()->read('Auth')['User'];
     </div>
 <?php endif;?>
 
+<style>
+    .ui-datepicker-month
+    {
+        color: dimgrey !important;
+    }
+</style>
+
 <script type="text/javascript">
-    $(document).ready(function(){
-        $(document).on("focus",".datepicker", function()
-        {
-            $(this).removeClass('hasDatepicker').datepicker({
-                dateFormat: 'dd-mm-yy'
-            });
+    $(function() {
+        $( ".from_date" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: 'dd-mm-yy',
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( ".to_date" ).datepicker( "option", "minDate", selectedDate );
+            }
         });
+        $( ".to_date" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: 'dd-mm-yy',
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( ".from_date" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+    });
+
+    $(document).ready(function(){
+//        $(document).on("focus",".datepicker", function()
+//        {
+//            $(this).removeClass('hasDatepicker').datepicker({
+//                dateFormat: 'dd-mm-yy'
+//            });
+//        });
     });
 
     function print_rpt() {
