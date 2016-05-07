@@ -93,7 +93,7 @@ $user = $this->request->Session()->read('Auth')['User'];
                                             <td><?= $detail['serial_number'];?></td>
                                             <td><?= $detail['model_number'];?></td>
                                             <td><?= $detail['quantity'];?></td>
-                                            <td><?= $detail['item_assigns']['quantity'];?></td>
+                                            <td><?= $detail['assigned_quantity'];?></td>
                                         </tr>
                                     <?php endforeach;?>
                                     <?php else:?>

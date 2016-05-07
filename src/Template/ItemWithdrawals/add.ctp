@@ -14,14 +14,11 @@ use Cake\Core\Configure;
             <i class="fa fa-angle-right"></i>
         </li>
         <li><?= __('New Item Withdrawal') ?></li>
-
     </ul>
 </div>
 
-
 <div class="row">
     <div class="col-md-12">
-        <!-- BEGIN BORDERED TABLE PORTLET-->
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
@@ -30,8 +27,8 @@ use Cake\Core\Configure;
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
                 </div>
-
             </div>
+
             <div class="portlet-body">
                 <?= $this->Form->create($itemWithdrawal, ['class' => 'form-horizontal', 'role' => 'form']) ?>
                 <div class="row">
@@ -43,7 +40,6 @@ use Cake\Core\Configure;
                         echo $this->Form->input('withdrawal_type', ['options' => array_flip(Configure::read('item_withdrawal_type')), 'empty' => __('Select')]);
                         echo $this->Form->input('withdrawal_time', ['type' => 'text', 'class' => 'form-control datepicker']);
                         echo $this->Form->input('remarks',['type' => 'textarea', 'class' => 'form-control ','rows'=>'3']);
-
                         ?>
                         <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>
                     </div>
@@ -51,7 +47,6 @@ use Cake\Core\Configure;
                 <?= $this->Form->end() ?>
             </div>
         </div>
-        <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
 

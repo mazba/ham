@@ -64,13 +64,24 @@ class ItemAssignsController extends AppController
         if ($this->request->is('post')) {
 
             $data = $this->request->data;
+            $this->loadModel('Items');
+            $item_id = $data['item_id'];
+
+            $item = $this->Items->get($item_id);
+            $itemUpdateData['quantity'] = $item['quantity']-$data['quantity'];
+            $itemUpdateData['update_by'] = $user['id'];
+            $itemUpdateData['update_date'] = $time;
+
             $data['create_by'] = $user['id'];
             $data['create_date'] = $time;
             if (!isset($data['office_id'])) {
                 $data['office_id'] = $user['office_id'];
             }
+
             $itemAssign = $this->ItemAssigns->patchEntity($itemAssign, $data);
-            if ($this->ItemAssigns->save($itemAssign)) {
+            $itemUpdate = $this->Items->patchEntity($item, $itemUpdateData);
+
+            if ($this->ItemAssigns->save($itemAssign) && $this->Items->save($itemUpdate)) {
                 $this->Flash->success('The item assign has been saved.');
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -110,12 +121,39 @@ class ItemAssignsController extends AppController
         $itemAssign = $this->ItemAssigns->get($id, [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
+
             $data = $this->request->data;
+            $this->loadModel('Items');
+            $item_id = $data['item_id'];
+
+            $item = $this->Items->get($item_id);
+            if($itemAssign['quantity'] != $data['quantity'])
+            {
+                if($data['quantity']>$itemAssign['quantity'])
+                {
+                    $itemUpdateData['quantity'] = $item['quantity']-($data['quantity']-$itemAssign['quantity']);
+                }
+                else
+                {
+                    $itemUpdateData['quantity'] = $item['quantity']+($itemAssign['quantity']-$data['quantity']);
+                }
+            }
+            else
+            {
+                $itemUpdateData['quantity'] = $item['quantity'];
+            }
+
+            $itemUpdateData['update_by'] = $user['id'];
+            $itemUpdateData['update_date'] = $time;
+
             $data['update_by'] = $user['id'];
             $data['update_date'] = $time;
             $itemAssign = $this->ItemAssigns->patchEntity($itemAssign, $data);
-            if ($this->ItemAssigns->save($itemAssign)) {
+            $itemUpdate = $this->Items->patchEntity($item, $itemUpdateData);
+
+            if ($this->ItemAssigns->save($itemAssign) && $this->Items->save($itemUpdate)) {
                 $this->Flash->success('The item assign has been saved.');
                 return $this->redirect(['action' => 'index']);
             } else {

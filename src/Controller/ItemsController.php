@@ -68,7 +68,6 @@ class ItemsController extends AppController
 
         if ($this->request->is('post')) {
 
-
             try {
                 $data = $this->request->data;
                 $saveStatus = 0;
@@ -116,7 +115,7 @@ class ItemsController extends AppController
                             return false;
                         }
 
-                        if (isset($data['ItemVehicles'])) {
+                        if (isset($data['is_vehicle_or_document']) && $data['is_vehicle_or_document']==1) {
                             $this->loadModel('ItemVehicles');
 
                             $data['ItemVehicles']['office_id'] = $data['office_id'];
@@ -130,9 +129,7 @@ class ItemsController extends AppController
                             }
                         }
 
-                        if (isset($data['ItemDocuments'])) {
-
-
+                        if (isset($data['is_vehicle_or_document']) && $data['is_vehicle_or_document']==2) {
                             $result = $this->FileUpload->upload_file($data['ItemDocuments']['attach_file'], 'u_load/item_documents', ['jpg', 'png', 'pdf']);
                             if ($result['status']) {
                                 $data['ItemDocuments']['attach_file'] = $result['file_path'];
@@ -142,6 +139,7 @@ class ItemsController extends AppController
                                     return false;
                                 }
                             }
+
                             $data['ItemDocuments']['office_id'] = $data['office_id'];
                             $data['ItemDocuments']['item_id'] = $item['id'];
                             $data['ItemDocuments']['create_time'] = $time;
@@ -201,8 +199,6 @@ class ItemsController extends AppController
             } catch (\Exception $e) {
                 $this->Flash->error('The item could not be saved. Please, try again.');
             }
-
-
         }
 
         $item = $this->Items->newEntity();

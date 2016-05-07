@@ -86,20 +86,19 @@ use Cake\Core\Configure;
                         <div class="form-group">
                             <div class="checkbox-list">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="is_vehicle" value="1"
-                                           name="is_vehicle"><?= __('Is Vehicle') ?>
+                                    <input type="radio" id="is_none" checked value="0" name="is_vehicle_or_document"><?= __('None') ?>
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="is_document" value="1"
-                                           name="is_document"><?= __('Is Document') ?>
+                                    <input type="radio" id="is_vehicle" value="1" name="is_vehicle_or_document"><?= __('Is Vehicle') ?>
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="is_depreciable" value="1"
-                                           name="is_depreciable"><?= __('Is Depreciable') ?>
+                                    <input type="radio" id="is_document" value="2" name="is_vehicle_or_document"><?= __('Is Document') ?>
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="is_maintainable" value="1"
-                                           name="is_maintainable"> <?= __('Is Maintainable') ?>
+                                    <input type="checkbox" id="is_depreciable" value="1" name="is_depreciable"><?= __('Is Depreciable') ?>
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="is_maintainable" value="1" name="is_maintainable"> <?= __('Is Maintainable') ?>
                                 </label>
                             </div>
                         </div>
@@ -235,7 +234,7 @@ use Cake\Core\Configure;
     $(document).ready(function () {
         $('.datepicker').datepicker({
             dateFormat: 'dd-mm-yy'
-        })
+        });
 
         $(document).on('change', '.asset_nature_id', function () {
             var nature_id = $(this).val();
@@ -295,24 +294,33 @@ use Cake\Core\Configure;
                     $('.serial_number:last').clone().insertAfter('.serial_number:last');
                     $('.office_serial_number:last').clone().insertAfter('.office_serial_number:last');
                 }
-
             }
+        });
 
+        $(document).on('click', '#is_none', function () {
+            if ($(this).is(':checked')) {
+                $('.vehicleWrapper').hide().find('.form-control').attr('disabled', 'disabled');
+                $('.documentWrapper').hide().find('.form-control').attr('disabled', 'disabled');
+            }
         });
 
         $(document).on('click', '#is_vehicle', function () {
             if ($(this).is(':checked')) {
                 $('.vehicleWrapper').show().find('.form-control').removeAttr('disabled');
+                $('.documentWrapper').hide().find('.form-control').attr('disabled', 'disabled');
             } else {
                 $('.vehicleWrapper').hide().find('.form-control').attr('disabled', 'disabled');
+                $('.documentWrapper').show().find('.form-control').removeAttr('disabled');
             }
         });
 
         $(document).on('click', '#is_document', function () {
             if ($(this).is(':checked')) {
                 $('.documentWrapper').show().find('.form-control').removeAttr('disabled');
+                $('.vehicleWrapper').hide().find('.form-control').attr('disabled', 'disabled');
             } else {
                 $('.documentWrapper').hide().find('.form-control').attr('disabled', 'disabled');
+                $('.vehicleWrapper').show().find('.form-control').removeAttr('disabled');
             }
         });
 

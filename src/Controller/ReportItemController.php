@@ -22,22 +22,29 @@ class ReportItemController extends AppController
             $itemCategoryId = $this->request->data['item_category_id'];
 
             $items = TableRegistry::get('items')->find()->hydrate(false);
-            $items->select(['items.title_bn', 'items.serial_number', 'items.model_number', 'items.quantity']);
-            $items->select(['item_assigns.assign_type', 'item_assigns.office_id', 'item_assigns.office_building_id', 'item_assigns.office_room_id', 'item_assigns.office_warehouse_id', 'item_assigns.office_unit_id', 'item_assigns.designation_id', 'item_assigns.designated_user_id', 'item_assigns.item_id', 'item_assigns.quantity', 'item_assigns.assign_date', 'item_assigns.expected_usage_time', 'item_assigns.next_maintainance_date']);
+            $items->select(['items.id', 'items.title_bn', 'items.serial_number', 'items.model_number', 'items.quantity', 'items.office_warehouse_id']);
+//            $items->select(['item_assigns.assign_type', 'item_assigns.office_id', 'item_assigns.office_building_id', 'item_assigns.office_room_id', 'item_assigns.office_warehouse_id', 'item_assigns.office_unit_id', 'item_assigns.designation_id', 'item_assigns.designated_user_id', 'item_assigns.item_id', 'item_assigns.quantity', 'item_assigns.assign_date', 'item_assigns.expected_usage_time', 'item_assigns.next_maintainance_date']);
 
             $items->where(['items.status'=>1]);
+
             if(!empty($itemCategoryId) && $itemCategoryId>0)
             {
                 $items->where(['items.item_category_id'=>$itemCategoryId]);
             }
-            else
-            {
-                $items->where(['item_assigns.office_id'=>$user['office_id']]);
-            }
 
-            $items->leftJoin('item_assigns', 'items.id=item_assigns.item_id');
+//            $items->leftJoin('item_assigns', 'items.id=item_assigns.item_id');
 
             $reportData = $items->toArray();
+
+
+            foreach($reportData as &$report)
+            {
+                $assignedQuantity = TableRegistry::get('item_assigns')->find();
+                $assignedQuantity->select(['total'=>'SUM(quantity)']);
+                $assignedQuantity->where(['item_id'=>$report['id'], 'office_warehouse_id'=>$report['office_warehouse_id'], 'status'=>1]);
+
+                $report['assigned_quantity'] = $assignedQuantity->first()->toArray()['total']?$assignedQuantity->first()->toArray()['total']:0;
+            }
 
             $offices = TableRegistry::get('offices')->find('list')->toArray();
             $this->set('reportData', $reportData);
