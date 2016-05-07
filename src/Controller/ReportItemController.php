@@ -23,8 +23,6 @@ class ReportItemController extends AppController
 
             $items = TableRegistry::get('items')->find()->hydrate(false);
             $items->select(['items.id', 'items.title_bn', 'items.serial_number', 'items.model_number', 'items.quantity', 'items.office_warehouse_id']);
-//            $items->select(['item_assigns.assign_type', 'item_assigns.office_id', 'item_assigns.office_building_id', 'item_assigns.office_room_id', 'item_assigns.office_warehouse_id', 'item_assigns.office_unit_id', 'item_assigns.designation_id', 'item_assigns.designated_user_id', 'item_assigns.item_id', 'item_assigns.quantity', 'item_assigns.assign_date', 'item_assigns.expected_usage_time', 'item_assigns.next_maintainance_date']);
-
             $items->where(['items.status'=>1]);
 
             if(!empty($itemCategoryId) && $itemCategoryId>0)
@@ -32,11 +30,7 @@ class ReportItemController extends AppController
                 $items->where(['items.item_category_id'=>$itemCategoryId]);
             }
 
-//            $items->leftJoin('item_assigns', 'items.id=item_assigns.item_id');
-
             $reportData = $items->toArray();
-
-
             foreach($reportData as &$report)
             {
                 $assignedQuantity = TableRegistry::get('item_assigns')->find();
