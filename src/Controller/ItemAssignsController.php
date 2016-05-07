@@ -123,27 +123,20 @@ class ItemAssignsController extends AppController
         ]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-
             $data = $this->request->data;
             $this->loadModel('Items');
             $item_id = $data['item_id'];
 
             $item = $this->Items->get($item_id);
-            if($itemAssign['quantity'] != $data['quantity'])
-            {
-                if($data['quantity']>$itemAssign['quantity'])
-                {
+            if($itemAssign['quantity'] != $data['quantity']):
+                if($data['quantity']>$itemAssign['quantity']):
                     $itemUpdateData['quantity'] = $item['quantity']-($data['quantity']-$itemAssign['quantity']);
-                }
-                else
-                {
+                else:
                     $itemUpdateData['quantity'] = $item['quantity']+($itemAssign['quantity']-$data['quantity']);
-                }
-            }
-            else
-            {
+                endif;
+            else:
                 $itemUpdateData['quantity'] = $item['quantity'];
-            }
+            endif;
 
             $itemUpdateData['update_by'] = $user['id'];
             $itemUpdateData['update_date'] = $time;
