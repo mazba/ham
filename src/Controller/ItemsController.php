@@ -308,8 +308,6 @@ class ItemsController extends AppController
                 $this->viewBuilder()->layout('ajax');
                 $this->set(compact('itemCategories', 'action'));
             }
-
-
         }
     }
 }

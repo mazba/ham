@@ -1,7 +1,7 @@
 <?php
 $status = \Cake\Core\Configure::read('status_options');
 $item_conditions = Cake\Core\Configure::read('item_conditions');
-$item_conditions=array_flip($item_conditions);
+$item_conditions = array_flip($item_conditions);
 ?>
 
 <div class="page-bar">
@@ -53,7 +53,7 @@ $item_conditions=array_flip($item_conditions);
                         </tr>
                         <tr>
                             <th><?= __('Code') ?></th>
-                            <td><?= h($item->code) ?></td>
+                            <td><?= h($item->item_code) ?></td>
                         </tr>
                         <tr>
                             <th><?= __('Short Code') ?></th>
@@ -99,8 +99,8 @@ $item_conditions=array_flip($item_conditions);
                             <th><?= __('Picture File') ?></th>
                             <td>
                                 <?php
-                                if($item->picture_file && file_exists($this->request->webroot.$item->picture_file)):
-                                    echo $this->Html->link(__('View File'),'/'.$item->picture_file, ['class' => 'btn btn-sm btn-info']);
+                                if ($item->picture_file && file_exists($this->request->webroot . $item->picture_file)):
+                                    echo $this->Html->link(__('View File'), '/' . $item->picture_file, ['class' => 'btn btn-sm btn-info']);
                                 endif
                                 ?>
                             </td>
@@ -113,8 +113,8 @@ $item_conditions=array_flip($item_conditions);
                             <th><?= __('Purchase Order Attach File') ?></th>
                             <td>
                                 <?php
-                                if($item->purchase_order_attach_file && file_exists($this->request->webroot.$item->purchase_order_attach_file)):
-                                    echo $this->Html->link(__('View File'),'/'.$item->purchase_order_attach_file, ['class' => 'btn btn-sm btn-info']);
+                                if ($item->purchase_order_attach_file && file_exists($this->request->webroot . $item->purchase_order_attach_file)):
+                                    echo $this->Html->link(__('View File'), '/' . $item->purchase_order_attach_file, ['class' => 'btn btn-sm btn-info']);
                                 endif
                                 ?>
                             </td>
@@ -140,7 +140,7 @@ $item_conditions=array_flip($item_conditions);
 
                         <tr>
                             <th><?= __('Condition') ?></th>
-                            <td><?= $item_conditions[$item->condition] ?></td>
+                            <td><?= $item_conditions[$item->item_condition] ?></td>
                         </tr>
 
                         <tr>
