@@ -105,12 +105,14 @@ class ItemsController extends AppController
                         $data['serial_number'] = $data['serial_number'][$i];
                         $data['office_serial_number'] = $data['office_serial_number'][$i];
                         $item = $this->Items->patchEntity($item, $data);
+
                         if (!$item = $this->Items->save($item)) {
-                            if (file_exists(WWW_ROOT . DS . $data['picture_file'])) {
-                                unlink(WWW_ROOT . DS . $data['picture_file']);
+
+                            if ($data['picture_file']['name'] && file_exists(WWW_ROOT  .'u_load'. DS .'items'. DS . $data['picture_file']['name'])) {
+                                unlink(WWW_ROOT . 'u_load'. DS .'items'. DS . $data['picture_file']['name']);
                             }
-                            if (file_exists(WWW_ROOT . DS . $data['purchase_order_attach_file'])) {
-                                unlink(WWW_ROOT . DS . $data['purchase_order_attach_file']);
+                            if ($data['purchase_order_attach_file']['name'] && file_exists(WWW_ROOT  . 'u_load'. DS .'items'. DS .$data['purchase_order_attach_file']['name'])) {
+                                unlink(WWW_ROOT . 'u_load'. DS .'items'. DS . $data['purchase_order_attach_file']['name']);
                             }
                             return false;
                         }
@@ -147,14 +149,10 @@ class ItemsController extends AppController
                             $this->loadModel('ItemDocuments');
                             $itemDocument = $this->ItemDocuments->newEntity();
                             $itemDocument = $this->ItemDocuments->patchEntity($itemDocument, $data['ItemDocuments']);
-                            /*echo "<pre>";
-                            print_r($itemDocument);
-                            echo "</pre>";
-                            die;*/
-                            if ($this->ItemDocuments->save($itemDocument)) {
 
-                                if (file_exists(WWW_ROOT . DS . $data['ItemDocuments']['attach_file'])) {
-                                    unlink(WWW_ROOT . DS . $data['ItemDocuments']['attach_file']);
+                            if ($this->ItemDocuments->save($itemDocument)) {
+                                if ($data['ItemDocuments']['attach_file']['name'] && file_exists(WWW_ROOT  .'u_load'. DS .'item_documents'. DS . $data['ItemDocuments']['attach_file']['name'])) {
+                                    unlink(WWW_ROOT . 'u_load'. DS .'item_documents'. DS . $data['ItemDocuments']['attach_file']['name']);
                                 }
                                 return false;
                             }
@@ -195,8 +193,11 @@ class ItemsController extends AppController
                     return $this->redirect('/items');
                 });
 
-
             } catch (\Exception $e) {
+//                echo '<pre>';
+//                print_r($e);
+//                echo '</pre>';
+//                die();
                 $this->Flash->error('The item could not be saved. Please, try again.');
             }
         }
