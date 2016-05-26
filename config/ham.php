@@ -58,7 +58,7 @@ return [
         'Excellent' => 1,
         'Very Good' => 2,
         'Good' => 3,
-        'Satisfy' => 4,
+        'Satisfactory' => 4,
         'Poor' => 5
     ],
 
