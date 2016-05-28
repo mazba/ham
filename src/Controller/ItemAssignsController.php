@@ -121,6 +121,7 @@ class ItemAssignsController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->data;
+
             $this->loadModel('Items');
             $item_id = $data['item_id'];
 

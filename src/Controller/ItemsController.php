@@ -106,8 +106,8 @@ class ItemsController extends AppController
                         $data['office_serial_number'] = $data['office_serial_number'][$i];
                         $item = $this->Items->patchEntity($item, $data);
 
-                        if (!$item = $this->Items->save($item)) {
 
+                        if (!$item = $this->Items->save($item)) {
                             if ($data['picture_file']['name'] && file_exists(WWW_ROOT  .'u_load'. DS .'items'. DS . $data['picture_file']['name'])) {
                                 unlink(WWW_ROOT . 'u_load'. DS .'items'. DS . $data['picture_file']['name']);
                             }
@@ -168,6 +168,7 @@ class ItemsController extends AppController
                             $data['item_depreciations']['create_by'] = $user['id'];
                             $itemDepreciation = $this->ItemDepreciations->newEntity();
                             $itemDepreciation = $this->ItemDepreciations->patchEntity($itemDepreciation, $data['item_depreciations']);
+
                             if (!$this->ItemDepreciations->save($itemDepreciation)) {
                                 return false;
                             }
@@ -194,11 +195,12 @@ class ItemsController extends AppController
                 });
 
             } catch (\Exception $e) {
-//                echo '<pre>';
-//                print_r($e);
-//                echo '</pre>';
-//                die();
+                echo '<pre>';
+                print_r($e);
+                echo '</pre>';
+                die();
                 $this->Flash->error('The item could not be saved. Please, try again.');
+                return $this->redirect('/items');
             }
         }
 

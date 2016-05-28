@@ -28,22 +28,20 @@ class ReportItemAssignController extends AppController
             $items->select(['item_assigns.assign_type', 'item_assigns.office_id', 'item_assigns.office_building_id', 'item_assigns.office_room_id', 'item_assigns.office_warehouse_id', 'item_assigns.office_unit_id', 'item_assigns.designation_id', 'item_assigns.designated_user_id', 'item_assigns.item_id', 'item_assigns.quantity', 'item_assigns.assign_date', 'item_assigns.expected_usage_time', 'item_assigns.next_maintainance_date']);
 
             $items->where(['items.status'=>1]);
-            if(!empty($assigned_to) && $assigned_to>0)
-            {
+            if(!empty($assigned_to) && $assigned_to>0):
                 $items->where(['designated_user_id'=>$assigned_to]);
-            }
-            else
-            {
+            else:
                 $items->where(['item_assigns.office_id'=>$user['office_id']]);
-            }
-            if(!empty($from_date) && $from_date>0)
-            {
+            endif;
+
+            if(!empty($from_date) && $from_date>0):
                 $items->where(['assign_date >='=>$from_date]);
-            }
-            if(!empty($to_date) && $to_date>0)
-            {
+            endif;
+
+            if(!empty($to_date) && $to_date>0):
                 $items->where(['assign_date <='=>$to_date]);
-            }
+            endif;
+
             $items->leftJoin('items', 'items.id=item_assigns.item_id');
             $items->leftJoin('users', 'users.id=item_assigns.designated_user_id');
 
@@ -54,6 +52,12 @@ class ReportItemAssignController extends AppController
             $this->set('from_date', $from_date);
             $this->set('to_date', $to_date);
             $this->set('offices', $offices);
+
+//            echo '<pre>';
+//            print_r($reportData);
+//            echo '</pre>';
+//            die();
+
             $this->set('_serialize', ['reportData', 'from_date', 'to_date', 'offices']);
         }
 	}

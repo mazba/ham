@@ -101,7 +101,7 @@ class ItemWithdrawalsController extends AppController
 
             if ($this->ItemWithdrawals->save($itemWithdrawal) && $this->ItemAssigns->save($itemAssign) && $this->Items->save($item)) {
                 $this->Flash->success('The item withdrawal has been saved.');
-                return $this->redirect(['action' => 'add']);
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error('The item withdrawal could not be saved. Please, try again.');
             }

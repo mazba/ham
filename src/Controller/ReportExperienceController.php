@@ -10,12 +10,6 @@ class ReportExperienceController extends AppController
 {
     public function index()
     {
-
-//        $dob = '12-02-58';
-//        $lpr_year = new Time($dob);
-//        $lpr_year->modify('+60 years');
-//        echo $lpr_year;
-//        exit;
         $user = $this->Auth->user();
         $yearRange = [];
 
@@ -42,7 +36,7 @@ class ReportExperienceController extends AppController
                 $users->where(['users.status'=>1]);
 
                 if(!empty($employee) && $employee>0):
-                    $users->where(['id'=>$employee]);
+                    $users->where(['users.id'=>$employee]);
                 else:
                     $users->where(['users.office_id'=>$user['office_id']]);
                 endif;

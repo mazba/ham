@@ -71,7 +71,7 @@ use Cake\Core\Configure;
                         ?>
                     </div>
 
-                    <div class="serialWrapper" style="display: none">
+                    <div class="row serialWrapper" style="display: none">
                         <div class="col-md-6">
                             <?= $this->Form->input('serial_number[]', ['required', 'label' => __('Serial Number'), 'templates' => ['inputContainer' => '<div class="form-group serial_number {{type}}{{required}}">{{content}}</div>']]); ?>
                         </div>
@@ -121,7 +121,6 @@ use Cake\Core\Configure;
                             echo $this->Form->input('ItemVehicles.country_of_origin', ['disabled']);
                             echo $this->Form->input('ItemVehicles.oil_sump_capacity', ['type' => 'number', 'disabled']);
                             echo $this->Form->input('ItemVehicles.engine_capacity', ['disabled']);
-
                             ?>
                         </div>
                     </div>
@@ -219,13 +218,10 @@ use Cake\Core\Configure;
                     <div class="col-md-12 text-center">
                         <?= $this->Form->button(__('Submit'), ['class' => 'btn blue', 'style' => 'margin-top:20px']) ?>
                     </div>
-
-
                 </div>
                 <?= $this->Form->end() ?>
             </div>
         </div>
-        <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
 

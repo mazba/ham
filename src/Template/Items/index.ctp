@@ -15,7 +15,6 @@ $status = \Cake\Core\Configure::read('status_options');
 
 <div class="row">
     <div class="col-md-12">
-        <!-- BEGIN BORDERED TABLE PORTLET-->
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
@@ -50,19 +49,21 @@ $status = \Cake\Core\Configure::read('status_options');
                                         $this->Html->link($item->parent_item
                                             ->id, ['controller' => 'Items',
                                             'action' => 'view', $item->parent_item
-                                                ->id]) : '' ?></td>
+                                                ->id]) : ''
+                                    ?>
+                                </td>
                                 <td><?= h($item->serial_number) ?></td>
                                 <td><?= h($item->office_serial_number) ?></td>
                                 <td><?= h($item->model_number) ?></td>
-                                <td><?= h($item->code) ?></td>
+                                <td><?= h($item->item_code) ?></td>
                                 <td><?= h($item->short_code) ?></td>
                                 <td class="actions">
                                     <?php
                                     echo $this->Html->link(__('View'), ['action' => 'view', $item->id], ['class' => 'btn btn-sm btn-info']);
 
-//                                    echo $this->Html->link(__('Edit'), ['action' => 'edit', $item->id], ['class' => 'btn btn-sm btn-warning']);
+                                    //                                    echo $this->Html->link(__('Edit'), ['action' => 'edit', $item->id], ['class' => 'btn btn-sm btn-warning']);
 
-//                                    echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $item->id], ['class' => 'btn btn-sm btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $item->id)]);
+                                    //                                    echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $item->id], ['class' => 'btn btn-sm btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $item->id)]);
 
                                     ?>
 
@@ -82,7 +83,6 @@ $status = \Cake\Core\Configure::read('status_options');
                 </ul>
             </div>
         </div>
-        <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
 
