@@ -140,7 +140,7 @@ $item_conditions = array_flip($item_conditions);
 
                         <tr>
                             <th><?= __('Condition') ?></th>
-                            <td><?= $item_conditions[$item->item_condition] ?></td>
+                            <td><?= $item->item_condition?$item_conditions[$item->item_condition]:'' ?></td>
                         </tr>
 
                         <tr>
@@ -168,7 +168,6 @@ $item_conditions = array_flip($item_conditions);
                             <td><?= $item->formatted_projected_end_of_life ?></td>
                         </tr>
 
-
                         <tr>
                             <th><?= __('Status') ?></th>
                             <td><?= __($status[$item->status]) ?></td>
@@ -185,7 +184,6 @@ $item_conditions = array_flip($item_conditions);
                 </div>
             </div>
         </div>
-        <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
 

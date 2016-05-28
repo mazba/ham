@@ -94,11 +94,8 @@ class ItemAssignsController extends AppController
             $this->set(compact('offices'));
         } else {
             $officeBuildings = $this->ItemAssigns->OfficeBuildings->find('list', ['conditions' => ['status' => 1, 'office_id' => $user['office_id']]]);
-//            $officeRooms = $this->ItemAssigns->OfficeRooms->find('list', ['conditions' => ['status' => 1, 'office_id' => $user['office_id']]]);
             $officeWarehouses = $this->ItemAssigns->OfficeWarehouses->find('list', ['conditions' => ['status' => 1, 'office_id' => $user['office_id']]]);
             $officeUnits = $this->ItemAssigns->OfficeUnits->find('list', ['conditions' => ['status' => 1, 'office_id' => $user['office_id']]]);
-//            $designations = $this->ItemAssigns->Designations->find('list', ['conditions' => ['status' => 1, 'office_id' => $user['office_id']]]);
-//            $designatedUsers = $this->ItemAssigns->DesignatedUsers->find('list', ['conditions' => ['status' => 1, 'office_id' => $user['office_id']]]);
         }
 
         $this->loadModel('ItemCategories');
@@ -255,9 +252,6 @@ class ItemAssignsController extends AppController
                     $this->render('/Items/ajax');
                 }
             }
-
-
         }
-
     }
 }

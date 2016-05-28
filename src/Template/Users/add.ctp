@@ -21,8 +21,8 @@ $religions = \Cake\Core\Configure::read('religions');
         <?= $this->Form->create($user,['type' => 'file', 'class'=>'form-horizontal myForm','novalidate']) ?>
         <div class="tabbable-custom ">
             <ul class="nav nav-tabs ">
-                <li><a href="#tab_5_1" data-toggle="tab"><?= __('Basic')?></a></li>
-                <li class="active"><a href="#tab_5_2" data-toggle="tab"><?= __('Academic')?></a></li>
+                <li class="active"><a href="#tab_5_1" data-toggle="tab"><?= __('Basic')?></a></li>
+                <li><a href="#tab_5_2" data-toggle="tab"><?= __('Academic')?></a></li>
                 <li><a href="#tab_5_3" data-toggle="tab"><?= __('Dependent');?></a></li>
                 <li><a href="#tab_5_4" data-toggle="tab"><?= __('Designation');?></a></li>
                 <li><a href="#tab_5_5" data-toggle="tab"><?= __('Emergency');?></a></li>
@@ -32,7 +32,7 @@ $religions = \Cake\Core\Configure::read('religions');
                 <li><a href="#tab_5_9" data-toggle="tab"><?= __('Login Info');?></a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane" id="tab_5_1">
+                <div class="tab-pane active" id="tab_5_1">
                     <div class="row whiteWrapper basicWrapper">
                         <div class="col-md-8 col-md-offset-2">
                             <?php
@@ -67,7 +67,7 @@ $religions = \Cake\Core\Configure::read('religions');
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane active" id="tab_5_2">
+                <div class="tab-pane" id="tab_5_2">
                     <div class="row list" data-index_no="0">
                         <div class="academicWrapper">
                             <div class="col-md-12 single_list">

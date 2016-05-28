@@ -14,14 +14,12 @@ use Cake\Core\Configure;
             <i class="fa fa-angle-right"></i>
         </li>
         <li><?= __('New Item Assign') ?></li>
-
     </ul>
 </div>
 
 
 <div class="row">
     <div class="col-md-12">
-        <!-- BEGIN BORDERED TABLE PORTLET-->
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
@@ -35,35 +33,37 @@ use Cake\Core\Configure;
             <div class="portlet-body">
                 <?= $this->Form->create($itemAssign, ['class' => 'form-horizontal', 'role' => 'form']) ?>
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-0">
                         <?php
                         echo $this->Form->input('assign_type', ['options' => array_flip(Configure::read('item_assign_type')), 'empty' => __('Select')]);
                         if (isset($offices)) {
                             echo $this->Form->input('office_id', ['options' => $offices, 'empty' => __('Select')]);
                         }
-
                         echo $this->Form->input('office_building_id', ['options' => isset($officeBuildings) ? $officeBuildings : [], 'empty' => __('Select')]);
                         echo $this->Form->input('office_room_id', ['options' => [], 'empty' => __('Select')]);
                         echo $this->Form->input('office_unit_id', ['options' => isset($officeUnits) ? $officeUnits : [], 'empty' => __('Select')]);
                         echo $this->Form->input('designation_id', ['options' => [], 'empty' => __('Select')]);
                         echo $this->Form->input('designated_user_id', ['options' => [], 'empty' => __('Select')]);
                         echo $this->Form->input('office_warehouse_id', ['options' => isset($officeWarehouses) ? $officeWarehouses : [], 'empty' => __('Select')]);
+                        ?>
+                    </div>
+                    <div class="col-md-6 col-md-offset-0">
+                        <?php
                         echo $this->Form->input('item_category_id', ['class' => 'form-control item_category_id', 'options' => $itemCategories, 'empty' => __('Select'), 'templates' => ['inputContainer' => '<div class="form-group item_category {{type}}{{required}}">{{content}}</div>']]);
                         echo $this->Form->input('item_id', ['options' => [], 'empty' => __('Select')]);
                         echo $this->Form->input('quantity');
                         echo $this->Form->input('assign_date', ['type' => 'text', 'class' => 'form-control datepicker']);
                         echo $this->Form->input('expected_usage_time', ['placeholder' => __('Number of days')]);
-                        echo $this->Form->input('usage_instruction');
+                        echo $this->Form->input('usage_instruction', ['rows'=>2]);
                         echo $this->Form->input('next_maintainance_date', ['type' => 'text', 'class' => 'form-control datepicker']);
                         echo $this->Form->input('status', ['type' => 'hidden', 'value' => 1]);
                         ?>
-                        <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px']) ?>
+                        <?= $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin:0 20px 20px 20px']) ?>
                     </div>
                 </div>
                 <?= $this->Form->end() ?>
             </div>
         </div>
-        <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
 
@@ -186,9 +186,13 @@ use Cake\Core\Configure;
                 },
                 success: function (data, status) {
                     var lists = JSON.parse(data);
+                    console.log(lists);
                     var html = '<option selected="selected"><?= __('Select') ?> </option>';
                     $.each(lists, function (index, value) {
-                        html = html + '<option value="' + value.Users.id + '">' + value.Users.full_name_bn + '</option>'
+                        if(value.Users && value.Users.id>0)
+                        {
+                            html = html + '<option value="' + value.Users.id + '">' + value.Users.full_name_bn + '</option>'
+                        }
                     })
                     $('#designated-user-id').html(html)
                 }
@@ -225,7 +229,5 @@ use Cake\Core\Configure;
                 }
             });
         });
-
-
     })
 </script>
