@@ -275,15 +275,6 @@ $religions = \Cake\Core\Configure::read('religions');
 </style>
 <script>
     $(document).ready(function(){
-        // Validation Identifier Start START
-//        $('.basicWrapper').find('.form-group').each(function(){
-//            if($(this).hasClass('required'))
-//            {
-//                $('#ui-id-1').addClass('my-error-class');
-//            }
-//        });
-        // Validation Identifier Start END
-
         $(document).on('focus','.training_type', function()
         {
             $(this).autocomplete({
@@ -598,7 +589,7 @@ $religions = \Cake\Core\Configure::read('religions');
         {
             if($(".is_basic:checked").length==0)
             {
-                alert('No Basic Designation!');
+                alert('No Basic User Designation!');
                 return false;
             }
             else if($(".is_basic:checked").length>1)

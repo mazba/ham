@@ -23,6 +23,9 @@ class UsersController extends AppController
             'contain' => ['UserGroups']
         ];
         $this->set('users', $this->paginate($this->Users));
+        $this->loadModel('UserGroups');
+        $userGroups = $this->UserGroups->find('list')->toArray();
+        $this->set(compact('user', 'userGroups'));
         $this->set('_serialize', ['users']);
     }
 
