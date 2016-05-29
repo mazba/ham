@@ -36,7 +36,7 @@ $user = $this->request->Session()->read('Auth')['User'];
                     <div class="col-md-7 col-md-offset-2">
                         <?php
                         echo $this->Form->input('employee', ['empty'=>'Select', 'class'=>'form-control select2me', 'options'=>$employees]);
-                        echo $this->Form->input('report_type', ['empty'=>'Select', 'class'=>'form-control report_type select2me', 'options'=>Configure::read('experience_report_type')]);
+                        echo $this->Form->input('report_type', ['empty'=>'Select', 'required', 'class'=>'form-control report_type select2me', 'options'=>Configure::read('experience_report_type')]);
                         ?>
                         <div class="lpr_age_div hidden">
                             <?php
